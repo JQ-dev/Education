@@ -1,0 +1,1117 @@
+MUNI_ID¬MUNI_NOMBRE¬DEPA_NOMBRE¬PUNTAJE_PROMEDIO¬ERRORESTANDARPROMEDIO¬DESVIACION¬PORCENTAJE_INSUFICIENTE¬PORCENTAJE_MINIMO¬PORCENTAJE_SATISFACTORIO¬PORCENTAJE_AVANZADO¬N
+05002¬Abejorral¬Antioquia¬313¬0,765¬56¬7¬47¬40¬5¬188
+54003¬Abrego¬Norte De Santander¬300¬0,816¬50¬14¬47¬37¬3¬279
+05004¬Abriaquí¬Antioquia¬330¬1,735¬50¬0¬39¬54¬7¬28
+50006¬Acacías¬Meta¬319¬0,459¬57¬7¬42¬44¬6¬1081
+27006¬Acandí¬Chocó¬265¬1,173¬52¬31¬53¬16¬1¬141
+41006¬Acevedo¬Huila¬301¬0,714¬51¬11¬49¬39¬2¬369
+13006¬Achí¬Bolívar¬272¬0,867¬47¬25¬54¬21¬0¬323
+41013¬Agrado¬Huila¬296¬1,02¬57¬12¬55¬28¬6¬138
+25001¬Agua de Dios¬Cundinamarca¬299¬0,408¬56¬12¬50¬35¬3¬139
+20011¬Aguachica¬Cesar¬299¬0,408¬54¬14¬48¬35¬3¬1221
+68013¬Aguada¬Santander¬317¬4,388¬56¬0¬47¬53¬0¬17
+17013¬Aguadas¬Caldas¬319¬1,276¬57¬7¬43¬43¬7¬216
+85010¬Aguazul¬Casanare¬319¬0,561¬57¬8¬39¬48¬5¬578
+20013¬Agustín Codazzi¬Cesar¬290¬0,51¬56¬17¬51¬29¬3¬796
+41016¬Aipe¬Huila¬281¬0,918¬58¬22¬50¬27¬2¬261
+18029¬Albania¬Caquetá¬301¬1,224¬55¬13¬49¬37¬1¬76
+44035¬Albania¬La Guajira¬271¬0,561¬50¬27¬53¬20¬0¬400
+68020¬Albania¬Santander¬298¬1,786¬55¬19¬43¬36¬2¬42
+25019¬Albán¬Cundinamarca¬323¬1,378¬48¬2¬41¬55¬2¬49
+52019¬Albán¬Nariño¬300¬1,327¬50¬8¬53¬37¬3¬115
+76020¬Alcalá¬Valle Del Cauca¬297¬2,296¬57¬13¬52¬33¬2¬124
+52022¬Aldana¬Nariño¬303¬0,408¬50¬6¬58¬34¬2¬124
+05021¬Alejandría¬Antioquia¬336¬3,01¬58¬0¬39¬50¬12¬26
+47030¬Algarrobo¬Magdalena¬260¬1,173¬54¬37¬43¬20¬0¬230
+41020¬Algeciras¬Huila¬314¬1,071¬56¬7¬45¬42¬6¬294
+19022¬Almaguer¬Cauca¬284¬0,969¬49¬18¬54¬28¬0¬232
+15022¬Almeida¬Boyacá¬301¬0¬66¬13¬54¬29¬4¬24
+73024¬Alpujarra¬Tolima¬315¬1,888¬47¬5¬42¬53¬0¬62
+41026¬Altamira¬Huila¬340¬0¬46¬0¬30¬66¬5¬44
+27025¬Alto Baudó¬Chocó¬227¬1,48¬44¬61¬32¬7¬0¬87
+13030¬Altos del Rosario¬Bolívar¬258¬2,092¬46¬33¬55¬12¬0¬116
+73026¬Alvarado¬Tolima¬300¬1,837¬56¬10¬58¬29¬3¬79
+05030¬Amagá¬Antioquia¬311¬1,48¬58¬12¬39¬43¬5¬284
+05031¬Amalfi¬Antioquia¬315¬0,816¬58¬8¬44¬44¬5¬285
+73030¬Ambalema¬Tolima¬277¬1,276¬58¬28¬43¬28¬2¬61
+25035¬Anapoima¬Cundinamarca¬308¬0,51¬52¬6¬52¬39¬3¬176
+52036¬Ancuyá¬Nariño¬320¬1,122¬57¬9¬35¬51¬5¬98
+76036¬Andalucía¬Valle Del Cauca¬314¬1,071¬53¬8¬40¬48¬5¬234
+05034¬Andes¬Antioquia¬313¬0,816¬56¬8¬46¬40¬6¬549
+05036¬Angelópolis¬Antioquia¬293¬1,48¬49¬13¬45¬42¬0¬62
+05038¬Angostura¬Antioquia¬278¬1,02¬55¬22¬52¬25¬1¬246
+25040¬Anolaima¬Cundinamarca¬321¬0,867¬56¬8¬39¬48¬5¬168
+05040¬Anorí¬Antioquia¬272¬1,327¬54¬22¬59¬16¬3¬196
+17042¬Anserma¬Caldas¬308¬0,867¬52¬9¬47¬42¬2¬325
+76041¬Ansermanuevo¬Valle Del Cauca¬302¬1,48¬59¬10¬48¬39¬3¬158
+05044¬Anza¬Antioquia¬308¬4,49¬51¬5¬50¬45¬0¬38
+25394¬La Palma¬Cundinamarca¬299¬1,02¬55¬17¬43¬38¬2¬123
+20621¬La Paz¬Cesar¬286¬1,071¬56¬21¬50¬28¬2¬378
+68397¬La Paz¬Santander¬318¬0,867¬60¬20¬29¬45¬7¬56
+25398¬La Peña¬Cundinamarca¬312¬0,663¬65¬13¬40¬41¬6¬85
+05390¬La Pintada¬Antioquia¬293¬2,398¬60¬17¬47¬33¬3¬78
+41396¬La Plata¬Huila¬310¬0,561¬54¬10¬45¬42¬4¬797
+54398¬La Playa¬Norte De Santander¬300¬0,765¬52¬15¬49¬32¬4¬104
+19392¬La Sierra¬Cauca¬286¬1,378¬44¬11¬62¬28¬0¬112
+63401¬La Tebaida¬Quindio¬306¬0,561¬59¬12¬46¬39¬4¬449
+52390¬La Tola¬Nariño¬238¬1,429¬39¬49¬48¬2¬1¬114
+05400¬La Unión¬Antioquia¬312¬0,816¬53¬8¬45¬44¬4¬268
+52399¬La Unión¬Nariño¬308¬0,714¬55¬10¬49¬37¬3¬357
+70400¬La Unión¬Sucre¬303¬0,561¬52¬8¬49¬40¬3¬197
+76400¬La Unión¬Valle Del Cauca¬315¬0,612¬56¬9¬42¬43¬6¬428
+15403¬La Uvita¬Boyacá¬319¬2,398¬51¬5¬43¬48¬5¬40
+19397¬La Vega¬Cauca¬291¬0,918¬54¬14¬54¬29¬3¬201
+25402¬La Vega¬Cundinamarca¬316¬1,071¬53¬6¬42¬50¬3¬244
+15401¬La Victoria¬Boyacá¬316¬0¬54¬12¬35¬53¬0¬17
+76403¬La Victoria¬Valle Del Cauca¬284¬1,684¬58¬17¬54¬28¬1¬151
+66400¬La Virginia¬Risaralda¬300¬0,663¬57¬14¬50¬33¬3¬423
+54377¬Labateca¬Norte De Santander¬308¬0¬60¬11¬49¬34¬6¬98
+15377¬Labranzagrande¬Boyacá¬317¬2,806¬55¬5¬37¬53¬5¬19
+68385¬Landázuri¬Santander¬314¬1,122¬56¬8¬41¬48¬3¬141
+68406¬Lebrija¬Santander¬317¬0,51¬57¬7¬43¬44¬6¬566
+86573¬Leguízamo¬Putumayo¬291¬1,378¬54¬16¬54¬28¬2¬293
+52405¬Leiva¬Nariño¬286¬1,02¬49¬14¬58¬27¬0¬139
+50400¬Lejanías¬Meta¬311¬0¬52¬8¬45¬44¬2¬135
+25407¬Lenguazaque¬Cundinamarca¬304¬0¬53¬9¬51¬37¬3¬99
+91001¬Leticia¬Amazonas¬281¬0,765¬54¬22¬52¬24¬2¬763
+05411¬Liborina¬Antioquia¬301¬1,531¬61¬16¬46¬35¬4¬116
+52411¬Linares¬Nariño¬328¬0,714¬58¬8¬37¬51¬4¬115
+27413¬Lloró¬Chocó¬234¬1,378¬39¬57¬37¬7¬0¬108
+23417¬Lorica¬Córdoba¬280¬0,408¬54¬22¬53¬23¬3¬1866
+52418¬Los Andes¬Nariño¬317¬0,663¬51¬5¬48¬42¬5¬140
+23419¬Los Córdobas¬Córdoba¬279¬0,969¬48¬17¬58¬25¬0¬241
+70418¬Los Palmitos¬Sucre¬275¬0,663¬50¬23¬55¬20¬1¬325
+54405¬Los Patios¬Norte De Santander¬314¬0,357¬57¬9¬44¬42¬5¬969
+68418¬Los Santos¬Santander¬299¬0,918¬54¬10¬53¬35¬2¬174
+54418¬Lourdes¬Norte De Santander¬313¬1,99¬56¬8¬45¬47¬0¬38
+08421¬Luruaco¬Atlántico¬268¬0,765¬50¬27¬53¬18¬1¬362
+73408¬Lérida¬Tolima¬289¬0,714¬54¬18¬51¬29¬2¬211
+73411¬Líbano¬Tolima¬314¬0,459¬52¬9¬42¬45¬4¬491
+19418¬López¬Cauca¬243¬1,531¬47¬42¬52¬7¬0¬199
+15425¬Macanal¬Boyacá¬317¬1,122¬59¬14¬29¬52¬6¬52
+68425¬Macaravita¬Santander¬316¬0¬53¬9¬47¬43¬2¬47
+05425¬Maceo¬Antioquia¬294¬2,755¬49¬12¬55¬32¬1¬69
+25426¬Macheta¬Cundinamarca¬315¬0,255¬58¬10¬42¬42¬6¬81
+25430¬Madrid¬Cundinamarca¬328¬0,306¬57¬5¬36¬51¬8¬1242
+13430¬Magangué¬Bolívar¬294¬0,255¬53¬15¬53¬30¬2¬1720
+52427¬Magüi¬Nariño¬248¬1,939¬37¬40¬55¬6¬0¬86
+13433¬Mahates¬Bolívar¬259¬0,714¬51¬34¬51¬15¬0¬407
+44430¬Maicao¬La Guajira¬278¬0,459¬53¬24¬50¬24¬2¬1991
+70429¬Majagual¬Sucre¬267¬0,612¬51¬28¬55¬17¬0¬514
+08433¬Malambo¬Atlántico¬303¬0,357¬57¬16¬44¬34¬6¬1447
+52435¬Mallama¬Nariño¬297¬0,816¬50¬15¬52¬31¬2¬99
+08436¬Manatí¬Atlántico¬256¬0,816¬54¬37¬48¬14¬1¬217
+20443¬Manaure¬Cesar¬312¬0,714¬58¬9¬48¬36¬7¬198
+44560¬Manaure¬La Guajira¬258¬0,714¬51¬34¬52¬14¬0¬447
+17001¬Manizales¬Caldas¬331¬0,204¬55¬6¬35¬51¬9¬3938
+25436¬Manta¬Cundinamarca¬308¬0¬73¬17¬32¬44¬7¬41
+17433¬Manzanares¬Caldas¬300¬0,612¬53¬13¬46¬38¬3¬240
+85139¬Maní¬Casanare¬294¬1,633¬55¬15¬50¬33¬3¬197
+50325¬Mapiripán¬Meta¬293¬1,837¬51¬16¬53¬31¬0¬51
+13440¬Margarita¬Bolívar¬261¬1,531¬60¬37¬43¬19¬1¬145
+05440¬Marinilla¬Antioquia¬313¬0,459¬54¬11¬40¬42¬7¬976
+15442¬Maripí¬Boyacá¬304¬0,714¬50¬7¬54¬37¬2¬85
+73443¬Mariquita¬Tolima¬318¬0,561¬56¬10¬39¬44¬7¬450
+17442¬Marmato¬Caldas¬297¬1,02¬52¬13¬48¬38¬1¬102
+17444¬Marquetalia¬Caldas¬314¬0,714¬58¬8¬46¬39¬7¬202
+66440¬Marsella¬Risaralda¬293¬1,173¬55¬19¬45¬35¬2¬204
+17446¬Marulanda¬Caldas¬311¬1,786¬57¬9¬44¬44¬3¬32
+13442¬María la Baja¬Bolívar¬249¬0,663¬50¬43¬46¬11¬0¬671
+68444¬Matanza¬Santander¬312¬1,276¬51¬7¬45¬43¬5¬82
+05001¬Medellín¬Antioquia¬328¬0,102¬57¬7¬35¬48¬9¬25108
+25438¬Medina¬Cundinamarca¬307¬0,765¬48¬5¬50¬44¬1¬97
+27425¬Medio Atrato¬Chocó¬237¬0,816¬33¬48¬50¬2¬0¬46
+27430¬Medio Baudó¬Chocó¬254¬1,071¬42¬37¬52¬10¬1¬82
+27450¬Medio San Juan¬Chocó¬253¬0,714¬48¬36¬54¬10¬0¬124
+73449¬Melgar¬Tolima¬310¬0,459¬54¬9¬43¬43¬4¬488
+19450¬Mercaderes¬Cauca¬289¬1,071¬51¬16¬51¬30¬2¬171
+50330¬Mesetas¬Meta¬296¬1,684¬49¬12¬52¬34¬2¬94
+18460¬Milán¬Caquetá¬272¬1,327¬36¬18¬64¬19¬0¬85
+15455¬Miraflores¬Boyacá¬317¬1,684¬59¬8¬42¬47¬3¬99
+95200¬Miraflores¬Guaviare¬288¬1,582¬41¬2¬74¬23¬0¬43
+19455¬Miranda¬Cauca¬309¬0,612¬52¬9¬46¬41¬5¬367
+66456¬Mistrató¬Risaralda¬280¬1,582¬59¬24¬44¬30¬1¬142
+97001¬Mitú¬Vaupés¬277¬0,816¬50¬22¬54¬25¬0¬265
+86001¬Mocoa¬Putumayo¬320¬0,714¬54¬7¬40¬48¬5¬721
+68464¬Mogotes¬Santander¬308¬1,48¬51¬9¬46¬42¬3¬150
+68468¬Molagavita¬Santander¬296¬1,837¬54¬16¬46¬36¬2¬67
+23464¬Momil¬Córdoba¬266¬0,408¬49¬26¬58¬16¬0¬232
+13468¬Mompós¬Bolívar¬278¬0,663¬52¬24¬52¬23¬2¬692
+15464¬Mongua¬Boyacá¬287¬1,837¬59¬17¬52¬30¬2¬60
+15466¬Monguí¬Boyacá¬297¬0¬54¬9¬54¬37¬1¬82
+15469¬Moniquirá¬Boyacá¬304¬0,357¬58¬13¬47¬36¬5¬311
+05467¬Montebello¬Antioquia¬316¬1,224¬48¬6¬48¬44¬2¬54
+13458¬Montecristo¬Bolívar¬269¬1,48¬45¬27¬62¬10¬1¬81
+23466¬Montelíbano¬Córdoba¬306¬0,357¬52¬11¬48¬34¬7¬1245
+63470¬Montenegro¬Quindio¬304¬0,663¬54¬11¬49¬37¬3¬398
+85162¬Monterrey¬Casanare¬311¬0,459¬57¬11¬42¬43¬4¬230
+23001¬Montería¬Córdoba¬310¬0,204¬55¬11¬45¬38¬6¬6413
+13473¬Morales¬Bolívar¬278¬1,48¬49¬20¬57¬23¬1¬166
+19473¬Morales¬Cauca¬292¬0,918¬52¬15¬50¬33¬3¬359
+18479¬Morelia¬Caquetá¬287¬1,888¬52¬12¬65¬21¬2¬43
+94888¬Morichal¬Guainía¬288¬0¬83¬33¬33¬33¬0¬3
+70473¬Morroa¬Sucre¬282¬0,969¬54¬20¬50¬28¬2¬167
+25473¬Mosquera¬Cundinamarca¬340¬0,204¬55¬4¬31¬53¬12¬1789
+15476¬Motavita¬Boyacá¬292¬0,918¬51¬13¬59¬29¬0¬70
+23500¬Moñitos¬Córdoba¬276¬0,612¬49¬21¬57¬22¬1¬452
+73461¬Murillo¬Tolima¬310¬1,633¬55¬13¬37¬50¬0¬46
+05475¬Murindó¬Antioquia¬258¬0¬40¬35¬54¬12¬0¬26
+05480¬Mutatá¬Antioquia¬283¬1,122¬52¬21¬51¬27¬1¬201
+54480¬Mutiscua¬Norte De Santander¬308¬1,633¬59¬14¬35¬49¬2¬65
+15480¬Muzo¬Boyacá¬291¬0,561¬58¬16¬52¬29¬3¬125
+68432¬Málaga¬Santander¬350¬0,408¬49¬1¬27¬59¬13¬399
+05483¬Nariño¬Antioquia¬293¬1,224¬56¬16¬53¬27¬5¬97
+25483¬Nariño¬Cundinamarca¬285¬4,286¬44¬18¬57¬25¬0¬28
+52480¬Nariño¬Nariño¬292¬0,816¬55¬15¬46¬39¬0¬67
+73483¬Natagaima¬Tolima¬269¬0,867¬54¬28¬52¬19¬1¬226
+05495¬Nechí¬Antioquia¬269¬1,48¬53¬25¬56¬18¬1¬211
+05490¬Necoclí¬Antioquia¬278¬0,867¬51¬20¬56¬23¬1¬719
+17486¬Neira¬Caldas¬309¬0,714¬52¬7¬51¬39¬3¬263
+41001¬Neiva¬Huila¬328¬0,204¬55¬6¬37¬49¬9¬4458
+25486¬Nemocón¬Cundinamarca¬306¬0,714¬50¬8¬51¬39¬3¬227
+25488¬Nilo¬Cundinamarca¬329¬1,276¬50¬2¬40¬52¬6¬98
+25489¬Nimaima¬Cundinamarca¬309¬2,143¬50¬6¬44¬48¬2¬48
+15491¬Nobsa¬Boyacá¬344¬0,816¬58¬4¬27¬56¬14¬219
+25491¬Nocaima¬Cundinamarca¬324¬1,378¬53¬4¬37¬54¬5¬83
+17495¬Norcasia¬Caldas¬305¬2,092¬55¬11¬47¬39¬3¬94
+47460¬Nueva Granada¬Magdalena¬274¬0,561¬54¬27¬49¬24¬0¬235
+15494¬Nuevo Colón¬Boyacá¬316¬1,327¬59¬6¬49¬41¬4¬73
+85225¬Nunchía¬Casanare¬307¬1,684¬58¬10¬50¬36¬5¬110
+27495¬Nuquí¬Chocó¬252¬1,276¬44¬31¬61¬7¬1¬82
+41483¬Nátaga¬Huila¬296¬2,653¬50¬13¬51¬36¬0¬67
+27491¬Nóvita¬Chocó¬271¬1,888¬46¬22¬59¬19¬0¬81
+76497¬Obando¬Valle Del Cauca¬298¬2,5¬62¬16¬42¬39¬3¬105
+68498¬Ocamonte¬Santander¬332¬0,714¬51¬4¬40¬47¬9¬53
+54498¬Ocaña¬Norte De Santander¬327¬0,357¬54¬5¬37¬51¬7¬1447
+68500¬Oiba¬Santander¬323¬1,071¬60¬9¬36¬48¬6¬180
+15500¬Oicatá¬Boyacá¬314¬2,245¬63¬7¬52¬33¬7¬27
+05501¬Olaya¬Antioquia¬309¬1,888¬63¬15¬45¬35¬5¬40
+52490¬Olaya Herrera¬Nariño¬246¬1,276¬42¬44¬50¬7¬0¬303
+68502¬Onzaga¬Santander¬313¬0¬56¬0¬60¬31¬9¬35
+41503¬Oporapa¬Huila¬312¬0,612¬50¬6¬50¬40¬4¬159
+86320¬Orito¬Putumayo¬295¬0,459¬50¬12¬54¬33¬1¬647
+85230¬Orocué¬Casanare¬297¬0,357¬52¬13¬49¬35¬3¬148
+73504¬Ortega¬Tolima¬278¬0,663¬53¬24¬50¬25¬1¬426
+52506¬Ospina¬Nariño¬322¬0,612¬55¬7¬42¬48¬3¬91
+15507¬Otanche¬Boyacá¬287¬1,173¬56¬22¬48¬29¬2¬118
+70508¬Ovejas¬Sucre¬277¬0,714¬56¬25¬52¬22¬1¬370
+15511¬Pachavita¬Boyacá¬318¬0¬62¬4¬39¬50¬8¬26
+25513¬Pacho¬Cundinamarca¬318¬0,765¬58¬9¬40¬46¬5¬366
+19513¬Padilla¬Cauca¬253¬0,51¬47¬38¬52¬8¬2¬136
+19517¬Paez¬Cauca¬280¬0,816¬51¬24¬47¬28¬1¬398
+41518¬Paicol¬Huila¬302¬1,735¬58¬11¬50¬35¬4¬80
+20517¬Pailitas¬Cesar¬275¬1,122¬55¬23¬53¬23¬1¬258
+25518¬Paime¬Cundinamarca¬288¬2,5¬59¬19¬43¬38¬0¬53
+15516¬Paipa¬Boyacá¬340¬0,51¬52¬3¬31¬56¬10¬514
+15518¬Pajarito¬Boyacá¬287¬1,633¬69¬25¬43¬30¬3¬40
+41524¬Palermo¬Huila¬327¬0,714¬55¬7¬36¬47¬10¬379
+17524¬Palestina¬Caldas¬306¬1,276¬51¬8¬47¬42¬3¬182
+41530¬Palestina¬Huila¬302¬0,867¬51¬10¬53¬34¬2¬173
+68522¬Palmar¬Santander¬343¬4,439¬47¬0¬21¬71¬7¬14
+08520¬Palmar de Varela¬Atlántico¬303¬0,408¬56¬12¬46¬40¬3¬397
+68524¬Palmas del Socorr¬Santander¬312¬1,735¬52¬7¬48¬41¬3¬29
+76520¬Palmira¬Valle Del Cauca¬332¬0,255¬56¬6¬33¬52¬10¬2796
+70523¬Palmito¬Sucre¬255¬0,51¬47¬40¬48¬11¬1¬222
+73520¬Palocabildo¬Tolima¬319¬1,633¬56¬8¬32¬56¬3¬87
+54518¬Pamplona¬Norte De Santander¬339¬0,357¬55¬3¬32¬53¬12¬703
+54520¬Pamplonita¬Norte De Santander¬310¬0,765¬50¬10¬45¬45¬0¬71
+25524¬Pandi¬Cundinamarca¬304¬1,02¬44¬5¬57¬34¬3¬61
+15522¬Panqueba¬Boyacá¬311¬0¬64¬13¬36¬42¬10¬31
+25530¬Paratebueno¬Cundinamarca¬296¬1,531¬56¬12¬51¬35¬3¬110
+25535¬Pasca¬Cundinamarca¬328¬0,816¬56¬8¬36¬49¬7¬166
+52001¬Pasto¬Nariño¬334¬0,153¬53¬5¬33¬53¬9¬4700
+19532¬Patía¬Cauca¬285¬0,612¬54¬18¬55¬25¬3¬359
+15531¬Pauna¬Boyacá¬309¬1,224¬53¬8¬48¬41¬3¬145
+15533¬Paya¬Boyacá¬284¬0¬44¬11¬71¬17¬0¬35
+85250¬Paz de Ariporo¬Casanare¬312¬0,408¬58¬10¬43¬42¬5¬498
+15537¬Paz de Río¬Boyacá¬307¬0,714¬55¬9¬51¬37¬4¬79
+47541¬Pedraza¬Magdalena¬267¬1,837¬52¬30¬53¬15¬2¬104
+20550¬Pelaya¬Cesar¬294¬0,663¬53¬13¬55¬29¬3¬257
+17541¬Pensilvania¬Caldas¬313¬0,612¬57¬10¬42¬43¬5¬261
+05543¬Peque¬Antioquia¬310¬1,786¬52¬9¬41¬46¬4¬68
+66001¬Pereira¬Risaralda¬329¬0,204¬54¬6¬37¬50¬8¬5323
+15542¬Pesca¬Boyacá¬303¬1,173¬54¬12¬46¬43¬0¬96
+05541¬Peñol¬Antioquia¬324¬1,122¬59¬6¬36¬51¬8¬160
+19533¬Piamonte¬Cauca¬301¬3,469¬50¬13¬42¬44¬2¬48
+68547¬Piedecuesta¬Santander¬332¬0,255¬55¬6¬35¬50¬10¬2008
+73547¬Piedras¬Tolima¬291¬1,99¬50¬14¬52¬35¬0¬66
+19548¬Piendamó¬Cauca¬299¬0,714¬52¬13¬49¬35¬3¬507
+63548¬Pijao¬Quindio¬313¬1,531¬58¬6¬52¬37¬5¬109
+47545¬Pijiño del Carmen¬Magdalena¬273¬0,969¬47¬23¬56¬20¬1¬167
+68549¬Pinchote¬Santander¬352¬1,224¬50¬0¬27¬63¬10¬41
+13549¬Pinillos¬Bolívar¬264¬0,918¬51¬30¬55¬14¬1¬324
+08549¬Piojó¬Atlántico¬268¬1,02¬48¬34¬48¬17¬2¬65
+15550¬Pisba¬Boyacá¬341¬0¬54¬0¬36¬50¬14¬14
+41548¬Pital¬Huila¬311¬0,867¬56¬10¬45¬40¬6¬198
+41551¬Pitalito¬Huila¬329¬0,255¬53¬5¬36¬51¬8¬1783
+47551¬Pivijay¬Magdalena¬275¬0,816¬54¬27¬49¬23¬1¬483
+73555¬Planadas¬Tolima¬291¬0,969¬49¬13¬57¬29¬1¬310
+23555¬Planeta Rica¬Córdoba¬291¬0,306¬55¬16¬50¬31¬2¬1031
+47555¬Plato¬Magdalena¬274¬0,714¬53¬26¬51¬22¬1¬673
+52540¬Policarpa¬Nariño¬314¬1,48¬42¬5¬47¬47¬1¬125
+08558¬Polonuevo¬Atlántico¬270¬0,612¬57¬29¬50¬19¬2¬235
+08560¬Ponedera¬Atlántico¬268¬1,122¬52¬27¬55¬17¬1¬293
+19001¬Popayán¬Cauca¬324¬0,204¬53¬6¬38¬50¬6¬3304
+85263¬Pore¬Casanare¬308¬0,969¬59¬11¬42¬44¬4¬142
+52560¬Potosí¬Nariño¬317¬0,816¬52¬3¬48¬47¬2¬132
+76563¬Pradera¬Valle Del Cauca¬302¬0,714¬57¬11¬49¬36¬4¬395
+73563¬Prado¬Tolima¬307¬1,327¬59¬8¬45¬42¬5¬120
+52565¬Providencia¬Nariño¬313¬0¬48¬7¬46¬43¬4¬76
+88564¬Providencia¬San Andrés¬278¬0,918¬63¬27¬51¬19¬3¬63
+20570¬Pueblo Bello¬Cesar¬291¬1,071¬55¬15¬50¬33¬2¬237
+23570¬Pueblo Nuevo¬Córdoba¬289¬0,561¬52¬16¬54¬27¬3¬424
+66572¬Pueblo Rico¬Risaralda¬265¬0,459¬54¬39¬38¬23¬1¬204
+05576¬Pueblorrico¬Antioquia¬299¬1,837¬56¬13¬47¬37¬4¬86
+47570¬Puebloviejo¬Magdalena¬256¬0,918¬44¬36¬53¬12¬0¬306
+68572¬Puente Nacional¬Santander¬340¬0,408¬58¬4¬29¬57¬11¬325
+52573¬Puerres¬Nariño¬337¬1,327¬47¬1¬26¬68¬5¬99
+86568¬Puerto Asís¬Putumayo¬306¬0,51¬52¬12¬46¬39¬3¬814
+05579¬Puerto Berrío¬Antioquia¬278¬0,51¬54¬25¬51¬24¬1¬472
+15572¬Puerto Boyacá¬Boyacá¬298¬0,51¬52¬13¬50¬34¬3¬716
+86569¬Puerto Caicedo¬Putumayo¬288¬1,122¬49¬13¬58¬29¬0¬130
+99001¬Puerto Carreño¬Vichada¬302¬1,122¬50¬10¬51¬37¬1¬212
+08573¬Puerto Colombia¬Atlántico¬322¬0,765¬56¬11¬36¬43¬10¬701
+50450¬Puerto Concordia¬Meta¬290¬0,816¬52¬17¬49¬32¬2¬89
+23574¬Puerto Escondido¬Córdoba¬274¬0,816¬46¬21¬58¬21¬0¬351
+50568¬Puerto Gaitán¬Meta¬276¬0,612¬53¬25¬51¬22¬1¬425
+86571¬Puerto Guzmán¬Putumayo¬290¬0,867¬51¬15¬54¬29¬2¬262
+23580¬Puerto Libertador¬Córdoba¬282¬0,918¬49¬16¬59¬24¬1¬464
+50577¬Puerto Lleras¬Meta¬288¬0,612¬51¬16¬56¬26¬2¬126
+50573¬Puerto López¬Meta¬302¬0,459¬55¬12¬47¬37¬3¬485
+05585¬Puerto Nare¬Antioquia¬285¬0,918¬57¬20¬52¬26¬1¬159
+91540¬Puerto Nariño¬Amazonas¬243¬1,429¬44¬51¬41¬8¬0¬111
+68573¬Puerto Parra¬Santander¬280¬2,347¬56¬26¬52¬19¬3¬58
+18592¬Puerto Rico¬Caquetá¬286¬0,867¬52¬18¬52¬28¬2¬325
+50590¬Puerto Rico¬Meta¬285¬1,071¬52¬14¬63¬22¬2¬115
+81591¬Puerto Rondón¬Arauca¬289¬0¬57¬7¬71¬21¬2¬44
+25572¬Puerto Salgar¬Cundinamarca¬317¬1,173¬50¬7¬42¬47¬4¬215
+54553¬Puerto Santander¬Norte De Santander¬267¬1,48¬51¬28¬56¬16¬0¬102
+91669¬Puerto Santander¬Amazonas¬305¬3,418¬46¬8¬39¬54¬0¬13
+19573¬Puerto Tejada¬Cauca¬278¬0,561¬52¬21¬58¬20¬2¬590
+05591¬Puerto Triunfo¬Antioquia¬312¬1,224¬50¬6¬49¬44¬1¬158
+68575¬Puerto Wilches¬Santander¬279¬0,714¬50¬22¬54¬23¬1¬407
+25580¬Pulí¬Cundinamarca¬295¬0¬48¬16¬47¬35¬2¬43
+52585¬Pupiales¬Nariño¬318¬0,51¬56¬8¬40¬48¬4¬250
+19585¬Puracé¬Cauca¬279¬1,071¬49¬20¬56¬24¬1¬173
+73585¬Purificación¬Tolima¬283¬0,663¬53¬18¬56¬25¬1¬275
+23586¬Purísima¬Córdoba¬275¬0,816¬53¬23¬54¬22¬1¬261
+17513¬Pácora¬Caldas¬320¬1,122¬56¬6¬45¬43¬7¬179
+15514¬Páez¬Boyacá¬322¬0¬62¬7¬35¬54¬5¬43
+68533¬Páramo¬Santander¬332¬0,816¬56¬4¬29¬61¬6¬69
+25592¬Quebradanegra¬Cundinamarca¬319¬2,602¬61¬7¬43¬43¬7¬58
+25594¬Quetame¬Cundinamarca¬302¬1,173¬58¬14¬41¬42¬3¬105
+27001¬Quibdó¬Chocó¬278¬0,306¬50¬23¬52¬24¬1¬1975
+63594¬Quimbaya¬Quindio¬311¬0,969¬60¬10¬42¬42¬6¬371
+66594¬Quinchía¬Risaralda¬291¬0,51¬53¬17¬47¬35¬1¬420
+25596¬Quipile¬Cundinamarca¬297¬1,327¬51¬14¬48¬38¬0¬89
+15580¬Quípama¬Boyacá¬298¬1,888¬57¬14¬46¬40¬0¬77
+54599¬Ragonvalia¬Norte De Santander¬293¬1,837¬49¬12¬57¬31¬0¬58
+15599¬Ramiriquí¬Boyacá¬310¬1,071¬52¬8¬47¬43¬2¬169
+85279¬Recetor¬Casanare¬330¬0¬44¬0¬47¬47¬7¬15
+13580¬Regidor¬Bolívar¬256¬1,735¬43¬33¬58¬10¬0¬52
+05604¬Remedios¬Antioquia¬283¬1,122¬55¬20¬54¬24¬2¬314
+47605¬Remolino¬Magdalena¬250¬1,378¬47¬42¬46¬12¬0¬106
+08606¬Repelón¬Atlántico¬247¬0,867¬52¬45¬44¬11¬0¬359
+50606¬Restrepo¬Meta¬331¬0,612¬57¬7¬33¬53¬8¬322
+76606¬Restrepo¬Valle Del Cauca¬309¬1,02¬55¬10¬45¬42¬2¬216
+05607¬Retiro¬Antioquia¬349¬0,765¬59¬5¬29¬46¬21¬335
+25612¬Ricaurte¬Cundinamarca¬301¬1,327¬57¬12¬52¬33¬4¬104
+52612¬Ricaurte¬Nariño¬278¬1,276¬57¬30¬41¬27¬3¬189
+73616¬Rioblanco¬Tolima¬283¬1,173¬50¬18¬56¬26¬1¬242
+76616¬Riofrío¬Valle Del Cauca¬300¬1,327¬55¬13¬51¬33¬3¬175
+44001¬Riohacha¬La Guajira¬295¬0,255¬53¬17¬46¬33¬4¬2513
+05615¬Rionegro¬Antioquia¬334¬0,408¬56¬5¬32¬52¬10¬1615
+68615¬Rionegro¬Santander¬307¬0,816¬58¬12¬42¬42¬4¬336
+17614¬Riosucio¬Caldas¬310¬0,561¬54¬11¬43¬42¬4¬655
+27615¬Riosucio¬Chocó¬234¬0,867¬41¬51¬45¬4¬0¬180
+17616¬Risaralda¬Caldas¬302¬1,837¬60¬14¬44¬41¬2¬140
+41615¬Rivera¬Huila¬315¬0,663¬55¬11¬41¬40¬8¬360
+52621¬Roberto Payán¬Nariño¬242¬0,969¬45¬49¬47¬4¬0¬125
+76622¬Roldanillo¬Valle Del Cauca¬320¬0,765¬59¬7¬41¬47¬6¬425
+73622¬Roncesvalles¬Tolima¬282¬1,02¬46¬16¬62¬19¬3¬74
+15621¬Rondón¬Boyacá¬317¬2,551¬67¬12¬44¬35¬9¬34
+19622¬Rosas¬Cauca¬309¬1,582¬48¬8¬44¬47¬2¬133
+73624¬Rovira¬Tolima¬298¬0,867¬58¬14¬49¬35¬3¬322
+15600¬Ráquira¬Boyacá¬304¬1,378¬63¬17¬44¬35¬5¬78
+27580¬Río Iró¬Chocó¬255¬1,224¬53¬35¬52¬11¬2¬63
+27600¬Río Quito¬Chocó¬266¬0,459¬52¬30¬51¬19¬0¬134
+13600¬Río Viejo¬Bolívar¬270¬1,735¬45¬18¬65¬17¬0¬66
+20614¬Río de Oro¬Cesar¬291¬0,765¬51¬14¬55¬31¬1¬221
+54874¬Villa del Rosario¬Norte De Santander¬308¬0,255¬57¬13¬42¬40¬5¬1209
+86885¬Villagarzón¬Putumayo¬301¬0,765¬51¬12¬50¬36¬2¬403
+25871¬Villagómez¬Cundinamarca¬302¬0¬56¬12¬54¬33¬2¬43
+73870¬Villahermosa¬Tolima¬314¬1,99¬59¬9¬41¬48¬2¬90
+17873¬Villamaría¬Caldas¬319¬0,408¬53¬7¬40¬48¬5¬599
+13873¬Villanueva¬Bolívar¬260¬0,969¬49¬31¬54¬15¬0¬282
+44874¬Villanueva¬La Guajira¬302¬0,612¬58¬16¬43¬37¬4¬378
+68872¬Villanueva¬Santander¬328¬0,765¬59¬5¬39¬47¬9¬75
+85440¬Villanueva¬Casanare¬315¬0,561¬56¬7¬45¬43¬5¬420
+25873¬Villapinzón¬Cundinamarca¬329¬0,816¬53¬5¬34¬52¬9¬129
+73873¬Villarrica¬Tolima¬303¬2,398¬50¬8¬49¬40¬3¬65
+50001¬Villavicencio¬Meta¬331¬0,153¬55¬5¬35¬51¬9¬6549
+41872¬Villavieja¬Huila¬285¬1,786¬50¬14¬62¬23¬2¬65
+25875¬Villeta¬Cundinamarca¬324¬0,612¬55¬6¬40¬48¬6¬373
+25878¬Viotá¬Cundinamarca¬299¬1,071¬60¬15¬46¬37¬3¬183
+15879¬Viracachá¬Boyacá¬299¬2,296¬49¬0¬71¬26¬3¬35
+50711¬Vista Hermosa¬Meta¬303¬0,969¬48¬9¬53¬37¬1¬209
+17877¬Viterbo¬Caldas¬297¬1,224¬55¬14¬47¬36¬4¬173
+68861¬Vélez¬Santander¬316¬0,918¬55¬9¬40¬47¬4¬276
+25885¬Yacopí¬Cundinamarca¬294¬0,612¬55¬11¬54¬34¬1¬103
+52885¬Yacuanquer¬Nariño¬300¬0,459¬51¬9¬53¬37¬2¬178
+41885¬Yaguará¬Huila¬297¬0,816¬55¬10¬50¬39¬1¬97
+05885¬Yalí¬Antioquia¬298¬2,245¬52¬10¬51¬36¬3¬69
+05887¬Yarumal¬Antioquia¬320¬0,663¬55¬6¬41¬48¬6¬562
+97889¬Yavaraté¬Vaupés¬246¬5,816¬37¬42¬50¬8¬0¬12
+05890¬Yolombó¬Antioquia¬287¬1,378¬56¬21¬52¬25¬3¬232
+05893¬Yondó¬Antioquia¬291¬1,48¬53¬14¬54¬30¬2¬146
+85001¬Yopal¬Casanare¬329¬0,204¬54¬6¬35¬50¬8¬2342
+76890¬Yotoco¬Valle Del Cauca¬305¬1,531¬57¬7¬55¬34¬5¬156
+76892¬Yumbo¬Valle Del Cauca¬307¬0,663¬55¬11¬44¬41¬4¬1148
+13894¬Zambrano¬Bolívar¬256¬1,786¬44¬35¬53¬12¬0¬139
+68895¬Zapatoca¬Santander¬317¬0¬56¬8¬39¬51¬3¬120
+47960¬Zapayán¬Magdalena¬274¬1,173¬55¬25¬52¬23¬1¬89
+05895¬Zaragoza¬Antioquia¬282¬0,969¬52¬19¬52¬28¬1¬258
+76895¬Zarzal¬Valle Del Cauca¬297¬0,357¬57¬16¬46¬36¬2¬537
+15897¬Zetaquira¬Boyacá¬309¬1,224¬62¬14¬36¬43¬8¬87
+25898¬Zipacón¬Cundinamarca¬303¬3,469¬53¬8¬54¬38¬0¬48
+25899¬Zipaquirá¬Cundinamarca¬340¬0,255¬52¬4¬30¬55¬11¬1664
+47980¬Zona Bananera¬Magdalena¬260¬0,459¬47¬30¬58¬12¬0¬920
+25851¬útica¬Cundinamarca¬306¬1,224¬58¬10¬44¬46¬0¬48
+85136¬La Salina¬Casanare¬299¬0¬43¬6¬50¬44¬0¬18
+85315¬Sácama¬Casanare¬320¬0¬44¬0¬47¬47¬5¬19
+85325¬San Luis De Palen¬Casanare¬313¬1,378¬55¬6¬49¬42¬3¬97
+85430¬Trinidad¬Casanare¬298¬1,071¬60¬17¬47¬33¬4¬164
+91407¬La Pedrera¬Amazonas¬253¬0¬42¬29¬65¬6¬0¬34
+94343¬Barranco Minas¬Guainía¬254¬1,071¬56¬32¬58¬7¬3¬74
+94663¬Mapiripana¬Guainía¬244¬0¬35¬33¬67¬0¬0¬21
+94884¬Puerto Colombia¬Guainía¬254¬0¬54¬31¬62¬8¬0¬13
+99524¬La Primavera¬Vichada¬304¬1,327¬58¬15¬44¬34¬7¬138
+99624¬Santa Rosalía¬Vichada¬292¬2,704¬64¬17¬50¬29¬5¬42
+23682¬San José de Uré¬Córdoba¬279¬0,765¬47¬22¬54¬24¬1¬153
+05792¬Tarso¬Antioquia¬293¬2,143¬57¬12¬55¬28¬4¬74
+13490¬Norosi¬Bolívar¬269¬2,959¬47¬28¬58¬14¬0¬43
+52473¬Mosquera¬Nariño¬252¬1,48¬42¬39¬53¬9¬0¬91
+91263¬El Encanto¬Amazonas¬278¬3,622¬41¬11¬72¬17¬0¬18
+91460¬Miriti-Parana¬Amazonas¬254¬5,714¬57¬33¬56¬11¬0¬18
+91530¬Puerto Alegria¬Amazonas¬267¬16,173¬72¬25¬50¬25¬0¬4
+94883¬San Felipe¬Guainía¬258¬6,582¬55¬15¬69¬15¬0¬13
+97161¬Caruru¬Vaupés¬272¬2,347¬51¬26¬54¬17¬2¬46
+23815¬Tuchín¬Córdoba¬260¬0,969¬49¬31¬55¬13¬1¬605
+52385¬La Llanada¬Nariño¬305¬1,786¬59¬10¬48¬40¬3¬63
+68655¬Sabana de Torres¬Santander¬309¬0,867¬53¬12¬45¬39¬5¬370
+08634¬Sabanagrande¬Atlántico¬307¬0,459¬59¬13¬43¬39¬5¬498
+05628¬Sabanalarga¬Antioquia¬275¬0,918¬52¬27¬46¬27¬0¬85
+08638¬Sabanalarga¬Atlántico¬276¬0,306¬55¬25¬50¬23¬2¬1380
+85300¬Sabanalarga¬Casanare¬335¬2,398¬52¬4¬24¬65¬7¬54
+47660¬Sabanas de San An¬Magdalena¬271¬0,969¬48¬21¬60¬19¬0¬161
+05631¬Sabaneta¬Antioquia¬343¬0,561¬58¬5¬27¬56¬12¬698
+15632¬Saboyá¬Boyacá¬300¬0,408¬50¬14¬48¬35¬3¬208
+23660¬Sahagún¬Córdoba¬301¬0,306¬56¬13¬48¬36¬4¬1506
+41660¬Saladoblanco¬Huila¬308¬1,173¬51¬9¬48¬42¬1¬142
+17653¬Salamina¬Caldas¬303¬1,122¬51¬7¬56¬35¬2¬179
+47675¬Salamina¬Magdalena¬271¬0¬53¬25¬56¬19¬0¬117
+54660¬Salazar¬Norte De Santander¬283¬0,867¬44¬16¬62¬23¬0¬154
+73671¬Saldaña¬Tolima¬279¬1,633¬60¬23¬53¬21¬3¬176
+63690¬Salento¬Quindio¬329¬0,918¬53¬5¬34¬52¬9¬99
+05642¬Salgar¬Antioquia¬298¬0,663¬56¬11¬53¬32¬4¬123
+15646¬Samacá¬Boyacá¬312¬0,663¬51¬7¬42¬49¬2¬282
+52678¬Samaniego¬Nariño¬319¬0,969¬53¬5¬45¬45¬5¬262
+17662¬Samaná¬Caldas¬310¬0,765¬54¬7¬49¬41¬3¬274
+70670¬Sampués¬Sucre¬281¬0,408¬50¬20¬55¬24¬1¬602
+41668¬San Agustín¬Huila¬311¬0,408¬54¬9¬46¬43¬3¬415
+20710¬San Alberto¬Cesar¬315¬0,918¬59¬8¬43¬42¬7¬236
+68669¬San Andrés¬Santander¬317¬0,51¬61¬13¬33¬50¬5¬126
+88001¬San Andrés¬San Andrés¬289¬0,714¬60¬22¬45¬30¬4¬678
+23670¬San Andrés Sotave¬Córdoba¬258¬0,408¬50¬35¬51¬14¬1¬737
+05647¬San Andrés de Cue¬Antioquia¬310¬2,704¬65¬15¬30¬48¬7¬54
+23672¬San Antero¬Córdoba¬268¬0,765¬53¬28¬53¬18¬1¬423
+73675¬San Antonio¬Tolima¬292¬0,969¬54¬16¬50¬33¬1¬198
+25645¬San Antonio del T¬Cundinamarca¬324¬0,561¬49¬4¬41¬52¬3¬179
+68673¬San Benito¬Santander¬276¬0¬47¬25¬53¬22¬0¬32
+70678¬San Benito Abad¬Sucre¬255¬0,765¬49¬36¬52¬12¬0¬361
+25649¬San Bernardo¬Cundinamarca¬312¬1,02¬48¬7¬44¬49¬0¬112
+52685¬San Bernardo¬Nariño¬329¬1,173¬60¬8¬31¬52¬9¬122
+23675¬San Bernardo del¬Córdoba¬279¬0,459¬48¬19¬58¬23¬1¬459
+54670¬San Calixto¬Norte De Santander¬275¬0¬51¬24¬54¬22¬0¬63
+05649¬San Carlos¬Antioquia¬308¬0,918¬54¬10¬41¬47¬2¬142
+23678¬San Carlos¬Córdoba¬288¬0,714¬51¬15¬56¬27¬1¬396
+50680¬San Carlos de Gua¬Meta¬291¬1,276¬50¬12¬60¬27¬1¬143
+25653¬San Cayetano¬Cundinamarca¬310¬1,531¬55¬9¬45¬45¬1¬71
+54673¬San Cayetano¬Norte De Santander¬297¬0,816¬51¬10¬58¬28¬4¬79
+13620¬San Cristóbal¬Bolívar¬268¬0¬48¬26¬54¬21¬0¬102
+20750¬San Diego¬Cesar¬289¬0,816¬52¬14¬55¬30¬1¬243
+15660¬San Eduardo¬Boyacá¬323¬1,939¬60¬0¬43¬53¬3¬30
+13647¬San Estanislao¬Bolívar¬253¬0,561¬58¬40¬46¬14¬0¬272
+13650¬San Fernando¬Bolívar¬274¬0,918¬55¬27¬53¬19¬1¬126
+05652¬San Francisco¬Antioquia¬317¬1,735¬48¬8¬37¬55¬0¬38
+25658¬San Francisco¬Cundinamarca¬311¬0¬59¬13¬37¬46¬4¬105
+86755¬San Francisco¬Putumayo¬302¬1,02¬57¬12¬46¬40¬3¬77
+68679¬San Gil¬Santander¬338¬0,408¬53¬5¬30¬55¬10¬810
+13654¬San Jacinto¬Bolívar¬282¬0,816¬57¬22¬53¬23¬2¬335
+13655¬San Jacinto del C¬Bolívar¬269¬2,245¬51¬19¬64¬16¬1¬100
+05656¬San Jerónimo¬Antioquia¬298¬1,173¬60¬16¬49¬34¬2¬181
+68682¬San Joaquín¬Santander¬326¬2,143¬59¬7¬41¬37¬15¬27
+17665¬San José¬Caldas¬312¬0¬57¬12¬42¬40¬7¬60
+68684¬San José de Miran¬Santander¬356¬0,969¬49¬2¬16¬72¬10¬50
+15664¬San José de Pare¬Boyacá¬300¬1,071¬54¬12¬48¬40¬0¬50
+05658¬San José de la Mo¬Antioquia¬308¬2,551¬52¬9¬54¬35¬2¬43
+18610¬San José del Frag¬Caquetá¬288¬1,122¬54¬19¬47¬33¬1¬207
+95001¬San José del Guav¬Guaviare¬294¬0,51¬53¬14¬50¬34¬2¬671
+27660¬San José del Palm¬Chocó¬313¬2,5¬50¬9¬40¬49¬2¬45
+13657¬San Juan Nepomuce¬Bolívar¬279¬0,51¬56¬26¬46¬25¬3¬489
+50683¬San Juan de Arama¬Meta¬288¬1,48¬47¬10¬65¬25¬1¬94
+70702¬San Juan de Betul¬Sucre¬271¬0,408¬50¬24¬59¬16¬1¬194
+25662¬San Juan de Río S¬Cundinamarca¬306¬1,633¬50¬7¬54¬35¬4¬102
+05659¬San Juan de Urabá¬Antioquia¬276¬1,327¬50¬23¬58¬19¬0¬307
+44650¬San Juan del Cesa¬La Guajira¬298¬0,561¬52¬12¬50¬35¬3¬654
+50686¬San Juanito¬Meta¬294¬0¬54¬9¬56¬31¬3¬32
+52687¬San Lorenzo¬Nariño¬308¬0,714¬54¬7¬50¬39¬3¬266
+05660¬San Luis¬Antioquia¬320¬1,633¬58¬9¬39¬44¬8¬155
+73678¬San Luis¬Tolima¬287¬1,02¬58¬18¬51¬29¬2¬173
+15667¬San Luis de Gacen¬Boyacá¬311¬0,714¬55¬7¬48¬41¬4¬75
+70742¬San Luis de Sincé¬Sucre¬292¬1,02¬57¬16¬50¬32¬2¬369
+70708¬San Marcos¬Sucre¬276¬0,459¬54¬25¬53¬21¬2¬784
+20770¬San Martín¬Cesar¬305¬0,816¬53¬11¬44¬42¬3¬306
+50689¬San Martín¬Meta¬306¬1,48¬53¬9¬48¬40¬4¬340
+13667¬San Martín de Lob¬Bolívar¬271¬1,071¬52¬28¬53¬18¬1¬221
+15673¬San Mateo¬Boyacá¬296¬0¬52¬16¬53¬29¬3¬70
+68686¬San Miguel¬Santander¬336¬2,653¬59¬2¬35¬49¬14¬43
+86757¬San Miguel¬Putumayo¬281¬0,867¬52¬22¬51¬26¬1¬267
+15676¬San Miguel de Sem¬Boyacá¬291¬0¬56¬18¬51¬32¬0¬57
+70713¬San Onofre¬Sucre¬261¬0,357¬46¬29¬58¬13¬0¬731
+13670¬San Pablo¬Bolívar¬289¬1,02¬57¬17¬50¬32¬1¬316
+52693¬San Pablo¬Nariño¬314¬1,378¬56¬9¬44¬41¬6¬176
+15681¬San Pablo de Borb¬Boyacá¬289¬1,122¬54¬16¬51¬33¬0¬99
+70717¬San Pedro¬Sucre¬288¬0,714¬54¬19¬51¬28¬2¬255
+76670¬San Pedro¬Valle Del Cauca¬310¬1,173¬53¬8¬41¬48¬2¬182
+52694¬San Pedro de Cart¬Nariño¬294¬1,939¬51¬8¬61¬29¬1¬85
+05665¬San Pedro de Urab¬Antioquia¬286¬0,969¬51¬18¬52¬30¬1¬526
+05664¬San Pedro de los¬Antioquia¬314¬0,561¬61¬11¬42¬40¬7¬402
+23686¬San Pelayo¬Córdoba¬283¬0,714¬56¬19¬54¬26¬2¬574
+05667¬San Rafael¬Antioquia¬291¬0,612¬53¬16¬49¬33¬2¬365
+05670¬San Roque¬Antioquia¬309¬1,071¬56¬10¬46¬40¬4¬209
+19693¬San Sebastián¬Cauca¬282¬0,867¬51¬20¬52¬26¬2¬95
+47692¬San Sebastián de¬Magdalena¬281¬1,173¬51¬17¬57¬25¬1¬268
+05674¬San Vicente¬Antioquia¬315¬0,918¬61¬8¬46¬41¬5¬201
+68689¬San Vicente de Ch¬Santander¬311¬0,714¬56¬10¬43¬43¬3¬434
+18753¬San Vicente del C¬Caquetá¬288¬0,765¬51¬16¬53¬29¬2¬613
+47703¬San Zenón¬Magdalena¬271¬1,02¬47¬22¬61¬17¬0¬130
+52683¬Sandoná¬Nariño¬326¬0,765¬48¬2¬41¬54¬4¬231
+47707¬Santa Ana¬Magdalena¬273¬0,765¬51¬23¬58¬19¬1¬275
+05679¬Santa Bárbara¬Antioquia¬308¬0,867¬57¬10¬46¬40¬5¬243
+52696¬Santa Bárbara¬Nariño¬250¬1,378¬46¬42¬53¬6¬0¬101
+68705¬Santa Bárbara¬Santander¬318¬0¬49¬4¬50¬39¬7¬28
+47720¬Santa Bárbara de¬Magdalena¬267¬1,276¬45¬23¬60¬17¬0¬139
+13673¬Santa Catalina¬Bolívar¬283¬1,122¬53¬22¬50¬26¬2¬195
+68720¬Santa Helena del¬Santander¬319¬1,276¬51¬5¬42¬51¬2¬41
+73686¬Santa Isabel¬Tolima¬298¬1,327¬50¬12¬53¬34¬1¬77
+08675¬Santa Lucía¬Atlántico¬259¬1,531¬54¬36¬49¬14¬1¬147
+47001¬Santa Marta¬Magdalena¬301¬0,153¬55¬15¬46¬34¬5¬7049
+15690¬Santa María¬Boyacá¬300¬0¬55¬15¬44¬42¬0¬48
+41676¬Santa María¬Huila¬309¬1,02¬52¬8¬51¬38¬3¬154
+13683¬Santa Rosa¬Bolívar¬250¬0,918¬48¬38¬52¬9¬0¬237
+19701¬Santa Rosa¬Cauca¬307¬1,276¬42¬8¬49¬43¬0¬61
+66682¬Santa Rosa de Cab¬Risaralda¬326¬0,51¬58¬7¬37¬48¬8¬874
+05686¬Santa Rosa de Oso¬Antioquia¬313¬0,612¬55¬10¬43¬42¬5¬587
+15693¬Santa Rosa de Vit¬Boyacá¬335¬0,765¬55¬6¬30¬55¬10¬156
+13688¬Santa Rosa del Su¬Bolívar¬320¬0,561¬50¬4¬44¬48¬4¬340
+15696¬Santa Sofía¬Boyacá¬308¬0¬63¬16¬40¬40¬5¬43
+52699¬Santacruz¬Nariño¬319¬1,684¬48¬6¬41¬49¬4¬99
+05042¬Santafé de Antioq¬Antioquia¬292¬0,969¬54¬18¬49¬30¬3¬398
+15686¬Santana¬Boyacá¬297¬0¬50¬11¬52¬36¬1¬100
+19698¬Santander de Quil¬Cauca¬298¬0,408¬52¬14¬49¬34¬3¬1286
+54680¬Santiago¬Norte De Santander¬274¬2,602¬52¬23¬56¬21¬0¬39
+86760¬Santiago¬Putumayo¬299¬1,276¬48¬14¬45¬41¬0¬84
+70820¬Santiago de Tolú¬Sucre¬297¬0,459¬53¬15¬48¬34¬4¬462
+05690¬Santo Domingo¬Antioquia¬302¬1,02¬56¬11¬51¬36¬2¬154
+08685¬Santo Tomás¬Atlántico¬287¬0,663¬58¬16¬55¬26¬3¬289
+66687¬Santuario¬Risaralda¬329¬1,888¬54¬4¬38¬52¬7¬130
+52720¬Sapuyes¬Nariño¬308¬0¬50¬9¬47¬40¬3¬87
+81736¬Saravena¬Arauca¬318¬0,459¬53¬6¬43¬46¬6¬631
+54720¬Sardinata¬Norte De Santander¬307¬0,765¬50¬8¬49¬40¬3¬263
+25718¬Sasaima¬Cundinamarca¬320¬0,765¬58¬9¬41¬45¬5¬134
+15720¬Sativanorte¬Boyacá¬299¬1,939¬60¬9¬56¬28¬6¬32
+15723¬Sativasur¬Boyacá¬293¬0¬55¬18¬36¬46¬0¬22
+05736¬Segovia¬Antioquia¬283¬1,122¬54¬18¬57¬24¬2¬408
+25736¬Sesquilé¬Cundinamarca¬324¬0,765¬49¬6¬41¬49¬5¬150
+76736¬Sevilla¬Valle Del Cauca¬319¬0,612¬55¬5¬47¬42¬6¬432
+15740¬Siachoque¬Boyacá¬304¬0,714¬55¬10¬51¬38¬2¬136
+25740¬Sibaté¬Cundinamarca¬312¬0,663¬55¬10¬43¬43¬4¬453
+86749¬Sibundoy¬Putumayo¬315¬0,51¬60¬9¬45¬40¬6¬264
+54743¬Silos¬Norte De Santander¬303¬0,969¬52¬11¬47¬41¬1¬73
+25743¬Silvania¬Cundinamarca¬310¬0,663¬60¬9¬45¬39¬6¬265
+19743¬Silvia¬Cauca¬272¬0,765¬51¬24¬56¬18¬2¬349
+68745¬Simacota¬Santander¬308¬1,633¬48¬8¬40¬51¬2¬116
+25745¬Simijaca¬Cundinamarca¬313¬0,765¬56¬8¬47¬40¬5¬183
+13744¬Simití¬Bolívar¬299¬1,071¬58¬17¬45¬36¬3¬194
+70001¬Sincelejo¬Sucre¬313¬0,204¬57¬11¬42¬40¬7¬4344
+27745¬Sipí¬Chocó¬269¬0,918¬34¬39¬48¬13¬0¬23
+47745¬Sitionuevo¬Magdalena¬249¬0,561¬43¬43¬48¬9¬0¬242
+25754¬Soacha¬Cundinamarca¬319¬0,204¬55¬7¬41¬47¬5¬7595
+15753¬Soatá¬Boyacá¬315¬0,765¬65¬8¬48¬35¬9¬137
+15757¬Socha¬Boyacá¬307¬1,224¬54¬8¬49¬41¬2¬116
+68755¬Socorro¬Santander¬325¬0,408¬59¬5¬39¬49¬7¬411
+15755¬Socotá¬Boyacá¬319¬0,612¬51¬7¬39¬53¬2¬93
+15759¬Sogamoso¬Boyacá¬341¬0,204¬54¬3¬30¬57¬10¬2042
+18756¬Solano¬Caquetá¬267¬1,429¬47¬28¬52¬19¬1¬83
+08758¬Soledad¬Atlántico¬312¬0,153¬55¬11¬42¬40¬6¬6797
+18785¬Solita¬Caquetá¬284¬1,531¬49¬14¬61¬24¬1¬79
+15761¬Somondoco¬Boyacá¬304¬1,071¬49¬15¬44¬41¬0¬46
+05756¬Sonson¬Antioquia¬294¬0,816¬54¬18¬46¬34¬1¬352
+05761¬Sopetrán¬Antioquia¬298¬1,02¬54¬11¬50¬37¬2¬161
+13760¬Soplaviento¬Bolívar¬254¬0,765¬48¬33¬57¬10¬0¬123
+25758¬Sopó¬Cundinamarca¬338¬0,459¬53¬3¬29¬58¬10¬387
+15762¬Sora¬Boyacá¬316¬1,224¬65¬10¬43¬37¬10¬51
+15764¬Soracá¬Boyacá¬325¬0,51¬54¬6¬36¬55¬4¬143
+15763¬Sotaquirá¬Boyacá¬314¬0,867¬53¬3¬46¬48¬2¬93
+19760¬Sotara¬Cauca¬293¬0,969¬45¬11¬64¬24¬1¬142
+68770¬Suaita¬Santander¬333¬0,918¬53¬2¬35¬54¬9¬142
+08770¬Suan¬Atlántico¬281¬0,918¬56¬21¬52¬26¬1¬154
+41770¬Suaza¬Huila¬306¬1,071¬52¬10¬45¬44¬2¬247
+25769¬Subachoque¬Cundinamarca¬348¬0,51¬49¬4¬25¬56¬15¬248
+19785¬Sucre¬Cauca¬281¬1,99¬47¬17¬57¬27¬0¬79
+68773¬Sucre¬Santander¬313¬1,173¬50¬10¬42¬45¬3¬95
+70771¬Sucre¬Sucre¬276¬1,071¬48¬22¬56¬22¬1¬260
+25772¬Suesca¬Cundinamarca¬309¬0,612¬58¬10¬46¬39¬6¬217
+25777¬Supatá¬Cundinamarca¬296¬2,296¬51¬11¬49¬39¬2¬66
+17777¬Supía¬Caldas¬299¬0,714¬57¬15¬48¬34¬4¬314
+68780¬Suratá¬Santander¬336¬3,112¬51¬3¬32¬55¬10¬31
+25779¬Susa¬Cundinamarca¬293¬0,918¬47¬8¬57¬33¬1¬72
+15774¬Susacón¬Boyacá¬320¬0¬67¬10¬33¬48¬8¬48
+15776¬Sutamarchán¬Boyacá¬315¬0,765¬58¬7¬44¬46¬4¬77
+25781¬Sutatausa¬Cundinamarca¬326¬1,786¬59¬5¬46¬39¬9¬56
+15778¬Sutatenza¬Boyacá¬301¬1,327¬64¬16¬42¬42¬0¬50
+19780¬Suárez¬Cauca¬273¬1,224¬51¬27¬52¬22¬0¬219
+73770¬Suárez¬Tolima¬303¬4,235¬57¬11¬42¬47¬0¬38
+15638¬Sáchica¬Boyacá¬307¬1,429¬61¬14¬48¬36¬2¬58
+25785¬Tabio¬Cundinamarca¬326¬0,867¬55¬6¬39¬49¬6¬282
+27787¬Tadó¬Chocó¬242¬0,765¬45¬45¬48¬6¬0¬320
+13780¬Talaigua Nuevo¬Bolívar¬256¬1,327¬44¬33¬58¬9¬1¬180
+20787¬Tamalameque¬Cesar¬269¬0,51¬45¬26¬57¬17¬0¬236
+81794¬Tame¬Arauca¬305¬0,408¬54¬10¬50¬38¬3¬801
+52786¬Taminango¬Nariño¬300¬0,867¬58¬13¬48¬36¬3¬258
+52788¬Tangua¬Nariño¬292¬0,408¬50¬14¬55¬30¬2¬124
+97666¬Taraira¬Vaupés¬305¬7,755¬62¬7¬50¬36¬7¬14
+91798¬Tarapacá¬Amazonas¬273¬4,745¬46¬23¬61¬16¬0¬31
+05790¬Tarazá¬Antioquia¬296¬0,765¬50¬11¬55¬32¬1¬293
+41791¬Tarqui¬Huila¬306¬0,612¬56¬10¬46¬41¬3¬297
+15790¬Tasco¬Boyacá¬314¬0,867¬49¬4¬47¬45¬4¬98
+85410¬Tauramena¬Casanare¬308¬0,561¬55¬10¬47¬39¬4¬367
+25793¬Tausa¬Cundinamarca¬323¬0,459¬61¬6¬42¬45¬8¬139
+41799¬Tello¬Huila¬284¬1,071¬53¬16¬58¬25¬1¬160
+25797¬Tena¬Cundinamarca¬316¬1,02¬55¬7¬46¬43¬4¬127
+47798¬Tenerife¬Magdalena¬276¬0,816¬47¬21¬59¬19¬1¬182
+25799¬Tenjo¬Cundinamarca¬340¬0,867¬53¬4¬31¬54¬12¬462
+15798¬Tenza¬Boyacá¬330¬0¬64¬4¬31¬58¬7¬45
+54800¬Teorama¬Norte De Santander¬296¬0,714¬49¬12¬56¬29¬2¬178
+41801¬Teruel¬Huila¬309¬1,633¬54¬10¬48¬41¬1¬81
+41797¬Tesalia¬Huila¬308¬0,714¬52¬9¬44¬45¬2¬126
+25805¬Tibacuy¬Cundinamarca¬329¬2,092¬60¬2¬47¬42¬10¬62
+15804¬Tibaná¬Boyacá¬308¬0,357¬62¬13¬43¬39¬5¬127
+15806¬Tibasosa¬Boyacá¬320¬0,765¬53¬3¬49¬44¬5¬156
+25807¬Tibirita¬Cundinamarca¬305¬2,347¬71¬20¬37¬33¬10¬30
+54810¬Tibú¬Norte De Santander¬278¬0,612¬51¬23¬54¬22¬2¬546
+23807¬Tierralta¬Córdoba¬283¬0,306¬50¬19¬55¬24¬2¬1217
+41807¬Timaná¬Huila¬314¬0,816¬50¬7¬41¬49¬3¬258
+19809¬Timbiquí¬Cauca¬243¬1,071¬40¬47¬48¬5¬0¬244
+19807¬Timbío¬Cauca¬306¬0,765¬52¬10¬47¬39¬4¬389
+15808¬Tinjacá¬Boyacá¬325¬1,276¬53¬2¬42¬46¬10¬41
+15810¬Tipacoque¬Boyacá¬323¬2,143¬67¬4¬43¬41¬12¬49
+13810¬Tiquisio¬Bolívar¬264¬1,327¬45¬27¬60¬13¬1¬216
+05809¬Titiribí¬Antioquia¬299¬1,786¬51¬7¬55¬33¬4¬96
+15814¬Toca¬Boyacá¬311¬0,408¬55¬9¬43¬46¬2¬175
+25815¬Tocaima¬Cundinamarca¬293¬1,224¬61¬13¬53¬31¬3¬142
+25817¬Tocancipá¬Cundinamarca¬323¬0,459¬54¬5¬40¬49¬6¬570
+15816¬Togüí¬Boyacá¬310¬1,122¬54¬5¬51¬39¬5¬82
+05819¬Toledo¬Antioquia¬289¬2,347¬58¬17¬48¬33¬2¬48
+54820¬Toledo¬Norte De Santander¬302¬0,969¬51¬12¬48¬38¬1¬237
+70823¬Tolú Viejo¬Sucre¬283¬0,663¬54¬18¬52¬29¬0¬306
+68820¬Tona¬Santander¬302¬1,02¬49¬6¬55¬38¬1¬80
+25823¬Topaipí¬Cundinamarca¬300¬1,939¬58¬11¬47¬39¬3¬62
+19821¬Toribio¬Cauca¬267¬0,714¬47¬25¬60¬15¬1¬414
+76823¬Toro¬Valle Del Cauca¬282¬1,122¬54¬21¬53¬24¬2¬165
+15822¬Tota¬Boyacá¬287¬0,663¬52¬19¬51¬30¬0¬79
+19824¬Totoró¬Cauca¬275¬0,765¬48¬21¬59¬19¬1¬280
+76828¬Trujillo¬Valle Del Cauca¬288¬1,02¬56¬18¬53¬27¬3¬213
+08832¬Tubará¬Atlántico¬283¬1,02¬59¬22¬51¬25¬2¬149
+76834¬Tuluá¬Valle Del Cauca¬318¬0,255¬57¬10¬39¬44¬7¬2717
+52835¬Tumaco¬Nariño¬267¬0,408¬50¬30¬51¬18¬1¬2427
+15001¬Tunja¬Boyacá¬344¬0,153¬52¬3¬28¬56¬13¬2627
+15832¬Tununguá¬Boyacá¬307¬3,112¬48¬5¬52¬43¬0¬21
+13836¬Turbaco¬Bolívar¬302¬0,357¬57¬16¬44¬33¬7¬1071
+13838¬Turbaná¬Bolívar¬279¬0,357¬52¬23¬55¬21¬1¬232
+05837¬Turbo¬Antioquia¬273¬0,357¬51¬25¬54¬20¬1¬1988
+15835¬Turmequé¬Boyacá¬318¬0,714¬54¬4¬50¬41¬5¬155
+15837¬Tuta¬Boyacá¬321¬0,561¬57¬6¬42¬47¬6¬175
+15839¬Tutazá¬Boyacá¬290¬0,918¬54¬18¬45¬36¬2¬56
+85400¬Támara¬Casanare¬298¬0,714¬51¬14¬49¬36¬1¬72
+05789¬Támesis¬Antioquia¬306¬1,122¬57¬9¬47¬39¬4¬226
+15820¬Tópaga¬Boyacá¬319¬1,276¬49¬6¬35¬58¬2¬55
+52838¬Túquerres¬Nariño¬316¬0,459¬49¬8¬41¬47¬5¬508
+25839¬Ubalá¬Cundinamarca¬295¬0,663¬53¬16¬45¬37¬2¬153
+25841¬Ubaque¬Cundinamarca¬315¬1,276¬59¬10¬40¬44¬7¬73
+76845¬Ulloa¬Valle Del Cauca¬322¬1,735¬50¬3¬38¬57¬2¬61
+15842¬Umbita¬Boyacá¬295¬0,408¬57¬13¬49¬35¬3¬126
+25845¬Une¬Cundinamarca¬327¬1,684¬61¬5¬37¬49¬9¬98
+27800¬Unguía¬Chocó¬272¬0,867¬51¬27¬53¬21¬0¬97
+27810¬Unión Panamerican¬Chocó¬257¬0¬44¬30¬59¬12¬0¬95
+05842¬Uramita¬Antioquia¬294¬0,765¬56¬16¬54¬27¬3¬74
+50370¬Uribe¬Meta¬299¬1,48¬52¬11¬52¬34¬3¬102
+44847¬Uribia¬La Guajira¬258¬0,51¬49¬35¬52¬12¬1¬881
+05847¬Urrao¬Antioquia¬295¬0,969¬54¬14¬50¬33¬2¬365
+44855¬Urumita¬La Guajira¬302¬0,765¬56¬10¬47¬41¬2¬146
+08849¬Usiacurí¬Atlántico¬269¬3,112¬59¬30¬50¬18¬2¬121
+05854¬Valdivia¬Antioquia¬295¬1,735¬64¬16¬52¬29¬4¬108
+23855¬Valencia¬Córdoba¬278¬0,561¬51¬21¬55¬21¬2¬579
+68855¬Valle de San José¬Santander¬327¬1,378¬47¬2¬33¬62¬2¬82
+73854¬Valle de San Juan¬Tolima¬295¬1,582¬58¬15¬46¬35¬4¬54
+86865¬Valle del Guamuez¬Putumayo¬300¬0,612¬54¬14¬46¬38¬2¬531
+20001¬Valledupar¬Cesar¬314¬0,153¬55¬10¬43¬41¬6¬6769
+05856¬Valparaíso¬Antioquia¬314¬1,837¬56¬10¬40¬47¬3¬72
+18860¬Valparaíso¬Caquetá¬301¬1,429¬53¬16¬42¬41¬1¬88
+05858¬Vegachí¬Antioquia¬300¬1,684¬61¬14¬48¬32¬6¬157
+73861¬Venadillo¬Tolima¬292¬0,918¬52¬14¬52¬35¬0¬161
+05861¬Venecia¬Antioquia¬298¬1,684¬56¬16¬47¬36¬1¬119
+25506¬Venecia¬Cundinamarca¬284¬1,888¬50¬12¬67¬22¬0¬51
+15861¬Ventaquemada¬Boyacá¬316¬0,561¬57¬8¬47¬42¬4¬247
+25862¬Vergara¬Cundinamarca¬309¬1,735¬63¬10¬49¬35¬7¬72
+76863¬Versalles¬Valle Del Cauca¬293¬1,99¬58¬15¬49¬35¬1¬83
+68867¬Vetas¬Santander¬274¬2,398¬64¬35¬42¬23¬0¬26
+25867¬Vianí¬Cundinamarca¬325¬0¬66¬10¬39¬44¬7¬41
+17867¬Victoria¬Caldas¬295¬1,684¬56¬13¬55¬30¬2¬115
+05873¬Vigía del Fuerte¬Antioquia¬243¬1,786¬42¬45¬49¬6¬0¬115
+76869¬Vijes¬Valle Del Cauca¬289¬0,408¬60¬21¬49¬28¬3¬144
+54871¬Villa Caro¬Norte De Santander¬308¬1,735¬57¬12¬40¬41¬7¬58
+19845¬Villa Rica¬Cauca¬256¬0,663¬52¬36¬49¬14¬1¬260
+15407¬Villa de Leyva¬Boyacá¬329¬0,459¬55¬7¬34¬53¬7¬233
+25843¬Villa de San Dieg¬Cundinamarca¬324¬0,357¬56¬6¬38¬49¬7¬593
+73043¬Anzoátegui¬Tolima¬295¬1,122¬55¬13¬56¬29¬2¬112
+05045¬Apartadó¬Antioquia¬301¬0,306¬55¬13¬48¬35¬4¬1770
+25599¬Apulo¬Cundinamarca¬305¬1,735¬64¬15¬42¬39¬5¬65
+66045¬Apía¬Risaralda¬300¬1,02¬51¬10¬53¬35¬3¬162
+15047¬Aquitania¬Boyacá¬302¬0,612¬52¬9¬54¬35¬3¬222
+47053¬Aracataca¬Magdalena¬262¬0,663¬49¬32¬51¬16¬1¬517
+17050¬Aranzazu¬Caldas¬314¬3,061¬59¬8¬41¬46¬6¬140
+68051¬Aratoca¬Santander¬302¬0¬61¬13¬47¬36¬4¬123
+81001¬Arauca¬Arauca¬312¬0,408¬54¬9¬44¬41¬6¬1042
+81065¬Arauquita¬Arauca¬310¬0,561¬54¬11¬43¬42¬5¬427
+25053¬Arbeláez¬Cundinamarca¬316¬1,327¬56¬7¬39¬49¬5¬112
+52051¬Arboleda¬Nariño¬292¬0,714¬46¬14¬55¬30¬1¬114
+54051¬Arboledas¬Norte De Santander¬288¬1,582¬52¬16¬55¬28¬2¬109
+05051¬Arboletes¬Antioquia¬282¬0,969¬51¬21¬53¬26¬1¬493
+15051¬Arcabuco¬Boyacá¬319¬0¬57¬7¬42¬47¬5¬107
+13042¬Arenal¬Bolívar¬281¬0,918¬51¬12¬62¬24¬2¬114
+05055¬Argelia¬Antioquia¬302¬0,663¬46¬9¬55¬32¬4¬71
+19050¬Argelia¬Cauca¬304¬1,531¬48¬9¬52¬38¬2¬200
+76054¬Argelia¬Valle Del Cauca¬303¬1,531¬57¬11¬47¬40¬3¬75
+47058¬Ariguaní¬Magdalena¬271¬1,02¬49¬23¬56¬20¬0¬367
+13052¬Arjona¬Bolívar¬282¬0,357¬55¬22¬50¬26¬3¬1055
+63001¬Armenia¬Quindio¬327¬0,255¬58¬8¬35¬48¬10¬3469
+05059¬Armenia¬Antioquia¬328¬1,071¬47¬7¬31¬60¬2¬45
+73055¬Armero¬Tolima¬286¬1,276¬53¬16¬48¬36¬1¬141
+13062¬Arroyohondo¬Bolívar¬252¬1,99¬48¬38¬52¬10¬0¬92
+20032¬Astrea¬Cesar¬288¬0,969¬48¬14¬57¬28¬1¬271
+73067¬Ataco¬Tolima¬285¬1,02¬52¬15¬56¬29¬0¬241
+27050¬Atrato¬Chocó¬262¬0,867¬47¬26¬60¬14¬0¬90
+23068¬Ayapel¬Córdoba¬277¬0,663¬50¬21¬58¬20¬1¬560
+27073¬Bagadó¬Chocó¬235¬0,765¬43¬52¬41¬6¬0¬126
+27075¬Bahía Solano¬Chocó¬256¬1,276¬48¬38¬49¬12¬1¬152
+27077¬Bajo Baudó¬Chocó¬248¬0,561¬42¬40¬51¬8¬0¬228
+19075¬Balboa¬Cauca¬290¬0,867¬46¬9¬62¬29¬0¬224
+66075¬Balboa¬Risaralda¬295¬1,173¬50¬11¬55¬31¬3¬74
+08078¬Baranoa¬Atlántico¬294¬0,51¬53¬15¬49¬35¬2¬952
+41078¬Baraya¬Huila¬286¬1,173¬50¬13¬60¬25¬2¬92
+52079¬Barbacoas¬Nariño¬262¬0,969¬49¬32¬55¬13¬1¬408
+05079¬Barbosa¬Antioquia¬314¬0,714¬56¬11¬41¬43¬6¬558
+68077¬Barbosa¬Santander¬327¬0,561¬54¬5¬35¬55¬5¬334
+68079¬Barichara¬Santander¬327¬0,561¬60¬8¬36¬46¬9¬108
+50110¬Barranca de Upía¬Meta¬274¬1,99¬61¬32¬44¬23¬2¬92
+68081¬Barrancabermeja¬Santander¬323¬0,255¬54¬8¬40¬43¬9¬3054
+44078¬Barrancas¬La Guajira¬272¬0,867¬49¬24¬57¬18¬1¬395
+13074¬Barranco de Loba¬Bolívar¬273¬1,071¬48¬23¬58¬18¬1¬198
+08001¬Barranquilla¬Atlántico¬322¬0,102¬55¬9¬38¬43¬9¬16667
+20045¬Becerril¬Cesar¬267¬0,816¬50¬26¬58¬16¬1¬299
+17088¬Belalcázar¬Caldas¬302¬1,224¬54¬13¬47¬39¬1¬102
+05088¬Bello¬Antioquia¬328¬0,255¬57¬7¬36¬48¬9¬4496
+05086¬Belmira¬Antioquia¬301¬0¬52¬11¬52¬36¬1¬84
+25086¬Beltrán¬Cundinamarca¬291¬1,837¬39¬7¬66¬24¬3¬29
+15087¬Belén¬Boyacá¬315¬0,816¬63¬10¬40¬41¬9¬136
+52083¬Belén¬Nariño¬310¬1,378¬51¬4¬51¬40¬4¬72
+27086¬Belén de Bajirá¬Chocó¬263¬1,99¬47¬32¬57¬11¬0¬108
+66088¬Belén de Umbría¬Risaralda¬299¬0,765¬52¬13¬50¬36¬1¬309
+18094¬Belén de los Anda¬Caquetá¬288¬1,02¬50¬15¬60¬21¬4¬131
+15090¬Berbeo¬Boyacá¬309¬2,194¬58¬8¬50¬39¬4¬26
+05091¬Betania¬Antioquia¬306¬1,888¬56¬12¬45¬41¬2¬92
+05093¬Betulia¬Antioquia¬282¬1,02¬53¬22¬51¬26¬1¬222
+68092¬Betulia¬Santander¬310¬1,224¬55¬6¬52¬37¬6¬85
+15092¬Betéitiva¬Boyacá¬306¬0¬42¬4¬50¬46¬0¬24
+25095¬Bituima¬Cundinamarca¬329¬2,296¬58¬4¬36¬48¬12¬25
+15097¬Boavita¬Boyacá¬309¬0,612¬46¬4¬52¬44¬0¬99
+54099¬Bochalema¬Norte De Santander¬308¬1,122¬50¬9¬48¬43¬0¬96
+11001¬Bogotá, D.C.¬Bogotá, D.C.¬338¬0,051¬54¬5¬32¬53¬11¬85388
+25099¬Bojacá¬Cundinamarca¬331¬1,429¬50¬3¬42¬47¬8¬130
+27099¬Bojaya¬Chocó¬254¬0,918¬49¬38¬47¬15¬0¬102
+19100¬Bolívar¬Cauca¬296¬0,663¬50¬11¬55¬32¬2¬396
+68101¬Bolívar¬Santander¬300¬1,071¬55¬12¬49¬36¬3¬165
+76100¬Bolívar¬Valle Del Cauca¬304¬1,071¬56¬9¬52¬35¬5¬188
+20060¬Bosconia¬Cesar¬284¬0,561¬55¬23¬49¬24¬4¬558
+15104¬Boyacá¬Boyacá¬311¬0,816¬48¬4¬57¬35¬5¬86
+05107¬Briceño¬Antioquia¬296¬1,786¬48¬9¬55¬33¬3¬67
+15106¬Briceño¬Boyacá¬342¬2,602¬70¬4¬35¬46¬15¬26
+68001¬Bucaramanga¬Santander¬341¬0,153¬55¬4¬30¬52¬13¬6820
+54109¬Bucarasica¬Norte De Santander¬277¬1,122¬50¬21¬55¬24¬0¬62
+76109¬Buenaventura¬Valle Del Cauca¬279¬0,204¬51¬22¬52¬25¬1¬3965
+15109¬Buenavista¬Boyacá¬317¬1,071¬59¬7¬43¬47¬3¬93
+23079¬Buenavista¬Córdoba¬277¬1,02¬54¬24¬54¬20¬2¬310
+63111¬Buenavista¬Quindio¬297¬2,653¬45¬6¬57¬36¬0¬47
+70110¬Buenavista¬Sucre¬291¬0,561¬57¬17¬49¬32¬2¬131
+19110¬Buenos Aires¬Cauca¬277¬1,071¬50¬22¬57¬20¬2¬260
+52110¬Buesaco¬Nariño¬316¬0,969¬52¬6¬47¬44¬4¬214
+76111¬Buga¬Valle Del Cauca¬318¬0,459¬55¬7¬41¬47¬5¬1064
+76113¬Bugalagrande¬Valle Del Cauca¬289¬0,918¬54¬15¬55¬29¬0¬298
+05113¬Buriticá¬Antioquia¬312¬1,122¬46¬4¬47¬47¬1¬72
+15114¬Busbanzá¬Boyacá¬336¬4,133¬39¬0¬33¬67¬0¬9
+25120¬Cabrera¬Cundinamarca¬296¬0¬56¬14¬47¬38¬2¬66
+68121¬Cabrera¬Santander¬336¬2,602¬36¬0¬26¬68¬5¬19
+50124¬Cabuyaro¬Meta¬284¬3,367¬58¬22¬49¬28¬2¬65
+25123¬Cachipay¬Cundinamarca¬333¬0¬56¬2¬35¬55¬7¬94
+54128¬Cachirá¬Norte De Santander¬301¬0,918¬52¬11¬52¬36¬2¬152
+05125¬Caicedo¬Antioquia¬306¬1,684¬55¬13¬43¬40¬3¬67
+76122¬Caicedonia¬Valle Del Cauca¬296¬1,276¬57¬16¬48¬32¬4¬248
+70124¬Caimito¬Sucre¬272¬0,714¬48¬22¬61¬15¬2¬204
+73124¬Cajamarca¬Tolima¬298¬0,714¬52¬10¬53¬36¬1¬245
+19130¬Cajibío¬Cauca¬291¬0,459¬47¬14¬54¬31¬2¬445
+25126¬Cajicá¬Cundinamarca¬336¬0,357¬54¬4¬33¬55¬9¬762
+13140¬Calamar¬Bolívar¬256¬1,224¬51¬38¬49¬13¬0¬290
+95015¬Calamar¬Guaviare¬292¬1,276¬59¬14¬51¬35¬1¬81
+63130¬Calarca¬Quindio¬313¬0,306¬54¬9¬45¬41¬6¬870
+05129¬Caldas¬Antioquia¬321¬0,51¬55¬7¬38¬48¬7¬807
+15131¬Caldas¬Boyacá¬296¬0¬49¬9¬60¬30¬2¬47
+19137¬Caldono¬Cauca¬265¬0,612¬50¬30¬52¬17¬1¬550
+76001¬Cali¬Valle Del Cauca¬323¬0,102¬54¬7¬38¬48¬7¬18278
+68132¬California¬Santander¬347¬1,99¬44¬0¬27¬59¬14¬22
+76126¬Calima¬Valle Del Cauca¬308¬1,173¬55¬9¬44¬42¬5¬201
+19142¬Caloto¬Cauca¬276¬0,714¬51¬21¬57¬21¬1¬442
+05134¬Campamento¬Antioquia¬332¬0¬58¬7¬31¬55¬7¬42
+08137¬Campo de la Cruz¬Atlántico¬263¬0,663¬52¬30¬51¬19¬0¬242
+41132¬Campoalegre¬Huila¬303¬0,714¬54¬10¬52¬35¬3¬331
+15135¬Campohermoso¬Boyacá¬321¬1,224¬54¬5¬38¬55¬2¬42
+23090¬Canalete¬Córdoba¬273¬0,561¬47¬23¬54¬22¬1¬293
+08141¬Candelaria¬Atlántico¬244¬0,969¬51¬45¬47¬8¬0¬217
+76130¬Candelaria¬Valle Del Cauca¬297¬0,612¬57¬13¬51¬33¬3¬978
+13160¬Cantagallo¬Bolívar¬301¬0,612¬54¬8¬55¬34¬3¬95
+25148¬Caparrapí¬Cundinamarca¬303¬1,327¬56¬10¬51¬35¬4¬135
+68147¬Capitanejo¬Santander¬314¬0¬64¬7¬43¬46¬5¬77
+25151¬Caqueza¬Cundinamarca¬330¬1,071¬57¬5¬38¬49¬7¬246
+05142¬Caracolí¬Antioquia¬315¬1,429¬57¬8¬51¬33¬8¬39
+05145¬Caramanta¬Antioquia¬291¬1,429¬48¬13¬49¬39¬0¬39
+68152¬Carcasí¬Santander¬307¬0,867¬43¬6¬56¬38¬0¬55
+05147¬Carepa¬Antioquia¬301¬0,714¬53¬12¬48¬37¬3¬603
+73148¬Carmen de Apicalá¬Tolima¬291¬1,684¬54¬20¬42¬38¬0¬128
+25154¬Carmen de Carupa¬Cundinamarca¬303¬0,459¬47¬6¬51¬42¬1¬104
+27150¬Carmen del Darien¬Chocó¬248¬0,867¬39¬44¬46¬10¬0¬82
+05150¬Carolina¬Antioquia¬312¬3,673¬56¬10¬36¬51¬3¬39
+13001¬Cartagena¬Bolívar¬302¬0,153¬55¬16¬44¬34¬6¬14691
+18150¬Cartagena del Cha¬Caquetá¬294¬0,918¬51¬15¬51¬31¬3¬309
+76147¬Cartago¬Valle Del Cauca¬320¬0,357¬57¬9¬38¬46¬7¬1298
+73152¬Casabianca¬Tolima¬312¬0,765¬56¬10¬36¬49¬5¬67
+50150¬Castilla la Nueva¬Meta¬303¬0,408¬56¬14¬45¬39¬3¬192
+05154¬Caucasia¬Antioquia¬307¬0,357¬57¬12¬46¬38¬5¬1254
+05138¬Cañasgordas¬Antioquia¬294¬1,327¬58¬17¬48¬33¬2¬172
+68160¬Cepitá¬Santander¬295¬3,827¬63¬24¬35¬41¬0¬17
+23162¬Cereté¬Córdoba¬302¬0,459¬56¬13¬49¬32¬6¬1209
+15162¬Cerinza¬Boyacá¬335¬0¬60¬2¬41¬45¬12¬51
+68162¬Cerrito¬Santander¬303¬0,969¬53¬11¬48¬40¬1¬93
+47161¬Cerro San Antonio¬Magdalena¬243¬1,378¬46¬47¬49¬4¬0¬90
+52240¬Chachagüí¬Nariño¬304¬1,735¬52¬8¬53¬35¬4¬206
+25168¬Chaguaní¬Cundinamarca¬316¬0¬63¬10¬43¬40¬7¬30
+70230¬Chalán¬Sucre¬283¬1,99¬52¬13¬61¬26¬0¬62
+85015¬Chameza¬Casanare¬326¬2,092¬55¬4¬42¬42¬12¬26
+73168¬Chaparral¬Tolima¬291¬0,561¬49¬16¬53¬29¬2¬580
+68167¬Charalá¬Santander¬338¬0,816¬59¬6¬32¬53¬11¬181
+68169¬Charta¬Santander¬325¬0¬58¬8¬40¬48¬4¬25
+47170¬Chibolo¬Magdalena¬267¬1,327¬55¬29¬51¬19¬1¬248
+05172¬Chigorodó¬Antioquia¬294¬0,612¬52¬13¬54¬31¬2¬830
+68176¬Chima¬Santander¬336¬0¬54¬4¬31¬54¬12¬26
+20175¬Chimichagua¬Cesar¬265¬0,663¬51¬29¬55¬15¬1¬530
+23168¬Chimá¬Córdoba¬273¬0,612¬55¬29¬47¬23¬1¬235
+15172¬Chinavita¬Boyacá¬319¬1,48¬55¬2¬46¬46¬5¬41
+17174¬Chinchiná¬Caldas¬309¬0,612¬56¬9¬48¬39¬4¬601
+54172¬Chinácota¬Norte De Santander¬326¬0,408¬54¬7¬34¬53¬6¬242
+23182¬Chinú¬Córdoba¬299¬0,204¬50¬12¬50¬37¬2¬641
+25178¬Chipaque¬Cundinamarca¬341¬0,714¬54¬2¬30¬56¬13¬128
+68179¬Chipatá¬Santander¬304¬1,071¬62¬7¬60¬24¬9¬55
+15176¬Chiquinquirá¬Boyacá¬326¬0,306¬55¬5¬38¬50¬7¬1036
+20178¬Chiriguaná¬Cesar¬268¬0,918¬52¬27¬55¬17¬1¬381
+15180¬Chiscas¬Boyacá¬308¬0,816¬44¬5¬48¬48¬0¬59
+15183¬Chita¬Boyacá¬278¬1,02¬51¬19¬59¬21¬1¬124
+54174¬Chitagá¬Norte De Santander¬305¬0,765¬59¬12¬52¬34¬3¬122
+15185¬Chitaraque¬Boyacá¬300¬1,122¬52¬9¬51¬37¬3¬76
+15187¬Chivatá¬Boyacá¬303¬0¬53¬10¬49¬36¬5¬39
+15236¬Chivor¬Boyacá¬278¬1,633¬66¬20¬53¬23¬5¬40
+25181¬Choachí¬Cundinamarca¬327¬0,765¬54¬6¬37¬50¬7¬180
+25183¬Chocontá¬Cundinamarca¬321¬0,51¬56¬6¬41¬47¬6¬251
+25175¬Chía¬Cundinamarca¬352¬0,255¬53¬3¬25¬56¬16¬1849
+15232¬Chíquiza¬Boyacá¬283¬1,582¬60¬18¬60¬21¬2¬62
+13188¬Cicuco¬Bolívar¬285¬1,276¬55¬17¬54¬28¬2¬156
+68190¬Cimitarra¬Santander¬294¬0,918¬52¬15¬51¬33¬2¬447
+63190¬Circasia¬Quindio¬313¬0,663¬57¬7¬47¬43¬4¬285
+05190¬Cisneros¬Antioquia¬283¬1,429¬59¬19¬54¬25¬2¬114
+05101¬Ciudad Bolívar¬Antioquia¬337¬0,816¬56¬4¬31¬54¬11¬287
+47189¬Ciénaga¬Magdalena¬277¬0,357¬53¬25¬50¬23¬2¬1663
+23189¬Ciénaga de Oro¬Córdoba¬290¬0,459¬55¬18¬50¬29¬3¬868
+15189¬Ciénega¬Boyacá¬311¬0,612¬48¬7¬49¬44¬0¬77
+13222¬Clemencia¬Bolívar¬250¬1,071¬56¬39¬47¬14¬0¬196
+05197¬Cocorná¬Antioquia¬306¬1,173¬53¬9¬47¬42¬2¬177
+73200¬Coello¬Tolima¬275¬0,867¬49¬21¬57¬22¬1¬130
+25200¬Cogua¬Cundinamarca¬329¬0,867¬50¬3¬38¬54¬5¬306
+41206¬Colombia¬Huila¬298¬0¬56¬17¬48¬32¬3¬60
+70204¬Coloso¬Sucre¬292¬0,918¬56¬12¬55¬31¬3¬117
+52203¬Colón¬Nariño¬298¬2,143¬52¬10¬55¬34¬1¬98
+86219¬Colón¬Putumayo¬317¬2,398¬62¬6¬54¬33¬6¬63
+05206¬Concepción¬Antioquia¬351¬3,98¬56¬0¬23¬69¬8¬26
+68207¬Concepción¬Santander¬332¬0,969¬47¬2¬34¬60¬4¬50
+05209¬Concordia¬Antioquia¬286¬0,816¬55¬17¬53¬28¬1¬297
+47205¬Concordia¬Magdalena¬262¬1,327¬49¬30¬56¬15¬0¬108
+27205¬Condoto¬Chocó¬270¬0,408¬51¬23¬60¬16¬2¬268
+68209¬Confines¬Santander¬306¬3,367¬57¬13¬39¬44¬4¬23
+52207¬Consaca¬Nariño¬322¬0,714¬53¬4¬44¬47¬5¬160
+52210¬Contadero¬Nariño¬346¬1,071¬57¬3¬28¬60¬9¬58
+68211¬Contratación¬Santander¬353¬0,867¬52¬2¬20¬66¬12¬59
+54206¬Convención¬Norte De Santander¬295¬0,969¬49¬14¬46¬38¬2¬190
+05212¬Copacabana¬Antioquia¬349¬0,561¬54¬2¬27¬58¬14¬866
+15212¬Coper¬Boyacá¬309¬1,429¬52¬8¬47¬43¬2¬49
+19212¬Corinto¬Cauca¬278¬1,02¬50¬20¬56¬24¬1¬299
+68217¬Coromoro¬Santander¬305¬1,173¬44¬6¬52¬42¬0¬65
+70215¬Corozal¬Sucre¬319¬0,306¬58¬9¬41¬42¬8¬1005
+15215¬Corrales¬Boyacá¬304¬0¬60¬11¬42¬47¬0¬36
+25214¬Cota¬Cundinamarca¬370¬0,306¬53¬2¬18¬53¬27¬798
+23300¬Cotorra¬Córdoba¬284¬1,786¬54¬20¬51¬27¬1¬175
+15218¬Covarachía¬Boyacá¬290¬2,806¬54¬13¬59¬28¬0¬32
+70221¬Coveñas¬Sucre¬285¬0,867¬53¬19¬52¬27¬2¬226
+73217¬Coyaima¬Tolima¬252¬0,561¬47¬38¬51¬10¬1¬404
+81220¬Cravo Norte¬Arauca¬294¬1,122¬50¬9¬58¬33¬0¬45
+52224¬Cuaspud¬Nariño¬294¬1,173¬56¬13¬52¬33¬1¬90
+50223¬Cubarral¬Meta¬300¬2,449¬52¬11¬49¬39¬1¬72
+15223¬Cubará¬Boyacá¬290¬1,429¬50¬15¬57¬28¬1¬69
+15224¬Cucaita¬Boyacá¬311¬0,714¬54¬9¬47¬42¬3¬77
+25224¬Cucunubá¬Cundinamarca¬327¬0¬52¬4¬39¬50¬8¬78
+54223¬Cucutilla¬Norte De Santander¬289¬0,918¬50¬17¬49¬33¬1¬110
+50226¬Cumaral¬Meta¬301¬0,816¬52¬11¬49¬39¬2¬369
+99773¬Cumaribo¬Vichada¬267¬0,816¬48¬30¬52¬17¬1¬253
+52227¬Cumbal¬Nariño¬306¬0,51¬54¬11¬47¬40¬3¬495
+52233¬Cumbitara¬Nariño¬316¬2,347¬48¬4¬47¬45¬5¬103
+73226¬Cunday¬Tolima¬292¬1,071¬58¬17¬52¬29¬2¬130
+18205¬Curillo¬Caquetá¬279¬1,735¬48¬18¬62¬20¬0¬108
+68229¬Curití¬Santander¬321¬0,612¬58¬6¬44¬43¬6¬156
+20228¬Curumaní¬Cesar¬284¬0,357¬53¬16¬58¬25¬2¬355
+15226¬Cuítiva¬Boyacá¬320¬0¬72¬12¬42¬39¬8¬26
+05120¬Cáceres¬Antioquia¬289¬1,02¬59¬16¬54¬27¬3¬288
+54125¬Cácota¬Norte De Santander¬293¬0¬51¬13¬53¬34¬0¬38
+27160¬Cértegui¬Chocó¬251¬0¬45¬35¬57¬8¬0¬83
+15204¬Cómbita¬Boyacá¬332¬0,867¬51¬6¬41¬38¬16¬135
+13212¬Córdoba¬Bolívar¬282¬0,714¬51¬19¬57¬22¬2¬243
+52215¬Córdoba¬Nariño¬303¬0,918¬54¬10¬51¬36¬3¬186
+63212¬Córdoba¬Quindio¬308¬1,684¬52¬10¬47¬42¬1¬79
+54001¬Cúcuta¬Norte De Santander¬325¬0,153¬54¬7¬39¬46¬8¬9000
+05234¬Dabeiba¬Antioquia¬283¬0,459¬49¬19¬54¬26¬2¬292
+76233¬Dagua¬Valle Del Cauca¬307¬0,714¬56¬10¬46¬41¬3¬417
+44090¬Dibulla¬La Guajira¬267¬0,663¬47¬26¬57¬17¬0¬316
+44098¬Distracción¬La Guajira¬266¬1,684¬53¬28¬55¬15¬2¬118
+73236¬Dolores¬Tolima¬306¬0¬51¬9¬51¬38¬1¬107
+05237¬Don Matías¬Antioquia¬315¬1,173¬51¬6¬46¬47¬2¬224
+66170¬Dosquebradas¬Risaralda¬327¬0,255¬55¬6¬37¬50¬7¬2218
+15238¬Duitama¬Boyacá¬350¬0,204¬54¬3¬26¬57¬15¬1919
+54239¬Durania¬Norte De Santander¬290¬0,867¬42¬12¬59¬29¬0¬49
+05240¬Ebéjico¬Antioquia¬320¬1,684¬57¬7¬43¬45¬5¬131
+05250¬El Bagre¬Antioquia¬283¬1,224¬56¬20¬54¬24¬2¬652
+47245¬El Banco¬Magdalena¬275¬0,408¬51¬23¬54¬21¬2¬915
+76246¬El Cairo¬Valle Del Cauca¬287¬1,939¬55¬15¬54¬28¬3¬72
+50245¬El Calvario¬Meta¬319¬2,806¬50¬3¬53¬43¬3¬40
+27135¬El Cantón del San¬Chocó¬253¬1,02¬37¬41¬51¬9¬0¬71
+54245¬El Carmen¬Norte De Santander¬306¬1,224¬63¬15¬38¬44¬4¬101
+27245¬El Carmen de Atra¬Chocó¬301¬0,969¬52¬16¬45¬34¬6¬116
+13244¬El Carmen de Bolí¬Bolívar¬278¬0,459¬55¬23¬53¬21¬3¬944
+68235¬El Carmen de Chuc¬Santander¬318¬1,224¬53¬4¬43¬50¬3¬175
+05148¬El Carmen de Vibo¬Antioquia¬341¬0,357¬56¬4¬28¬58¬10¬559
+50251¬El Castillo¬Meta¬304¬2,092¬59¬14¬49¬33¬5¬101
+76248¬El Cerrito¬Valle Del Cauca¬294¬0,714¬59¬17¬50¬31¬3¬584
+52250¬El Charco¬Nariño¬267¬1,48¬46¬30¬54¬16¬1¬207
+15244¬El Cocuy¬Boyacá¬313¬0,612¬51¬7¬51¬38¬4¬55
+25245¬El Colegio¬Cundinamarca¬319¬0,816¬55¬8¬39¬50¬4¬279
+20238¬El Copey¬Cesar¬292¬1,122¬56¬18¬49¬32¬2¬417
+18247¬El Doncello¬Caquetá¬299¬0,714¬52¬11¬51¬36¬3¬265
+50270¬El Dorado¬Meta¬285¬1,531¬54¬17¬56¬26¬1¬78
+76250¬El Dovio¬Valle Del Cauca¬310¬1,071¬51¬7¬45¬46¬2¬91
+15248¬El Espino¬Boyacá¬336¬0¬48¬0¬35¬60¬6¬52
+68245¬El Guacamayo¬Santander¬341¬0¬67¬9¬30¬49¬12¬33
+13248¬El Guamo¬Bolívar¬267¬0,969¬55¬29¬61¬8¬2¬102
+27250¬El Litoral del Sa¬Chocó¬223¬1,02¬39¬68¬28¬5¬0¬210
+44110¬El Molino¬La Guajira¬284¬2,296¬44¬10¬69¬19¬2¬58
+20250¬El Paso¬Cesar¬280¬0,459¬52¬20¬56¬23¬1¬495
+18256¬El Paujil¬Caquetá¬305¬0,918¬46¬7¬53¬38¬3¬160
+52254¬El Peñol¬Nariño¬287¬1,582¬49¬12¬61¬25¬2¬89
+13268¬El Peñón¬Bolívar¬270¬2,653¬49¬26¬59¬14¬1¬92
+25258¬El Peñón¬Cundinamarca¬306¬0,867¬56¬6¬59¬31¬3¬64
+68250¬El Peñón¬Santander¬279¬1,888¬46¬23¬54¬23¬0¬43
+47258¬El Piñon¬Magdalena¬260¬0,714¬51¬33¬52¬15¬0¬264
+68255¬El Playón¬Santander¬312¬0,765¬57¬7¬47¬41¬5¬150
+95025¬El Retorno¬Guaviare¬290¬1,224¬54¬13¬56¬29¬2¬164
+47268¬El Retén¬Magdalena¬253¬1,531¬47¬34¬59¬6¬1¬180
+70233¬El Roble¬Sucre¬302¬0,816¬56¬10¬48¬39¬2¬127
+25260¬El Rosal¬Cundinamarca¬325¬0,561¬52¬3¬42¬51¬5¬337
+52256¬El Rosario¬Nariño¬322¬2,143¬51¬6¬46¬41¬7¬96
+05697¬El Santuario¬Antioquia¬318¬0,765¬56¬8¬40¬48¬5¬385
+52258¬El Tablón de Góme¬Nariño¬318¬0,816¬46¬3¬47¬46¬3¬184
+19256¬El Tambo¬Cauca¬288¬0,714¬49¬15¬56¬29¬1¬531
+52260¬El Tambo¬Nariño¬313¬1,327¬52¬3¬50¬42¬4¬158
+54250¬El Tarra¬Norte De Santander¬274¬0,918¬51¬22¬59¬18¬1¬171
+54261¬El Zulia¬Norte De Santander¬288¬0,51¬52¬15¬58¬26¬2¬313
+76243¬El águila¬Valle Del Cauca¬307¬1,02¬61¬11¬43¬40¬6¬100
+41244¬Elías¬Huila¬313¬1,837¬61¬9¬44¬39¬9¬46
+68264¬Encino¬Santander¬314¬4,337¬56¬8¬36¬52¬4¬25
+68266¬Enciso¬Santander¬321¬1,327¬47¬5¬39¬54¬2¬59
+05264¬Entrerrios¬Antioquia¬329¬1,429¬60¬7¬35¬50¬9¬142
+05266¬Envigado¬Antioquia¬350¬0,306¬59¬5¬24¬55¬17¬2112
+73268¬Espinal¬Tolima¬293¬0,408¬57¬18¬48¬33¬2¬955
+25269¬Facatativá¬Cundinamarca¬341¬0,255¬53¬4¬29¬56¬11¬1753
+73270¬Falan¬Tolima¬309¬0,867¬52¬8¬47¬42¬3¬127
+17272¬Filadelfia¬Caldas¬288¬2,092¬55¬13¬57¬29¬1¬113
+63272¬Filandia¬Quindio¬312¬0,867¬54¬12¬42¬42¬4¬160
+15272¬Firavitoba¬Boyacá¬294¬0¬48¬13¬48¬38¬1¬69
+73275¬Flandes¬Tolima¬273¬0,561¬52¬26¬52¬21¬1¬313
+18001¬Florencia¬Caquetá¬319¬0,306¬52¬6¬44¬46¬4¬2297
+19290¬Florencia¬Cauca¬303¬1,122¬50¬8¬52¬38¬2¬63
+15276¬Floresta¬Boyacá¬316¬1,173¬59¬10¬35¬49¬6¬49
+76275¬Florida¬Valle Del Cauca¬305¬0,561¬57¬13¬47¬34¬6¬703
+68276¬Floridablanca¬Santander¬345¬0,255¬56¬4¬28¬55¬13¬3095
+68271¬Florián¬Santander¬302¬2,857¬49¬10¬46¬44¬0¬68
+25279¬Fomeque¬Cundinamarca¬327¬0,714¬61¬7¬40¬44¬9¬131
+44279¬Fonseca¬La Guajira¬289¬0,612¬51¬17¬52¬29¬2¬530
+81300¬Fortul¬Arauca¬297¬0,663¬54¬10¬56¬32¬2¬256
+25281¬Fosca¬Cundinamarca¬304¬2,245¬48¬11¬55¬30¬5¬66
+52520¬Francisco Pizarro¬Nariño¬262¬1,735¬42¬31¬55¬14¬0¬78
+05282¬Fredonia¬Antioquia¬307¬0,867¬54¬11¬44¬42¬3¬251
+73283¬Fresno¬Tolima¬320¬0,714¬56¬6¬41¬48¬6¬310
+05284¬Frontino¬Antioquia¬309¬1,224¬56¬10¬44¬43¬3¬237
+50287¬Fuente de Oro¬Meta¬293¬0,867¬56¬15¬51¬32¬2¬189
+47288¬Fundación¬Magdalena¬285¬0,459¬54¬20¬51¬26¬3¬1064
+52287¬Funes¬Nariño¬310¬1,378¬47¬6¬46¬49¬0¬101
+25286¬Funza¬Cundinamarca¬330¬0,255¬53¬5¬35¬52¬7¬1414
+25290¬Fusagasugá¬Cundinamarca¬329¬0,357¬56¬5¬35¬52¬7¬1758
+25288¬Fúquene¬Cundinamarca¬339¬1,122¬57¬5¬27¬59¬9¬100
+25293¬Gachala¬Cundinamarca¬313¬2,857¬64¬10¬45¬33¬12¬67
+25295¬Gachancipá¬Cundinamarca¬325¬0,51¬55¬7¬36¬51¬7¬123
+15293¬Gachantivá¬Boyacá¬293¬0¬64¬16¬47¬33¬4¬51
+25297¬Gachetá¬Cundinamarca¬323¬1,173¬52¬9¬33¬52¬6¬98
+08296¬Galapa¬Atlántico¬293¬0,51¬58¬17¬49¬31¬3¬673
+70235¬Galeras¬Sucre¬295¬0,765¬58¬16¬51¬30¬3¬295
+68296¬Galán¬Santander¬318¬1,735¬56¬6¬43¬49¬3¬35
+25299¬Gama¬Cundinamarca¬302¬1,837¬61¬11¬51¬36¬2¬45
+20295¬Gamarra¬Cesar¬281¬1,173¬50¬20¬51¬29¬0¬144
+68298¬Gambita¬Santander¬294¬1,276¬55¬13¬55¬30¬2¬60
+15296¬Gameza¬Boyacá¬307¬0,357¬44¬4¬56¬39¬2¬54
+15299¬Garagoa¬Boyacá¬321¬0,459¬55¬5¬39¬51¬5¬242
+41298¬Garzón¬Huila¬319¬0,408¬57¬8¬39¬47¬6¬1016
+41306¬Gigante¬Huila¬304¬0,561¬56¬12¬48¬37¬4¬476
+76306¬Ginebra¬Valle Del Cauca¬324¬0,714¬53¬6¬39¬49¬7¬306
+05306¬Giraldo¬Antioquia¬315¬2,041¬55¬6¬44¬44¬6¬52
+25307¬Girardot¬Cundinamarca¬305¬0,459¬57¬14¬43¬38¬5¬1183
+05308¬Girardota¬Antioquia¬335¬0,867¬58¬7¬31¬52¬10¬528
+68307¬Girón¬Santander¬325¬0,255¬57¬6¬39¬48¬7¬1691
+20310¬González¬Cesar¬298¬0¬47¬10¬53¬35¬2¬60
+54313¬Gramalote¬Norte De Santander¬300¬1,582¬57¬12¬50¬37¬2¬68
+05313¬Granada¬Antioquia¬330¬0¬59¬3¬34¬53¬9¬88
+25312¬Granada¬Cundinamarca¬320¬0¬59¬8¬36¬53¬3¬91
+50313¬Granada¬Meta¬313¬0,306¬52¬8¬45¬42¬5¬1018
+68318¬Guaca¬Santander¬303¬0¬41¬6¬52¬42¬0¬69
+15317¬Guacamayas¬Boyacá¬315¬0¬70¬11¬39¬39¬11¬18
+76318¬Guacarí¬Valle Del Cauca¬290¬0,765¬54¬15¬55¬28¬3¬337
+19300¬Guachené¬Cauca¬264¬1,122¬47¬26¬60¬14¬0¬227
+25317¬Guachetá¬Cundinamarca¬293¬2,041¬53¬13¬56¬31¬2¬128
+52317¬Guachucal¬Nariño¬310¬0,561¬48¬7¬48¬42¬3¬257
+05315¬Guadalupe¬Antioquia¬320¬1,48¬54¬4¬40¬50¬6¬72
+41319¬Guadalupe¬Huila¬295¬0,918¬53¬14¬51¬33¬2¬243
+68320¬Guadalupe¬Santander¬338¬1,173¬58¬2¬35¬51¬12¬84
+25320¬Guaduas¬Cundinamarca¬321¬0,459¬51¬4¬47¬43¬7¬346
+52320¬Guaitarilla¬Nariño¬325¬0,357¬52¬7¬34¬56¬3¬146
+52323¬Gualmatán¬Nariño¬332¬1,122¬53¬2¬33¬59¬6¬82
+47318¬Guamal¬Magdalena¬280¬0,714¬56¬21¬54¬23¬3¬429
+50318¬Guamal¬Meta¬316¬1,531¬57¬8¬40¬46¬6¬134
+73319¬Guamo¬Tolima¬275¬0,459¬57¬25¬50¬23¬1¬378
+19318¬Guapi¬Cauca¬248¬0,816¬42¬43¬49¬8¬0¬329
+68322¬Guapotá¬Santander¬333¬2,908¬68¬4¬26¬61¬9¬23
+70265¬Guaranda¬Sucre¬271¬0,969¬49¬22¬63¬14¬1¬169
+05318¬Guarne¬Antioquia¬335¬0,969¬57¬5¬31¬54¬10¬454
+25322¬Guasca¬Cundinamarca¬320¬0,663¬55¬6¬41¬49¬4¬249
+05321¬Guatape¬Antioquia¬338¬1,071¬58¬5¬28¬58¬9¬88
+25324¬Guataquí¬Cundinamarca¬282¬1,786¬46¬19¬58¬23¬0¬26
+25326¬Guatavita¬Cundinamarca¬327¬0,765¬55¬3¬39¬48¬10¬71
+15322¬Guateque¬Boyacá¬312¬0,816¬54¬5¬43¬50¬2¬96
+68324¬Guavatá¬Santander¬287¬0¬48¬17¬54¬29¬0¬41
+25328¬Guayabal de Siqui¬Cundinamarca¬314¬0,918¬49¬4¬55¬37¬4¬51
+25335¬Guayabetal¬Cundinamarca¬311¬0¬49¬7¬41¬49¬3¬70
+15325¬Guayatá¬Boyacá¬310¬2,143¬68¬7¬54¬32¬7¬41
+25339¬Gutiérrez¬Cundinamarca¬289¬0¬51¬9¬71¬17¬3¬35
+66318¬Guática¬Risaralda¬305¬0,459¬56¬11¬44¬44¬1¬214
+63302¬Génova¬Quindio¬306¬0,969¬49¬8¬50¬41¬1¬76
+05310¬Gómez Plata¬Antioquia¬327¬1,122¬46¬6¬28¬65¬2¬68
+68327¬Güepsa¬Santander¬307¬1,378¬63¬14¬36¬47¬3¬64
+15332¬Güicán¬Boyacá¬310¬0¬53¬5¬48¬46¬2¬65
+54344¬Hacarí¬Norte De Santander¬276¬0,867¬41¬21¬57¬22¬0¬91
+13300¬Hatillo de Loba¬Bolívar¬266¬0,816¬44¬26¬56¬19¬0¬180
+68344¬Hato¬Santander¬344¬3,418¬57¬4¬30¬59¬7¬27
+85125¬Hato Corozal¬Casanare¬296¬1,173¬52¬13¬49¬36¬3¬183
+44378¬Hato Nuevo¬La Guajira¬259¬0,816¬48¬32¬52¬16¬0¬261
+05347¬Heliconia¬Antioquia¬305¬0,969¬48¬6¬57¬35¬2¬63
+54347¬Herrán¬Norte De Santander¬343¬0¬61¬3¬24¬67¬6¬33
+73347¬Herveo¬Tolima¬332¬1,276¬60¬8¬29¬55¬8¬92
+05353¬Hispania¬Antioquia¬321¬2,704¬60¬5¬41¬50¬5¬42
+41349¬Hobo¬Huila¬280¬0,918¬55¬17¬56¬26¬1¬84
+73349¬Honda¬Tolima¬301¬0,867¬55¬14¬46¬36¬5¬276
+73001¬Ibagué¬Tolima¬328¬0,153¬55¬6¬37¬48¬9¬7163
+73352¬Icononzo¬Tolima¬281¬1,327¬52¬18¬58¬24¬1¬153
+52352¬Iles¬Nariño¬307¬0,816¬50¬9¬43¬46¬2¬132
+52354¬Imués¬Nariño¬298¬1,531¬59¬17¬52¬27¬4¬90
+19355¬Inzá¬Cauca¬293¬0,765¬46¬14¬50¬35¬1¬364
+94001¬Inírida¬Guainía¬297¬1,173¬53¬15¬46¬36¬3¬248
+52356¬Ipiales¬Nariño¬329¬0,255¬52¬5¬35¬53¬7¬1600
+41357¬Iquira¬Huila¬299¬0,867¬51¬13¬48¬38¬1¬149
+41359¬Isnos¬Huila¬307¬0,918¬56¬9¬47¬42¬2¬293
+27361¬Istmina¬Chocó¬284¬0,561¬58¬23¬45¬28¬4¬518
+05360¬Itagüí¬Antioquia¬330¬0,306¬57¬6¬36¬48¬10¬2657
+05361¬Ituango¬Antioquia¬279¬1,02¬52¬20¬58¬21¬2¬307
+15362¬Iza¬Boyacá¬336¬0¬73¬7¬27¬53¬13¬15
+19364¬Jambaló¬Cauca¬262¬0,918¬52¬33¬53¬13¬1¬213
+76364¬Jamundí¬Valle Del Cauca¬313¬0,459¬56¬8¬46¬41¬6¬1458
+05364¬Jardín¬Antioquia¬317¬0,714¬61¬7¬41¬44¬8¬137
+15367¬Jenesano¬Boyacá¬317¬0,816¬62¬7¬47¬39¬8¬104
+05368¬Jericó¬Antioquia¬329¬0,663¬50¬1¬42¬51¬7¬164
+15368¬Jericó¬Boyacá¬285¬1,02¬50¬20¬53¬27¬0¬49
+25368¬Jerusalén¬Cundinamarca¬304¬0¬74¬25¬33¬33¬8¬24
+68368¬Jesús María¬Santander¬309¬1,531¬49¬2¬55¬42¬2¬53
+68370¬Jordán¬Santander¬291¬4,184¬58¬14¬36¬50¬0¬14
+08372¬Juan de Acosta¬Atlántico¬269¬0,765¬53¬27¬55¬17¬1¬253
+25372¬Junín¬Cundinamarca¬305¬1,633¬61¬11¬45¬39¬5¬82
+27372¬Juradó¬Chocó¬238¬2,449¬35¬57¬37¬7¬0¬46
+23350¬La Apartada¬Córdoba¬272¬1,173¬48¬23¬58¬19¬1¬157
+41378¬La Argentina¬Huila¬333¬1,071¬55¬4¬33¬57¬6¬151
+68377¬La Belleza¬Santander¬317¬1,684¬52¬8¬44¬42¬6¬72
+25377¬La Calera¬Cundinamarca¬356¬0,459¬51¬3¬25¬53¬19¬427
+15380¬La Capilla¬Boyacá¬338¬0¬56¬2¬31¬60¬7¬42
+05376¬La Ceja¬Antioquia¬332¬0,51¬53¬6¬32¬55¬8¬668
+66383¬La Celia¬Risaralda¬319¬1,786¬56¬7¬39¬49¬5¬75
+91405¬La Chorrera¬Amazonas¬272¬5,765¬53¬21¬66¬14¬0¬29
+52378¬La Cruz¬Nariño¬305¬0,918¬52¬9¬50¬39¬2¬235
+76377¬La Cumbre¬Valle Del Cauca¬321¬0,969¬48¬4¬38¬54¬4¬173
+17380¬La Dorada¬Caldas¬295¬0,663¬54¬15¬52¬31¬3¬790
+54385¬La Esperanza¬Norte De Santander¬295¬0,969¬47¬8¬60¬32¬1¬146
+05380¬La Estrella¬Antioquia¬333¬0,51¬57¬7¬32¬50¬10¬851
+52381¬La Florida¬Nariño¬310¬0,918¬52¬6¬49¬41¬4¬99
+20383¬La Gloria¬Cesar¬299¬0,765¬54¬14¬47¬36¬3¬193
+20400¬La Jagua de Ibiri¬Cesar¬288¬0,561¬55¬18¬52¬29¬2¬500
+44420¬La Jagua del Pila¬La Guajira¬278¬0¬43¬24¬59¬17¬0¬41
+50350¬La Macarena¬Meta¬293¬1,429¬55¬15¬53¬31¬1¬203
+17388¬La Merced¬Caldas¬299¬0,918¬48¬13¬49¬37¬1¬85
+25386¬La Mesa¬Cundinamarca¬348¬0,306¬56¬3¬27¬58¬12¬384
+18410¬La Montañita¬Caquetá¬286¬1,224¬49¬14¬62¬23¬1¬167
