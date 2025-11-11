@@ -36,3 +36,7 @@ Thumbs.db
 
 # Dash
 *.log
+
+# Large data files (keep zipped versions only)
+ICFES_2019.csv
+Saber_11__2017-2.csv
