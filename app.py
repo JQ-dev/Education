@@ -581,4 +581,5 @@ if __name__ == '__main__':
     print("Starting SABER School Results Dashboard...")
     print(f"Loaded {len(df_schools)} schools")
     print("Open http://127.0.0.1:8051/ in your browser")
+    app.run(debug=True, host='0.0.0.0', port=8051)
     app.run(debug=True, host='0.0.0.0', port=8050)
