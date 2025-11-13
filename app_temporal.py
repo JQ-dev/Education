@@ -953,3 +953,4 @@ if __name__ == '__main__':
     print("="*70 + "\n")
 
     app.run(debug=True, host='0.0.0.0', port=8053)
+    app.run_server(debug=True, host='0.0.0.0', port=8053)
