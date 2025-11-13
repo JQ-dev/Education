@@ -325,7 +325,23 @@ app.layout = dbc.Container([
                                             value='11',
                                             clearable=False
                                         )
-                                    ], md=4),
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("Subject:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='overview-subject',
+                                            options=[
+                                                {'label': 'Lectura Crítica', 'value': 'Lectura Crítica'},
+                                                {'label': 'Matemáticas', 'value': 'Matemáticas'},
+                                                {'label': 'Ciencias Naturales', 'value': 'Ciencias Naturales'},
+                                                {'label': 'Sociales y Ciudadanas', 'value': 'Sociales y Ciudadanas'},
+                                                {'label': 'Inglés', 'value': 'Inglés'},
+                                                {'label': 'Global', 'value': 'Global'}
+                                            ],
+                                            value='Matemáticas',
+                                            clearable=False
+                                        )
+                                    ], md=3),
                                     dbc.Col([
                                         html.Label("School Type:", className="fw-bold"),
                                         dcc.Dropdown(
@@ -335,7 +351,7 @@ app.layout = dbc.Container([
                                             value='ALL',
                                             clearable=False
                                         )
-                                    ], md=4),
+                                    ], md=3),
                                     dbc.Col([
                                         html.Label("Area:", className="fw-bold"),
                                         dcc.Dropdown(
@@ -345,7 +361,7 @@ app.layout = dbc.Container([
                                             value='ALL',
                                             clearable=False
                                         )
-                                    ], md=4),
+                                    ], md=3),
                                 ])
                             ])
                         ], className="mb-4")
@@ -423,7 +439,7 @@ app.layout = dbc.Container([
                                             value=departments[0] if departments else None,
                                             clearable=False
                                         )
-                                    ], md=6),
+                                    ], md=4),
                                     dbc.Col([
                                         html.Label("Grade:", className="fw-bold"),
                                         dcc.Dropdown(
@@ -432,7 +448,23 @@ app.layout = dbc.Container([
                                             value='11',
                                             clearable=False
                                         )
-                                    ], md=6),
+                                    ], md=4),
+                                    dbc.Col([
+                                        html.Label("Subject:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='dept-subject',
+                                            options=[
+                                                {'label': 'Lectura Crítica', 'value': 'Lectura Crítica'},
+                                                {'label': 'Matemáticas', 'value': 'Matemáticas'},
+                                                {'label': 'Ciencias Naturales', 'value': 'Ciencias Naturales'},
+                                                {'label': 'Sociales y Ciudadanas', 'value': 'Sociales y Ciudadanas'},
+                                                {'label': 'Inglés', 'value': 'Inglés'},
+                                                {'label': 'Global', 'value': 'Global'}
+                                            ],
+                                            value='Matemáticas',
+                                            clearable=False
+                                        )
+                                    ], md=4),
                                 ])
                             ])
                         ], className="mb-4")
@@ -791,10 +823,11 @@ app.layout = dbc.Container([
      Output('overview-distribution', 'figure'),
      Output('overview-grade-comparison', 'figure')],
     [Input('overview-grade', 'value'),
+     Input('overview-subject', 'value'),
      Input('overview-naturaleza', 'value'),
      Input('overview-area', 'value')]
 )
-def update_overview(grade, naturaleza, area):
+def update_overview(grade, subject, naturaleza, area):
     """Update overview tab visualizations"""
 
     # Filter data
@@ -805,69 +838,90 @@ def update_overview(grade, naturaleza, area):
     if area != 'ALL':
         df = df[df['COLE_AREA_UBICACION'] == area]
 
-    lang_col = grade_cols[grade]['Lenguaje']
-    math_col = grade_cols[grade]['Matemáticas']
+    # Get column for selected subject
+    if subject not in grade_cols[grade]:
+        subject = 'Matemáticas'  # Fallback
+
+    subject_col = grade_cols[grade][subject]
+    lang_col = grade_cols[grade].get('Lenguaje', subject_col)  # Keep for backward compatibility
     n_col = grade_cols[grade]['N']
 
     # Filter out missing values
-    df_plot = df[[lang_col, math_col, n_col, 'COLE_NATURALEZA', 'COLE_AREA_UBICACION']].dropna()
+    required_cols = [subject_col, lang_col, n_col]
+    meta_cols = ['COLE_NATURALEZA', 'COLE_AREA_UBICACION']
+    available_cols = [c for c in required_cols + meta_cols if c in df.columns]
+
+    df_plot = df[available_cols].dropna(subset=[col for col in [subject_col, lang_col] if col in df.columns])
 
     # Calculate stats
     total_schools = len(df_plot)
     total_students = int(df_plot[n_col].sum()) if len(df_plot) > 0 else 0
-    avg_lang = f"{df_plot[lang_col].mean():.3f}" if len(df_plot) > 0 else "N/A"
-    avg_math = f"{df_plot[math_col].mean():.3f}" if len(df_plot) > 0 else "N/A"
+    avg_lang = f"{df_plot[lang_col].mean():.3f}" if len(df_plot) > 0 and lang_col in df_plot.columns else "N/A"
+    avg_subject = f"{df_plot[subject_col].mean():.3f}" if len(df_plot) > 0 and subject_col in df_plot.columns else "N/A"
 
-    # Scatter plot
-    scatter_fig = px.scatter(
-        df_plot,
-        x=lang_col,
-        y=math_col,
-        size=n_col,
-        color='COLE_NATURALEZA',
-        hover_data=['COLE_AREA_UBICACION'],
-        title=f'Language vs Mathematics Performance - Grade {grade}',
-        labels={lang_col: 'Language (z-score)', math_col: 'Math (z-score)'},
-        opacity=0.6
-    )
-    scatter_fig.add_shape(
-        type="line", line=dict(dash='dash', color='gray'),
-        x0=df_plot[lang_col].min(), y0=df_plot[lang_col].min(),
-        x1=df_plot[lang_col].max(), y1=df_plot[lang_col].max()
-    )
+    # Scatter plot - Language vs Selected Subject
+    if lang_col in df_plot.columns and subject_col in df_plot.columns and lang_col != subject_col:
+        scatter_fig = px.scatter(
+            df_plot,
+            x=lang_col,
+            y=subject_col,
+            size=n_col if n_col in df_plot.columns else None,
+            color='COLE_NATURALEZA' if 'COLE_NATURALEZA' in df_plot.columns else None,
+            hover_data=['COLE_AREA_UBICACION'] if 'COLE_AREA_UBICACION' in df_plot.columns else None,
+            title=f'Lectura Crítica vs {subject} - Grade {grade}',
+            labels={lang_col: 'Lectura Crítica', subject_col: subject},
+            opacity=0.6
+        )
+        scatter_fig.add_shape(
+            type="line", line=dict(dash='dash', color='gray'),
+            x0=df_plot[lang_col].min(), y0=df_plot[lang_col].min(),
+            x1=df_plot[lang_col].max(), y1=df_plot[lang_col].max()
+        )
+    else:
+        # If same subject or missing columns, show distribution
+        scatter_fig = px.histogram(
+            df_plot,
+            x=subject_col if subject_col in df_plot.columns else lang_col,
+            nbins=50,
+            title=f'{subject} Distribution - Grade {grade}'
+        )
 
     # Distribution
-    dist_fig = make_subplots(rows=1, cols=2, subplot_titles=('Language Distribution', 'Math Distribution'))
-    dist_fig.add_trace(
-        go.Histogram(x=df_plot[lang_col], name='Language', nbinsx=50, marker_color='lightblue'),
-        row=1, col=1
-    )
-    dist_fig.add_trace(
-        go.Histogram(x=df_plot[math_col], name='Math', nbinsx=50, marker_color='lightcoral'),
-        row=1, col=2
-    )
+    dist_fig = make_subplots(rows=1, cols=2, subplot_titles=('Lectura Crítica Distribution', f'{subject} Distribution'))
+    if lang_col in df_plot.columns:
+        dist_fig.add_trace(
+            go.Histogram(x=df_plot[lang_col], name='Lectura Crítica', nbinsx=50, marker_color='lightblue'),
+            row=1, col=1
+        )
+    if subject_col in df_plot.columns:
+        dist_fig.add_trace(
+            go.Histogram(x=df_plot[subject_col], name=subject, nbinsx=50, marker_color='lightcoral'),
+            row=1, col=2
+        )
     dist_fig.update_layout(showlegend=False, title_text=f'Score Distributions - Grade {grade}')
 
-    # Grade comparison
+    # Grade comparison - show selected subject across grades
     grade_data = []
     for g in grades:
-        lang_g = grade_cols[g]['Lenguaje']
-        math_g = grade_cols[g]['Matemáticas']
-        temp = df[[lang_g, math_g]].dropna()
-        if len(temp) > 0:
-            grade_data.append({
-                'Grade': g,
-                'Language': temp[lang_g].mean(),
-                'Mathematics': temp[math_g].mean()
-            })
+        if subject in grade_cols[g]:
+            subj_col_g = grade_cols[g][subject]
+            temp = df[[subj_col_g]].dropna()
+            if len(temp) > 0:
+                grade_data.append({
+                    'Grade': g,
+                    subject: temp[subj_col_g].mean()
+                })
 
-    grade_df = pd.DataFrame(grade_data)
-    grade_fig = go.Figure()
-    grade_fig.add_trace(go.Bar(x=grade_df['Grade'], y=grade_df['Language'], name='Language', marker_color='lightblue'))
-    grade_fig.add_trace(go.Bar(x=grade_df['Grade'], y=grade_df['Mathematics'], name='Mathematics', marker_color='lightcoral'))
-    grade_fig.update_layout(title='Average Performance by Grade', barmode='group', xaxis_title='Grade', yaxis_title='Average Score (z-score)')
+    if grade_data:
+        grade_df = pd.DataFrame(grade_data)
+        grade_fig = go.Figure()
+        grade_fig.add_trace(go.Bar(x=grade_df['Grade'], y=grade_df[subject], name=subject, marker_color='lightcoral'))
+        grade_fig.update_layout(title=f'Average {subject} Performance by Grade', barmode='group', xaxis_title='Grade', yaxis_title='Average Score')
+    else:
+        grade_fig = go.Figure()
+        grade_fig.add_annotation(text="No data available", xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False)
 
-    return f"{total_schools:,}", f"{total_students:,}", avg_lang, avg_math, scatter_fig, dist_fig, grade_fig
+    return f"{total_schools:,}", f"{total_students:,}", avg_lang, avg_subject, scatter_fig, dist_fig, grade_fig
 
 
 # TAB 2: Department callbacks
@@ -880,9 +934,10 @@ def update_overview(grade, naturaleza, area):
      Output('dept-performance-map', 'figure'),
      Output('dept-type-comparison', 'figure')],
     [Input('dept-selector', 'value'),
-     Input('dept-grade', 'value')]
+     Input('dept-grade', 'value'),
+     Input('dept-subject', 'value')]
 )
-def update_department(department, grade):
+def update_department(department, grade, subject):
     """Update department analysis"""
 
     if not department:
@@ -892,67 +947,88 @@ def update_department(department, grade):
     # Filter municipalities in department
     df_munic_dept = df_municipalities[df_municipalities['COLE_DEPTO_UBICACION'] == department].copy()
 
-    lang_col = grade_cols[grade]['Lenguaje']
-    math_col = grade_cols[grade]['Matemáticas']
+    # Get subject columns
+    if subject not in grade_cols[grade]:
+        subject = 'Matemáticas'  # Fallback
+
+    subject_col = grade_cols[grade][subject]
+    lang_col = grade_cols[grade].get('Lenguaje', subject_col)
     n_col = grade_cols[grade]['N']
 
-    df_munic_dept = df_munic_dept[[lang_col, math_col, n_col, 'COLE_MCPIO_UBICACION']].dropna()
+    # Filter to available columns
+    required_cols = [c for c in [subject_col, lang_col, n_col, 'COLE_MCPIO_UBICACION'] if c in df_munic_dept.columns]
+    df_munic_dept = df_munic_dept[required_cols].dropna()
 
-    # Get schools in department
-    df_schools_dept = df_schools[df_schools['COLE_COD_MCPIO_UBICACION'].astype(str).str[:2] ==
-                                   df_munic_dept['MUNI_ID'].astype(str).str[:2].iloc[0] if len(df_munic_dept) > 0 else '']
+    # Get schools in department - use COLE_DEPTO_UBICACION instead of COLE_COD_MCPIO_UBICACION
+    df_schools_dept = df_schools[df_schools['COLE_DEPTO_UBICACION'] == department].copy() if 'COLE_DEPTO_UBICACION' in df_schools.columns else df_schools.copy()
 
     total_munic = len(df_munic_dept)
     total_schools = len(df_schools_dept)
-    avg_lang = f"{df_munic_dept[lang_col].mean():.3f}" if len(df_munic_dept) > 0 else "N/A"
-    avg_math = f"{df_munic_dept[math_col].mean():.3f}" if len(df_munic_dept) > 0 else "N/A"
+    avg_lang = f"{df_munic_dept[lang_col].mean():.3f}" if len(df_munic_dept) > 0 and lang_col in df_munic_dept.columns else "N/A"
+    avg_subject = f"{df_munic_dept[subject_col].mean():.3f}" if len(df_munic_dept) > 0 and subject_col in df_munic_dept.columns else "N/A"
 
-    # Municipality ranking
-    df_munic_dept = df_munic_dept.sort_values(math_col, ascending=True).tail(20)
+    # Municipality ranking - sort by subject column
+    if subject_col in df_munic_dept.columns:
+        df_munic_sorted = df_munic_dept.sort_values(subject_col, ascending=True).tail(20)
+    else:
+        df_munic_sorted = df_munic_dept.tail(20)
+
     rank_fig = go.Figure()
-    rank_fig.add_trace(go.Bar(
-        y=df_munic_dept['COLE_MCPIO_UBICACION'],
-        x=df_munic_dept[lang_col],
-        name='Language',
-        orientation='h',
-        marker_color='lightblue'
-    ))
-    rank_fig.add_trace(go.Bar(
-        y=df_munic_dept['COLE_MCPIO_UBICACION'],
-        x=df_munic_dept[math_col],
-        name='Math',
-        orientation='h',
-        marker_color='lightcoral'
-    ))
+    if 'COLE_MCPIO_UBICACION' in df_munic_sorted.columns:
+        if lang_col in df_munic_sorted.columns:
+            rank_fig.add_trace(go.Bar(
+                y=df_munic_sorted['COLE_MCPIO_UBICACION'],
+                x=df_munic_sorted[lang_col],
+                name='Lectura Crítica',
+                orientation='h',
+                marker_color='lightblue'
+            ))
+        if subject_col in df_munic_sorted.columns:
+            rank_fig.add_trace(go.Bar(
+                y=df_munic_sorted['COLE_MCPIO_UBICACION'],
+                x=df_munic_sorted[subject_col],
+                name=subject,
+                orientation='h',
+                marker_color='lightcoral'
+            ))
     rank_fig.update_layout(
-        title=f'Top 20 Municipalities in {department} - Grade {grade}',
+        title=f'Top 20 Municipalities in {department} - {subject} - Grade {grade}',
         barmode='group',
-        xaxis_title='Score (z-score)',
+        xaxis_title='Score',
         height=500
     )
 
     # Performance scatter
-    perf_fig = px.scatter(
-        df_munic_dept,
-        x=lang_col,
-        y=math_col,
-        text='COLE_MCPIO_UBICACION',
-        title=f'Municipality Performance Map - {department}',
-        labels={lang_col: 'Language', math_col: 'Math'}
-    )
-    perf_fig.update_traces(textposition='top center')
+    if 'COLE_MCPIO_UBICACION' in df_munic_sorted.columns and lang_col in df_munic_sorted.columns and subject_col in df_munic_sorted.columns:
+        perf_fig = px.scatter(
+            df_munic_sorted,
+            x=lang_col,
+            y=subject_col,
+            text='COLE_MCPIO_UBICACION',
+            title=f'Municipality Performance Map - {department}',
+            labels={lang_col: 'Lectura Crítica', subject_col: subject}
+        )
+        perf_fig.update_traces(textposition='top center')
+    else:
+        perf_fig = go.Figure()
 
     # Type comparison (using school data)
-    if len(df_schools_dept) > 0:
-        type_data = df_schools_dept.groupby('COLE_NATURALEZA')[[lang_col, math_col]].mean().reset_index()
-        type_fig = go.Figure()
-        type_fig.add_trace(go.Bar(x=type_data['COLE_NATURALEZA'], y=type_data[lang_col], name='Language'))
-        type_fig.add_trace(go.Bar(x=type_data['COLE_NATURALEZA'], y=type_data[math_col], name='Math'))
-        type_fig.update_layout(title='Performance by School Type', barmode='group')
+    if len(df_schools_dept) > 0 and 'COLE_NATURALEZA' in df_schools_dept.columns:
+        available_score_cols = [c for c in [lang_col, subject_col] if c in df_schools_dept.columns]
+        if available_score_cols:
+            type_data = df_schools_dept.groupby('COLE_NATURALEZA')[available_score_cols].mean().reset_index()
+            type_fig = go.Figure()
+            if lang_col in type_data.columns:
+                type_fig.add_trace(go.Bar(x=type_data['COLE_NATURALEZA'], y=type_data[lang_col], name='Lectura Crítica'))
+            if subject_col in type_data.columns:
+                type_fig.add_trace(go.Bar(x=type_data['COLE_NATURALEZA'], y=type_data[subject_col], name=subject))
+            type_fig.update_layout(title='Performance by School Type', barmode='group')
+        else:
+            type_fig = go.Figure()
     else:
         type_fig = go.Figure()
 
-    return str(total_munic), str(total_schools), avg_lang, avg_math, rank_fig, perf_fig, type_fig
+    return str(total_munic), str(total_schools), avg_lang, avg_subject, rank_fig, perf_fig, type_fig
 
 
 # TAB 3: Municipality callbacks
