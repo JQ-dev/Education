@@ -1254,7 +1254,7 @@ if __name__ == '__main__':
     print(f"  - Municipalities: {len(df_municipalities):,}")
     print(f"  - Student records: {len(df_students):,}")
     print(f"\nStarting server...")
-    print("Open http://127.0.0.1:8050/ in your browser")
+    print("Open http://127.0.0.1:8052/ in your browser")
     print("="*70 + "\n")
 
-    app.run_server(debug=True, host='0.0.0.0', port=8050)
+    app.run(debug=True, host='0.0.0.0', port=8052)
