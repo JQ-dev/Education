@@ -318,18 +318,9 @@ app.layout = dbc.Container([
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
-                                        html.Label("Grade:", className="fw-bold"),
+                                        html.Label("Subject 1:", className="fw-bold"),
                                         dcc.Dropdown(
-                                            id='overview-grade',
-                                            options=[{'label': f'Grado {g}', 'value': g} for g in grades],
-                                            value='11',
-                                            clearable=False
-                                        )
-                                    ], md=3),
-                                    dbc.Col([
-                                        html.Label("Subject:", className="fw-bold"),
-                                        dcc.Dropdown(
-                                            id='overview-subject',
+                                            id='overview-subject1',
                                             options=[
                                                 {'label': 'Lectura Crítica', 'value': 'Lectura Crítica'},
                                                 {'label': 'Matemáticas', 'value': 'Matemáticas'},
@@ -339,6 +330,22 @@ app.layout = dbc.Container([
                                                 {'label': 'Global', 'value': 'Global'}
                                             ],
                                             value='Matemáticas',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("Subject 2:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='overview-subject2',
+                                            options=[
+                                                {'label': 'Lectura Crítica', 'value': 'Lectura Crítica'},
+                                                {'label': 'Matemáticas', 'value': 'Matemáticas'},
+                                                {'label': 'Ciencias Naturales', 'value': 'Ciencias Naturales'},
+                                                {'label': 'Sociales y Ciudadanas', 'value': 'Sociales y Ciudadanas'},
+                                                {'label': 'Inglés', 'value': 'Inglés'},
+                                                {'label': 'Global', 'value': 'Global'}
+                                            ],
+                                            value='Lectura Crítica',
                                             clearable=False
                                         )
                                     ], md=3),
@@ -389,16 +396,16 @@ app.layout = dbc.Container([
                     dbc.Col([
                         dbc.Card([
                             dbc.CardBody([
-                                html.H3(id='overview-avg-lang', className="text-center text-info"),
-                                html.P("Avg Language Score", className="text-center text-muted")
+                                html.H3(id='overview-avg-subject1', className="text-center text-info"),
+                                html.P(id='overview-avg-subject1-label', className="text-center text-muted")
                             ])
                         ])
                     ], md=3),
                     dbc.Col([
                         dbc.Card([
                             dbc.CardBody([
-                                html.H3(id='overview-avg-math', className="text-center text-warning"),
-                                html.P("Avg Math Score", className="text-center text-muted")
+                                html.H3(id='overview-avg-subject2', className="text-center text-warning"),
+                                html.P(id='overview-avg-subject2-label', className="text-center text-muted")
                             ])
                         ])
                     ], md=3),
@@ -428,31 +435,22 @@ app.layout = dbc.Container([
                 dbc.Row([
                     dbc.Col([
                         dbc.Card([
-                            dbc.CardHeader(html.H5("Department Selection")),
+                            dbc.CardHeader(html.H5("Department Selection & Filters")),
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
-                                        html.Label("Select Department:", className="fw-bold"),
+                                        html.Label("Department:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='dept-selector',
                                             options=[{'label': d, 'value': d} for d in departments],
                                             value=departments[0] if departments else None,
                                             clearable=False
                                         )
-                                    ], md=4),
+                                    ], md=3),
                                     dbc.Col([
-                                        html.Label("Grade:", className="fw-bold"),
+                                        html.Label("Subject 1:", className="fw-bold"),
                                         dcc.Dropdown(
-                                            id='dept-grade',
-                                            options=[{'label': f'Grado {g}', 'value': g} for g in grades],
-                                            value='11',
-                                            clearable=False
-                                        )
-                                    ], md=4),
-                                    dbc.Col([
-                                        html.Label("Subject:", className="fw-bold"),
-                                        dcc.Dropdown(
-                                            id='dept-subject',
+                                            id='dept-subject1',
                                             options=[
                                                 {'label': 'Lectura Crítica', 'value': 'Lectura Crítica'},
                                                 {'label': 'Matemáticas', 'value': 'Matemáticas'},
@@ -464,7 +462,33 @@ app.layout = dbc.Container([
                                             value='Matemáticas',
                                             clearable=False
                                         )
-                                    ], md=4),
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("Subject 2:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='dept-subject2',
+                                            options=[
+                                                {'label': 'Lectura Crítica', 'value': 'Lectura Crítica'},
+                                                {'label': 'Matemáticas', 'value': 'Matemáticas'},
+                                                {'label': 'Ciencias Naturales', 'value': 'Ciencias Naturales'},
+                                                {'label': 'Sociales y Ciudadanas', 'value': 'Sociales y Ciudadanas'},
+                                                {'label': 'Inglés', 'value': 'Inglés'},
+                                                {'label': 'Global', 'value': 'Global'}
+                                            ],
+                                            value='Lectura Crítica',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("School Type:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='dept-naturaleza',
+                                            options=[{'label': 'All', 'value': 'ALL'}] +
+                                                    [{'label': n, 'value': n} for n in naturaleza_options],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=3),
                                 ])
                             ])
                         ], className="mb-4")
@@ -492,16 +516,16 @@ app.layout = dbc.Container([
                     dbc.Col([
                         dbc.Card([
                             dbc.CardBody([
-                                html.H3(id='dept-avg-lang', className="text-center"),
-                                html.P("Dept Avg Language", className="text-center text-muted")
+                                html.H3(id='dept-avg-subject1', className="text-center"),
+                                html.P(id='dept-avg-subject1-label', className="text-center text-muted")
                             ])
                         ])
                     ], md=3),
                     dbc.Col([
                         dbc.Card([
                             dbc.CardBody([
-                                html.H3(id='dept-avg-math', className="text-center"),
-                                html.P("Dept Avg Math", className="text-center text-muted")
+                                html.H3(id='dept-avg-subject2', className="text-center"),
+                                html.P(id='dept-avg-subject2-label', className="text-center text-muted")
                             ])
                         ])
                     ], md=3),
@@ -817,18 +841,22 @@ app.layout = dbc.Container([
 @app.callback(
     [Output('overview-total-schools', 'children'),
      Output('overview-total-students', 'children'),
-     Output('overview-avg-lang', 'children'),
-     Output('overview-avg-math', 'children'),
+     Output('overview-avg-subject1', 'children'),
+     Output('overview-avg-subject1-label', 'children'),
+     Output('overview-avg-subject2', 'children'),
+     Output('overview-avg-subject2-label', 'children'),
      Output('overview-scatter', 'figure'),
      Output('overview-distribution', 'figure'),
      Output('overview-grade-comparison', 'figure')],
-    [Input('overview-grade', 'value'),
-     Input('overview-subject', 'value'),
+    [Input('overview-subject1', 'value'),
+     Input('overview-subject2', 'value'),
      Input('overview-naturaleza', 'value'),
      Input('overview-area', 'value')]
 )
-def update_overview(grade, subject, naturaleza, area):
+def update_overview(subject1, subject2, naturaleza, area):
     """Update overview tab visualizations"""
+
+    grade = '11'  # All data is grade 11
 
     # Filter data
     df = df_schools.copy()
@@ -838,175 +866,178 @@ def update_overview(grade, subject, naturaleza, area):
     if area != 'ALL':
         df = df[df['COLE_AREA_UBICACION'] == area]
 
-    # Get column for selected subject
-    if subject not in grade_cols[grade]:
-        subject = 'Matemáticas'  # Fallback
+    # Get columns for selected subjects
+    if subject1 not in grade_cols[grade]:
+        subject1 = 'Matemáticas'  # Fallback
+    if subject2 not in grade_cols[grade]:
+        subject2 = 'Lectura Crítica'  # Fallback
 
-    subject_col = grade_cols[grade][subject]
-    lang_col = grade_cols[grade].get('Lenguaje', subject_col)  # Keep for backward compatibility
+    subject1_col = grade_cols[grade][subject1]
+    subject2_col = grade_cols[grade][subject2]
     n_col = grade_cols[grade]['N']
 
     # Filter out missing values
-    required_cols = [subject_col, lang_col, n_col]
+    required_cols = [subject1_col, subject2_col, n_col]
     meta_cols = ['COLE_NATURALEZA', 'COLE_AREA_UBICACION']
     available_cols = [c for c in required_cols + meta_cols if c in df.columns]
 
-    df_plot = df[available_cols].dropna(subset=[col for col in [subject_col, lang_col] if col in df.columns])
+    df_plot = df[available_cols].dropna(subset=[col for col in [subject1_col, subject2_col] if col in df.columns])
 
     # Calculate stats
     total_schools = len(df_plot)
-    total_students = int(df_plot[n_col].sum()) if len(df_plot) > 0 else 0
-    avg_lang = f"{df_plot[lang_col].mean():.3f}" if len(df_plot) > 0 and lang_col in df_plot.columns else "N/A"
-    avg_subject = f"{df_plot[subject_col].mean():.3f}" if len(df_plot) > 0 and subject_col in df_plot.columns else "N/A"
+    total_students = int(df_plot[n_col].sum()) if len(df_plot) > 0 and n_col in df_plot.columns else 0
+    avg_subject1 = f"{df_plot[subject1_col].mean():.3f}" if len(df_plot) > 0 and subject1_col in df_plot.columns else "N/A"
+    avg_subject2 = f"{df_plot[subject2_col].mean():.3f}" if len(df_plot) > 0 and subject2_col in df_plot.columns else "N/A"
 
-    # Scatter plot - Language vs Selected Subject
-    if lang_col in df_plot.columns and subject_col in df_plot.columns and lang_col != subject_col:
+    # Scatter plot - Subject1 vs Subject2
+    if subject1_col in df_plot.columns and subject2_col in df_plot.columns and subject1_col != subject2_col:
         scatter_fig = px.scatter(
             df_plot,
-            x=lang_col,
-            y=subject_col,
+            x=subject1_col,
+            y=subject2_col,
             size=n_col if n_col in df_plot.columns else None,
             color='COLE_NATURALEZA' if 'COLE_NATURALEZA' in df_plot.columns else None,
             hover_data=['COLE_AREA_UBICACION'] if 'COLE_AREA_UBICACION' in df_plot.columns else None,
-            title=f'Lectura Crítica vs {subject} - Grade {grade}',
-            labels={lang_col: 'Lectura Crítica', subject_col: subject},
+            title=f'{subject1} vs {subject2}',
+            labels={subject1_col: subject1, subject2_col: subject2},
             opacity=0.6
         )
         scatter_fig.add_shape(
             type="line", line=dict(dash='dash', color='gray'),
-            x0=df_plot[lang_col].min(), y0=df_plot[lang_col].min(),
-            x1=df_plot[lang_col].max(), y1=df_plot[lang_col].max()
+            x0=df_plot[subject1_col].min(), y0=df_plot[subject1_col].min(),
+            x1=df_plot[subject1_col].max(), y1=df_plot[subject1_col].max()
         )
     else:
         # If same subject or missing columns, show distribution
         scatter_fig = px.histogram(
             df_plot,
-            x=subject_col if subject_col in df_plot.columns else lang_col,
+            x=subject1_col if subject1_col in df_plot.columns else subject2_col,
             nbins=50,
-            title=f'{subject} Distribution - Grade {grade}'
+            title=f'{subject1} Distribution'
         )
 
     # Distribution
-    dist_fig = make_subplots(rows=1, cols=2, subplot_titles=('Lectura Crítica Distribution', f'{subject} Distribution'))
-    if lang_col in df_plot.columns:
+    dist_fig = make_subplots(rows=1, cols=2, subplot_titles=(f'{subject1} Distribution', f'{subject2} Distribution'))
+    if subject1_col in df_plot.columns:
         dist_fig.add_trace(
-            go.Histogram(x=df_plot[lang_col], name='Lectura Crítica', nbinsx=50, marker_color='lightblue'),
+            go.Histogram(x=df_plot[subject1_col], name=subject1, nbinsx=50, marker_color='lightblue'),
             row=1, col=1
         )
-    if subject_col in df_plot.columns:
+    if subject2_col in df_plot.columns:
         dist_fig.add_trace(
-            go.Histogram(x=df_plot[subject_col], name=subject, nbinsx=50, marker_color='lightcoral'),
+            go.Histogram(x=df_plot[subject2_col], name=subject2, nbinsx=50, marker_color='lightcoral'),
             row=1, col=2
         )
-    dist_fig.update_layout(showlegend=False, title_text=f'Score Distributions - Grade {grade}')
+    dist_fig.update_layout(showlegend=False, title_text=f'Score Distributions')
 
-    # Grade comparison - show selected subject across grades
-    grade_data = []
-    for g in grades:
-        if subject in grade_cols[g]:
-            subj_col_g = grade_cols[g][subject]
-            temp = df[[subj_col_g]].dropna()
-            if len(temp) > 0:
-                grade_data.append({
-                    'Grade': g,
-                    subject: temp[subj_col_g].mean()
-                })
+    # Comparison chart - Both subjects
+    comparison_fig = go.Figure()
+    if subject1_col in df_plot.columns:
+        comparison_fig.add_trace(go.Box(y=df_plot[subject1_col], name=subject1, marker_color='lightblue'))
+    if subject2_col in df_plot.columns:
+        comparison_fig.add_trace(go.Box(y=df_plot[subject2_col], name=subject2, marker_color='lightcoral'))
+    comparison_fig.update_layout(title=f'Score Comparison: {subject1} vs {subject2}', yaxis_title='Score')
 
-    if grade_data:
-        grade_df = pd.DataFrame(grade_data)
-        grade_fig = go.Figure()
-        grade_fig.add_trace(go.Bar(x=grade_df['Grade'], y=grade_df[subject], name=subject, marker_color='lightcoral'))
-        grade_fig.update_layout(title=f'Average {subject} Performance by Grade', barmode='group', xaxis_title='Grade', yaxis_title='Average Score')
-    else:
-        grade_fig = go.Figure()
-        grade_fig.add_annotation(text="No data available", xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False)
-
-    return f"{total_schools:,}", f"{total_students:,}", avg_lang, avg_subject, scatter_fig, dist_fig, grade_fig
+    return (f"{total_schools:,}", f"{total_students:,}",
+            avg_subject1, f"Avg {subject1}",
+            avg_subject2, f"Avg {subject2}",
+            scatter_fig, dist_fig, comparison_fig)
 
 
 # TAB 2: Department callbacks
 @app.callback(
     [Output('dept-total-munic', 'children'),
      Output('dept-total-schools', 'children'),
-     Output('dept-avg-lang', 'children'),
-     Output('dept-avg-math', 'children'),
+     Output('dept-avg-subject1', 'children'),
+     Output('dept-avg-subject1-label', 'children'),
+     Output('dept-avg-subject2', 'children'),
+     Output('dept-avg-subject2-label', 'children'),
      Output('dept-municipality-ranking', 'figure'),
      Output('dept-performance-map', 'figure'),
      Output('dept-type-comparison', 'figure')],
     [Input('dept-selector', 'value'),
-     Input('dept-grade', 'value'),
-     Input('dept-subject', 'value')]
+     Input('dept-subject1', 'value'),
+     Input('dept-subject2', 'value'),
+     Input('dept-naturaleza', 'value')]
 )
-def update_department(department, grade, subject):
+def update_department(department, subject1, subject2, naturaleza):
     """Update department analysis"""
+
+    grade = '11'  # All data is grade 11
 
     if not department:
         empty_fig = go.Figure()
-        return "0", "0", "N/A", "N/A", empty_fig, empty_fig, empty_fig
+        return "0", "0", "N/A", "Subject 1", "N/A", "Subject 2", empty_fig, empty_fig, empty_fig
 
     # Filter municipalities in department
     df_munic_dept = df_municipalities[df_municipalities['COLE_DEPTO_UBICACION'] == department].copy()
 
     # Get subject columns
-    if subject not in grade_cols[grade]:
-        subject = 'Matemáticas'  # Fallback
+    if subject1 not in grade_cols[grade]:
+        subject1 = 'Matemáticas'  # Fallback
+    if subject2 not in grade_cols[grade]:
+        subject2 = 'Lectura Crítica'  # Fallback
 
-    subject_col = grade_cols[grade][subject]
-    lang_col = grade_cols[grade].get('Lenguaje', subject_col)
+    subject1_col = grade_cols[grade][subject1]
+    subject2_col = grade_cols[grade][subject2]
     n_col = grade_cols[grade]['N']
 
     # Filter to available columns
-    required_cols = [c for c in [subject_col, lang_col, n_col, 'COLE_MCPIO_UBICACION'] if c in df_munic_dept.columns]
+    required_cols = [c for c in [subject1_col, subject2_col, n_col, 'COLE_MCPIO_UBICACION'] if c in df_munic_dept.columns]
     df_munic_dept = df_munic_dept[required_cols].dropna()
 
-    # Get schools in department - use COLE_DEPTO_UBICACION instead of COLE_COD_MCPIO_UBICACION
+    # Get schools in department
     df_schools_dept = df_schools[df_schools['COLE_DEPTO_UBICACION'] == department].copy() if 'COLE_DEPTO_UBICACION' in df_schools.columns else df_schools.copy()
+
+    # Apply school type filter
+    if naturaleza != 'ALL' and 'COLE_NATURALEZA' in df_schools_dept.columns:
+        df_schools_dept = df_schools_dept[df_schools_dept['COLE_NATURALEZA'] == naturaleza]
 
     total_munic = len(df_munic_dept)
     total_schools = len(df_schools_dept)
-    avg_lang = f"{df_munic_dept[lang_col].mean():.3f}" if len(df_munic_dept) > 0 and lang_col in df_munic_dept.columns else "N/A"
-    avg_subject = f"{df_munic_dept[subject_col].mean():.3f}" if len(df_munic_dept) > 0 and subject_col in df_munic_dept.columns else "N/A"
+    avg_subject1 = f"{df_munic_dept[subject1_col].mean():.3f}" if len(df_munic_dept) > 0 and subject1_col in df_munic_dept.columns else "N/A"
+    avg_subject2 = f"{df_munic_dept[subject2_col].mean():.3f}" if len(df_munic_dept) > 0 and subject2_col in df_munic_dept.columns else "N/A"
 
-    # Municipality ranking - sort by subject column
-    if subject_col in df_munic_dept.columns:
-        df_munic_sorted = df_munic_dept.sort_values(subject_col, ascending=True).tail(20)
+    # Municipality ranking - sort by subject1 column
+    if subject1_col in df_munic_dept.columns:
+        df_munic_sorted = df_munic_dept.sort_values(subject1_col, ascending=True).tail(20)
     else:
         df_munic_sorted = df_munic_dept.tail(20)
 
     rank_fig = go.Figure()
     if 'COLE_MCPIO_UBICACION' in df_munic_sorted.columns:
-        if lang_col in df_munic_sorted.columns:
+        if subject1_col in df_munic_sorted.columns:
             rank_fig.add_trace(go.Bar(
                 y=df_munic_sorted['COLE_MCPIO_UBICACION'],
-                x=df_munic_sorted[lang_col],
-                name='Lectura Crítica',
+                x=df_munic_sorted[subject1_col],
+                name=subject1,
                 orientation='h',
                 marker_color='lightblue'
             ))
-        if subject_col in df_munic_sorted.columns:
+        if subject2_col in df_munic_sorted.columns:
             rank_fig.add_trace(go.Bar(
                 y=df_munic_sorted['COLE_MCPIO_UBICACION'],
-                x=df_munic_sorted[subject_col],
-                name=subject,
+                x=df_munic_sorted[subject2_col],
+                name=subject2,
                 orientation='h',
                 marker_color='lightcoral'
             ))
     rank_fig.update_layout(
-        title=f'Top 20 Municipalities in {department} - {subject} - Grade {grade}',
+        title=f'Top 20 Municipalities in {department} - {subject1} vs {subject2}',
         barmode='group',
         xaxis_title='Score',
         height=500
     )
 
     # Performance scatter
-    if 'COLE_MCPIO_UBICACION' in df_munic_sorted.columns and lang_col in df_munic_sorted.columns and subject_col in df_munic_sorted.columns:
+    if 'COLE_MCPIO_UBICACION' in df_munic_sorted.columns and subject1_col in df_munic_sorted.columns and subject2_col in df_munic_sorted.columns:
         perf_fig = px.scatter(
             df_munic_sorted,
-            x=lang_col,
-            y=subject_col,
+            x=subject1_col,
+            y=subject2_col,
             text='COLE_MCPIO_UBICACION',
             title=f'Municipality Performance Map - {department}',
-            labels={lang_col: 'Lectura Crítica', subject_col: subject}
+            labels={subject1_col: subject1, subject2_col: subject2}
         )
         perf_fig.update_traces(textposition='top center')
     else:
@@ -1014,21 +1045,24 @@ def update_department(department, grade, subject):
 
     # Type comparison (using school data)
     if len(df_schools_dept) > 0 and 'COLE_NATURALEZA' in df_schools_dept.columns:
-        available_score_cols = [c for c in [lang_col, subject_col] if c in df_schools_dept.columns]
+        available_score_cols = [c for c in [subject1_col, subject2_col] if c in df_schools_dept.columns]
         if available_score_cols:
             type_data = df_schools_dept.groupby('COLE_NATURALEZA')[available_score_cols].mean().reset_index()
             type_fig = go.Figure()
-            if lang_col in type_data.columns:
-                type_fig.add_trace(go.Bar(x=type_data['COLE_NATURALEZA'], y=type_data[lang_col], name='Lectura Crítica'))
-            if subject_col in type_data.columns:
-                type_fig.add_trace(go.Bar(x=type_data['COLE_NATURALEZA'], y=type_data[subject_col], name=subject))
-            type_fig.update_layout(title='Performance by School Type', barmode='group')
+            if subject1_col in type_data.columns:
+                type_fig.add_trace(go.Bar(x=type_data['COLE_NATURALEZA'], y=type_data[subject1_col], name=subject1))
+            if subject2_col in type_data.columns:
+                type_fig.add_trace(go.Bar(x=type_data['COLE_NATURALEZA'], y=type_data[subject2_col], name=subject2))
+            type_fig.update_layout(title=f'Performance by School Type: {subject1} vs {subject2}', barmode='group')
         else:
             type_fig = go.Figure()
     else:
         type_fig = go.Figure()
 
-    return str(total_munic), str(total_schools), avg_lang, avg_subject, rank_fig, perf_fig, type_fig
+    return (str(total_munic), str(total_schools),
+            avg_subject1, f"Avg {subject1}",
+            avg_subject2, f"Avg {subject2}",
+            rank_fig, perf_fig, type_fig)
 
 
 # TAB 3: Municipality callbacks
