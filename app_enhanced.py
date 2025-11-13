@@ -916,19 +916,36 @@ def update_overview(subject1, subject2, naturaleza, area):
             title=f'{subject1} Distribution'
         )
 
-    # Distribution
-    dist_fig = make_subplots(rows=1, cols=2, subplot_titles=(f'{subject1} Distribution', f'{subject2} Distribution'))
+    # Distribution - Overlapping histograms
+    dist_fig = go.Figure()
     if subject1_col in df_plot.columns:
         dist_fig.add_trace(
-            go.Histogram(x=df_plot[subject1_col], name=subject1, nbinsx=50, marker_color='lightblue'),
-            row=1, col=1
+            go.Histogram(
+                x=df_plot[subject1_col],
+                name=subject1,
+                nbinsx=50,
+                marker_color='rgba(0, 123, 255, 0.6)',  # Blue with transparency
+                opacity=0.7
+            )
         )
     if subject2_col in df_plot.columns:
         dist_fig.add_trace(
-            go.Histogram(x=df_plot[subject2_col], name=subject2, nbinsx=50, marker_color='lightcoral'),
-            row=1, col=2
+            go.Histogram(
+                x=df_plot[subject2_col],
+                name=subject2,
+                nbinsx=50,
+                marker_color='rgba(255, 99, 71, 0.6)',  # Red with transparency
+                opacity=0.7
+            )
         )
-    dist_fig.update_layout(showlegend=False, title_text=f'Score Distributions')
+    dist_fig.update_layout(
+        barmode='overlay',  # Overlay the histograms
+        title_text=f'Score Distribution: {subject1} vs {subject2}',
+        xaxis_title='Score',
+        yaxis_title='Frequency',
+        showlegend=True,
+        legend=dict(x=0.7, y=0.95)
+    )
 
     # Comparison chart - Both subjects
     comparison_fig = go.Figure()
