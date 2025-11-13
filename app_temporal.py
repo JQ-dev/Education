@@ -949,7 +949,7 @@ if __name__ == '__main__':
     print(f"\nYears available: {', '.join(map(str, available_years))}")
     print(f"Total student records: {len(df_students_multi):,}")
     print(f"\nStarting server...")
-    print("Open http://127.0.0.1:8050/ in your browser")
+    print("Open http://127.0.0.1:8053/ in your browser")
     print("="*70 + "\n")
 
-    app.run_server(debug=True, host='0.0.0.0', port=8050)
+    app.run_server(debug=True, host='0.0.0.0', port=8053)
