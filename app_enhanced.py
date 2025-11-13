@@ -17,6 +17,8 @@ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 import warnings
+import glob
+import os
 warnings.filterwarnings('ignore')
 
 # Initialize the Dash app with Bootstrap theme
@@ -27,92 +29,255 @@ app.title = "SABER Results - Government Dashboard"
 # DATA LOADING FUNCTIONS
 # ============================================================================
 
-def load_school_aggregated_data():
-    """Load aggregated school-level test scores"""
-    try:
-        scores_df = pd.read_csv('Colegios4.csv')
-        schools_df = pd.read_csv('Cole_list3.csv')
+# All SABER 11 subjects
+SABER11_SUBJECTS = {
+    'lectura_critica': 'Lectura Crítica',
+    'matematicas': 'Matemáticas',
+    'c_naturales': 'Ciencias Naturales',
+    'sociales_ciudadanas': 'Sociales y Ciudadanas',
+    'ingles': 'Inglés',
+    'global': 'Puntaje Global'
+}
 
-        df = pd.merge(
-            scores_df,
-            schools_df,
-            left_on='CODIGO',
-            right_on='COLE_COD_DANE_ESTABLECIMIENTO',
-            how='left'
+def load_saber11_2024_data():
+    """
+    Load 2024 Saber 11 data from Parquet files
+    Combines period 1 and period 2 data
+    """
+    all_data = []
+
+    # Try to load 2024 Parquet files
+    parquet_files = [
+        'Examen_Saber_11_SS_20241.parquet',
+        'Examen_Saber_11_SS_20242.parquet'
+    ]
+
+    for file in parquet_files:
+        if os.path.exists(file):
+            try:
+                print(f"Loading {file}...")
+                df = pd.read_parquet(file)
+                all_data.append(df)
+                print(f"  ✓ Loaded {len(df):,} records from {file}")
+            except Exception as e:
+                print(f"  ✗ Error loading {file}: {e}")
+
+    # If no 2024 files found, try other Parquet files
+    if not all_data:
+        print("2024 Parquet files not found, searching for other Parquet files...")
+        for file in glob.glob('*.parquet'):
+            try:
+                print(f"Loading {file}...")
+                df = pd.read_parquet(file)
+                all_data.append(df)
+                print(f"  ✓ Loaded {len(df):,} records")
+            except Exception as e:
+                print(f"  ✗ Error loading {file}: {e}")
+
+    # If still no data, try CSV/ZIP files
+    if not all_data:
+        print("No Parquet files found, trying CSV files...")
+        csv_files = ['Saber_11__2017-1.csv', 'ICFES_2019.csv']
+        for file in csv_files:
+            if os.path.exists(file):
+                try:
+                    print(f"Loading {file}...")
+                    df = pd.read_csv(file, low_memory=False)
+                    all_data.append(df)
+                    print(f"  ✓ Loaded {len(df):,} records")
+                    break  # Load only one CSV file to avoid memory issues
+                except Exception as e:
+                    print(f"  ✗ Error loading {file}: {e}")
+
+        # Try ZIP files
+        for file in glob.glob('Saber_11*.zip'):
+            try:
+                print(f"Loading {file}...")
+                df = pd.read_csv(file, compression='zip', low_memory=False)
+                all_data.append(df)
+                print(f"  ✓ Loaded {len(df):,} records")
+                break
+            except Exception as e:
+                print(f"  ✗ Error loading {file}: {e}")
+
+    if not all_data:
+        print("⚠️  No Saber 11 data files found!")
+        return pd.DataFrame()
+
+    # Combine all data
+    df_combined = pd.concat(all_data, ignore_index=True)
+
+    # Standardize column names to uppercase
+    df_combined.columns = df_combined.columns.str.upper()
+
+    # Create period/year info
+    if 'PERIODO' in df_combined.columns:
+        df_combined['YEAR'] = df_combined['PERIODO'].apply(
+            lambda x: int(str(int(x))[:4]) if pd.notna(x) else None
         )
 
-        categorical_cols = ['COLE_GENERO', 'COLE_NATURALEZA', 'COLE_CARACTER', 'COLE_AREA_UBICACION']
-        for col in categorical_cols:
-            if col in df.columns:
-                df[col] = df[col].fillna('No especificado')
+    print(f"\n✅ Total loaded: {len(df_combined):,} student records")
+    if 'YEAR' in df_combined.columns:
+        years = sorted(df_combined['YEAR'].dropna().unique())
+        print(f"📅 Years available: {years}")
 
-        return df
-    except Exception as e:
-        print(f"Error loading school data: {e}")
+    return df_combined
+
+
+def aggregate_by_school(df_students):
+    """
+    Aggregate student-level data to school level for all subjects
+    """
+    # Identify score columns
+    score_cols = []
+    for subj_key in SABER11_SUBJECTS.keys():
+        col_name = f'PUNT_{subj_key.upper()}'
+        if col_name in df_students.columns:
+            score_cols.append(col_name)
+
+    if not score_cols:
+        print("⚠️  No score columns found in data")
         return pd.DataFrame()
 
+    # Group by columns
+    groupby_cols = []
+    possible_groupby = [
+        'COLE_COD_DANE_ESTABLECIMIENTO',
+        'COLE_NOMBRE_ESTABLECIMIENTO',
+        'COLE_DEPTO_UBICACION',
+        'COLE_MCPIO_UBICACION',
+        'COLE_NATURALEZA',
+        'COLE_AREA_UBICACION',
+        'COLE_GENERO',
+        'COLE_CARACTER'
+    ]
 
-def load_municipality_data():
-    """Load municipality-level aggregated scores"""
-    try:
-        munic_scores = pd.read_csv('Municipios3.csv')
-        munic_list = pd.read_csv('Muni_list_proper2.csv')
+    for col in possible_groupby:
+        if col in df_students.columns:
+            groupby_cols.append(col)
 
-        df = pd.merge(
-            munic_scores,
-            munic_list,
-            left_on='MUNI_ID',
-            right_on='COLE_COD_MCPIO_UBICACION',
-            how='left'
-        )
-
-        return df
-    except Exception as e:
-        print(f"Error loading municipality data: {e}")
+    if not groupby_cols:
+        print("⚠️  No groupby columns found")
         return pd.DataFrame()
 
+    # Aggregate
+    agg_dict = {col: ['mean', 'count', 'std'] for col in score_cols}
 
-def load_student_level_data(sample_size=50000):
-    """Load student-level data from Saber 11 (sampled for performance)"""
-    try:
-        # Load both files
-        df1 = pd.read_csv('Saber_11__2017-1.csv')
+    df_agg = df_students[groupby_cols + score_cols].groupby(groupby_cols).agg(agg_dict)
+    df_agg.columns = ['_'.join(col).strip('_') for col in df_agg.columns.values]
+    df_agg = df_agg.reset_index()
 
-        # Try to load second file if it exists
-        try:
-            df2 = pd.read_csv('Saber_11__2017-2.csv')
-            df = pd.concat([df1, df2], ignore_index=True)
-        except:
-            df = df1
+    print(f"✅ Aggregated to {len(df_agg):,} schools")
 
-        # Sample for performance if too large
-        if len(df) > sample_size:
-            df = df.sample(n=sample_size, random_state=42)
+    return df_agg
 
-        return df
-    except Exception as e:
-        print(f"Error loading student data: {e}")
+
+def aggregate_by_municipality(df_students):
+    """
+    Aggregate student-level data to municipality level
+    """
+    # Identify score columns
+    score_cols = []
+    for subj_key in SABER11_SUBJECTS.keys():
+        col_name = f'PUNT_{subj_key.upper()}'
+        if col_name in df_students.columns:
+            score_cols.append(col_name)
+
+    if not score_cols:
         return pd.DataFrame()
+
+    # Group by columns
+    groupby_cols = []
+    possible_groupby = [
+        'COLE_DEPTO_UBICACION',
+        'COLE_MCPIO_UBICACION',
+        'COLE_COD_MCPIO_UBICACION'
+    ]
+
+    for col in possible_groupby:
+        if col in df_students.columns:
+            groupby_cols.append(col)
+
+    if not groupby_cols:
+        return pd.DataFrame()
+
+    # Aggregate
+    agg_dict = {col: ['mean', 'count', 'std'] for col in score_cols}
+
+    df_agg = df_students[groupby_cols + score_cols].groupby(groupby_cols).agg(agg_dict)
+    df_agg.columns = ['_'.join(col).strip('_') for col in df_agg.columns.values]
+    df_agg = df_agg.reset_index()
+
+    print(f"✅ Aggregated to {len(df_agg):,} municipalities")
+
+    return df_agg
 
 
 # Load all datasets
-print("Loading data...")
-df_schools = load_school_aggregated_data()
-df_municipalities = load_municipality_data()
-df_students = load_student_level_data()
-print(f"Loaded {len(df_schools)} schools, {len(df_municipalities)} municipalities, {len(df_students)} students")
+print("="*70)
+print("LOADING SABER 11 DATA WITH ALL SUBJECTS")
+print("="*70)
 
-# Create helper data structures
-grades = ['3', '5', '9', '11']
-subjects = ['Lenguaje', 'Matemáticas']
+# Load student-level data from 2024 Parquet files
+df_students = load_saber11_2024_data()
 
+# Aggregate to school and municipality levels
+df_schools = aggregate_by_school(df_students)
+df_municipalities = aggregate_by_municipality(df_students)
+
+print(f"\n📊 Data Summary:")
+print(f"  - Students: {len(df_students):,}")
+print(f"  - Schools: {len(df_schools):,}")
+print(f"  - Municipalities: {len(df_municipalities):,}")
+
+# Create helper data structures for all subjects
+grades = ['11']  # Saber 11 only has grade 11
+subjects_list = list(SABER11_SUBJECTS.values())
+
+# Build grade_cols structure compatible with existing callbacks
 grade_cols = {}
 for grade in grades:
-    grade_cols[grade] = {
-        'Lenguaje': f'Lenguaje Grado {grade}',
-        'Matemáticas': f'Matemáticas Grado {grade}',
-        'N': f'N {grade}'
-    }
+    grade_cols[grade] = {}
+
+    # Map all available score columns
+    score_cols_found = []
+    for col in df_schools.columns:
+        if col.endswith('_mean') and col.startswith('PUNT_'):
+            # Extract subject name
+            base_col = col.replace('_mean', '')
+            score_cols_found.append(base_col)
+
+            # Add to grade_cols with friendly name
+            if 'LECTURA_CRITICA' in base_col:
+                grade_cols[grade]['Lenguaje'] = col  # Keep 'Lenguaje' for backward compatibility
+                grade_cols[grade]['Lectura Crítica'] = col
+            elif 'MATEMATICAS' in base_col:
+                grade_cols[grade]['Matemáticas'] = col
+            elif 'C_NATURALES' in base_col:
+                grade_cols[grade]['Ciencias Naturales'] = col
+            elif 'SOCIALES_CIUDADANAS' in base_col:
+                grade_cols[grade]['Sociales y Ciudadanas'] = col
+            elif 'INGLES' in base_col:
+                grade_cols[grade]['Inglés'] = col
+            elif 'GLOBAL' in base_col:
+                grade_cols[grade]['Global'] = col
+
+    # Also need count columns
+    for col in df_schools.columns:
+        if col.endswith('_count') and col.startswith('PUNT_'):
+            # Find the first score column to use for 'N'
+            if 'LECTURA_CRITICA' in col:
+                grade_cols[grade]['N'] = col
+                break
+            elif 'MATEMATICAS' in col:
+                grade_cols[grade]['N'] = col
+                break
+
+# Print available subjects for debugging
+print(f"\n📚 Available subjects for Grade {grades[0]}:")
+for subj, col in grade_cols['11'].items():
+    if subj != 'N':
+        print(f"  - {subj}: {col}")
 
 # Get unique values for filters
 genero_options = sorted(df_schools['COLE_GENERO'].unique()) if 'COLE_GENERO' in df_schools.columns else []
@@ -552,9 +717,12 @@ app.layout = dbc.Container([
                                         dcc.Dropdown(
                                             id='pred-target',
                                             options=[
-                                                {'label': 'Mathematics', 'value': 'matematicas'},
-                                                {'label': 'Reading/Language', 'value': 'lectura'},
-                                                {'label': 'Global Score', 'value': 'global'}
+                                                {'label': 'Lectura Crítica', 'value': 'lectura_critica'},
+                                                {'label': 'Matemáticas', 'value': 'matematicas'},
+                                                {'label': 'Ciencias Naturales', 'value': 'c_naturales'},
+                                                {'label': 'Sociales y Ciudadanas', 'value': 'sociales_ciudadanas'},
+                                                {'label': 'Inglés', 'value': 'ingles'},
+                                                {'label': 'Puntaje Global', 'value': 'global'}
                                             ],
                                             value='matematicas',
                                             clearable=False
@@ -1063,21 +1231,57 @@ def update_prediction_model(level, target):
 
         df_model = df_students.copy()
 
-        # Select target
-        if target == 'matematicas':
-            target_col = 'punt_matematicas'
-        elif target == 'lectura':
-            target_col = 'punt_lectura_critica'
-        else:
-            target_col = 'punt_global'
+        # Select target column based on subject
+        target_mapping = {
+            'lectura_critica': 'PUNT_LECTURA_CRITICA',
+            'matematicas': 'PUNT_MATEMATICAS',
+            'c_naturales': 'PUNT_C_NATURALES',
+            'sociales_ciudadanas': 'PUNT_SOCIALES_CIUDADANAS',
+            'ingles': 'PUNT_INGLES',
+            'global': 'PUNT_GLOBAL'
+        }
+        target_col = target_mapping.get(target, 'PUNT_MATEMATICAS')
 
-        # Select features
-        feature_cols = ['fami_estratovivienda', 'fami_educacionmadre', 'fami_educacionpadre',
-                       'fami_tieneinternet', 'fami_tienecomputador', 'estu_genero',
-                       'cole_naturaleza', 'cole_area_ubicacion']
+        # Check if column exists (case insensitive)
+        if target_col not in df_model.columns:
+            # Try lowercase version
+            target_col = target_col.lower()
+            if target_col not in df_model.columns:
+                # Try to find any matching column
+                matching_cols = [c for c in df_model.columns if target.upper() in c.upper()]
+                if matching_cols:
+                    target_col = matching_cols[0]
+                else:
+                    return html.P(f"Target column not found: {target}"), go.Figure(), go.Figure(), html.P("N/A"), html.P("N/A")
+
+        # Select features (handle case sensitivity)
+        possible_features = {
+            'fami_estratovivienda': ['FAMI_ESTRATOVIVIENDA', 'fami_estratovivienda'],
+            'fami_educacionmadre': ['FAMI_EDUCACIONMADRE', 'fami_educacionmadre'],
+            'fami_educacionpadre': ['FAMI_EDUCACIONPADRE', 'fami_educacionpadre'],
+            'fami_tieneinternet': ['FAMI_TIENEINTERNET', 'fami_tieneinternet'],
+            'fami_tienecomputador': ['FAMI_TIENECOMPUTADOR', 'fami_tienecomputador'],
+            'estu_genero': ['ESTU_GENERO', 'estu_genero'],
+            'cole_naturaleza': ['COLE_NATURALEZA', 'cole_naturaleza'],
+            'cole_area_ubicacion': ['COLE_AREA_UBICACION', 'cole_area_ubicacion']
+        }
+
+        feature_cols = []
+        for key, variants in possible_features.items():
+            for variant in variants:
+                if variant in df_model.columns:
+                    feature_cols.append(variant)
+                    break
+
+        # School name column
+        school_col = 'COLE_NOMBRE_ESTABLECIMIENTO' if 'COLE_NOMBRE_ESTABLECIMIENTO' in df_model.columns else 'cole_nombre_establecimiento'
 
         # Prepare data
-        df_model = df_model[feature_cols + [target_col, 'cole_nombre_establecimiento']].dropna()
+        required_cols = feature_cols + [target_col]
+        if school_col in df_model.columns:
+            required_cols.append(school_col)
+
+        df_model = df_model[required_cols].dropna()
 
         if len(df_model) < 100:
             return html.P("Insufficient data"), go.Figure(), go.Figure(), html.P("N/A"), html.P("N/A")
@@ -1122,26 +1326,57 @@ def update_prediction_model(level, target):
         df_model['predicted'] = model.predict(X)
         df_model['residual'] = df_model[target_col] - df_model['predicted']
 
-        school_residuals = df_model.groupby('cole_nombre_establecimiento').agg({
-            'residual': 'mean',
-            target_col: 'mean',
-            'predicted': 'mean'
-        }).reset_index()
+        if school_col in df_model.columns:
+            school_residuals = df_model.groupby(school_col).agg({
+                'residual': 'mean',
+                target_col: 'mean',
+                'predicted': 'mean'
+            }).reset_index()
 
-        school_residuals = school_residuals[school_residuals['cole_nombre_establecimiento'].notna()]
-        school_residuals = school_residuals.sort_values('residual', ascending=False)
+            school_residuals = school_residuals[school_residuals[school_col].notna()]
+            school_residuals = school_residuals.sort_values('residual', ascending=False)
+        else:
+            school_residuals = pd.DataFrame()
 
     else:
         # School-level prediction
         df_model = df_schools.copy()
 
-        # Select target
-        target_col = 'Matemáticas Grado 11' if target == 'matematicas' else 'Lenguaje Grado 11'
+        # Select target column - use grade_cols mapping
+        target_mapping = {
+            'lectura_critica': 'Lenguaje',  # Maps to grade_cols
+            'matematicas': 'Matemáticas',
+            'c_naturales': 'Ciencias Naturales',
+            'sociales_ciudadanas': 'Sociales y Ciudadanas',
+            'ingles': 'Inglés',
+            'global': 'Global'
+        }
+
+        subj_key = target_mapping.get(target, 'Matemáticas')
+        if subj_key in grade_cols['11']:
+            target_col = grade_cols['11'][subj_key]
+        else:
+            return html.P(f"Subject not available: {subj_key}"), go.Figure(), go.Figure(), html.P("N/A"), html.P("N/A")
 
         # Features
-        feature_cols = ['COLE_GENERO', 'COLE_NATURALEZA', 'COLE_CARACTER', 'COLE_AREA_UBICACION']
+        feature_cols = []
+        possible_features = ['COLE_GENERO', 'COLE_NATURALEZA', 'COLE_CARACTER', 'COLE_AREA_UBICACION']
+        for col in possible_features:
+            if col in df_model.columns:
+                feature_cols.append(col)
 
-        df_model = df_model[feature_cols + [target_col, 'COLE_NOMBRE_ESTABLECIMIENTO', 'N 11']].dropna()
+        # Count column
+        n_col = grade_cols['11'].get('N', None)
+        school_col = 'COLE_NOMBRE_ESTABLECIMIENTO' if 'COLE_NOMBRE_ESTABLECIMIENTO' in df_model.columns else None
+
+        # Prepare columns list
+        required_cols = feature_cols + [target_col]
+        if n_col:
+            required_cols.append(n_col)
+        if school_col:
+            required_cols.append(school_col)
+
+        df_model = df_model[required_cols].dropna()
 
         if len(df_model) < 100:
             return html.P("Insufficient data"), go.Figure(), go.Figure(), html.P("N/A"), html.P("N/A")
@@ -1182,7 +1417,13 @@ def update_prediction_model(level, target):
         df_model['predicted'] = model.predict(X)
         df_model['residual'] = df_model[target_col] - df_model['predicted']
 
-        school_residuals = df_model[['COLE_NOMBRE_ESTABLECIMIENTO', target_col, 'predicted', 'residual', 'N 11']].copy()
+        result_cols = [target_col, 'predicted', 'residual']
+        if school_col:
+            result_cols.insert(0, school_col)
+        if n_col:
+            result_cols.append(n_col)
+
+        school_residuals = df_model[result_cols].copy()
         school_residuals = school_residuals.sort_values('residual', ascending=False)
 
     # Model stats
@@ -1196,16 +1437,29 @@ def update_prediction_model(level, target):
               className="small text-muted")
     ])
 
+    # Determine school column name
+    if level == 'school':
+        hover_col = school_col if school_col else None
+        size_col = n_col if n_col else None
+    else:
+        # Student level - use the school_col variable we set earlier
+        hover_col = school_col if school_col in school_residuals.columns else None
+        size_col = None
+
     # Value-added scatter
-    va_fig = px.scatter(
-        school_residuals.head(100),
-        x='predicted',
-        y=target_col if level == 'student' else target_col,
-        size='N 11' if level == 'school' else None,
-        hover_name='COLE_NOMBRE_ESTABLECIMIENTO' if level == 'school' else 'cole_nombre_establecimiento',
-        title='Actual vs Predicted Performance (Value-Added Analysis)',
-        labels={'predicted': 'Predicted Score', target_col: 'Actual Score'}
-    )
+    scatter_kwargs = {
+        'data_frame': school_residuals.head(100),
+        'x': 'predicted',
+        'y': target_col,
+        'title': 'Actual vs Predicted Performance (Value-Added Analysis)',
+        'labels': {'predicted': 'Predicted Score', target_col: 'Actual Score'}
+    }
+    if size_col and size_col in school_residuals.columns:
+        scatter_kwargs['size'] = size_col
+    if hover_col and hover_col in school_residuals.columns:
+        scatter_kwargs['hover_name'] = hover_col
+
+    va_fig = px.scatter(**scatter_kwargs)
     va_fig.add_shape(
         type="line", line=dict(color='red', dash='dash'),
         x0=school_residuals['predicted'].min(), y0=school_residuals['predicted'].min(),
@@ -1213,9 +1467,15 @@ def update_prediction_model(level, target):
     )
 
     # Top schools (positive residuals)
-    top_schools = school_residuals.head(10)[['COLE_NOMBRE_ESTABLECIMIENTO' if level == 'school' else 'cole_nombre_establecimiento',
-                                              'residual']].copy()
-    top_schools.columns = ['School', 'Value Added (Residual)']
+    top_cols = ['residual']
+    if hover_col and hover_col in school_residuals.columns:
+        top_cols.insert(0, hover_col)
+
+    top_schools = school_residuals.head(10)[top_cols].copy()
+    if len(top_cols) == 2:
+        top_schools.columns = ['School', 'Value Added (Residual)']
+    else:
+        top_schools.columns = ['Value Added (Residual)']
     top_schools['Value Added (Residual)'] = top_schools['Value Added (Residual)'].round(3)
 
     top_table = dash_table.DataTable(
@@ -1226,9 +1486,11 @@ def update_prediction_model(level, target):
     )
 
     # Bottom schools (negative residuals)
-    bottom_schools = school_residuals.tail(10)[['COLE_NOMBRE_ESTABLECIMIENTO' if level == 'school' else 'cole_nombre_establecimiento',
-                                                 'residual']].copy()
-    bottom_schools.columns = ['School', 'Value Added (Residual)']
+    bottom_schools = school_residuals.tail(10)[top_cols].copy()
+    if len(top_cols) == 2:
+        bottom_schools.columns = ['School', 'Value Added (Residual)']
+    else:
+        bottom_schools.columns = ['Value Added (Residual)']
     bottom_schools['Value Added (Residual)'] = bottom_schools['Value Added (Residual)'].round(3)
 
     bottom_table = dash_table.DataTable(
