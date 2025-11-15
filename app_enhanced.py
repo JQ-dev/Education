@@ -21,9 +21,19 @@ import glob
 import os
 warnings.filterwarnings('ignore')
 
-# Initialize the Dash app with Bootstrap theme
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.title = "SABER Results - Government Dashboard"
+# Initialize the Dash app with Bootstrap theme and custom styling
+app = dash.Dash(
+    __name__,
+    external_stylesheets=[
+        dbc.themes.BOOTSTRAP,
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    ],
+    suppress_callback_exceptions=True
+)
+app.title = "SABER Educational Analytics Platform"
+
+# Import landing page
+from landing_page import create_landing_page
 
 # ============================================================================
 # DATA LOADING FUNCTIONS
@@ -398,18 +408,49 @@ else:
 # APP LAYOUT
 # ============================================================================
 
-app.layout = dbc.Container([
-    # Header
-    dbc.Row([
-        dbc.Col([
-            html.H1("SABER Educational Results Dashboard", className="text-center mb-3 mt-4"),
-            html.H5("Government Analytics Platform - Comprehensive Educational Performance Analysis",
-                   className="text-center text-muted mb-4"),
-        ])
-    ]),
+# Create navigation bar
+def create_navbar():
+    """Create professional navigation bar"""
+    return dbc.Navbar(
+        dbc.Container([
+            dbc.Row([
+                dbc.Col([
+                    dbc.NavbarBrand(
+                        [
+                            html.I(className="fas fa-graduation-cap me-2"),
+                            "SABER Analytics"
+                        ],
+                        className="navbar-brand-custom",
+                        href="/"
+                    )
+                ]),
+            ], className="g-0 w-100", align="center"),
+            dbc.Nav([
+                dbc.NavItem(dbc.NavLink([html.I(className="fas fa-home me-1"), "Home"], href="/", className="text-white")),
+                dbc.NavItem(dbc.NavLink([html.I(className="fas fa-chart-line me-1"), "Dashboard"], href="/dashboard", className="text-white")),
+            ], navbar=True)
+        ], fluid=True),
+        className="custom-navbar mb-0",
+        dark=True
+    )
 
-    # Main tabs
-    dbc.Tabs(id="main-tabs", active_tab="tab-overview", children=[
+
+# Create dashboard content (all the tabs)
+def create_dashboard_content():
+    """Create the full dashboard with all analytical tabs"""
+    return dbc.Container([
+        # Dashboard Header
+        html.Div([
+            html.H2([
+                html.I(className="fas fa-chart-bar me-3"),
+                "Educational Analytics Dashboard"
+            ], className="text-center mb-3 mt-4 text-primary-custom"),
+            html.P("Comprehensive analysis of SABER examination results across Colombia",
+                   className="text-center text-muted mb-4"),
+        ]),
+
+        # Main tabs
+        dbc.Tabs(id="main-tabs", active_tab="tab-overview", className="nav-tabs", children=[
 
         # TAB 1: Overview / Nacional
         dbc.Tab(label="📊 National Overview", tab_id="tab-overview", children=[
@@ -1030,9 +1071,40 @@ app.layout = dbc.Container([
                 ])
             ], className="p-3")
         ]),
-    ]),
+    ])], fluid=True)
 
-], fluid=True)
+
+# Multi-page app layout
+app.layout = html.Div([
+    dcc.Location(id='url', refresh=False),
+    create_navbar(),
+    html.Div(id='page-content')
+])
+
+
+# Page routing callback
+@app.callback(
+    Output('page-content', 'children'),
+    [Input('url', 'pathname')]
+)
+def display_page(pathname):
+    """Route between landing page and dashboard"""
+    if pathname == '/dashboard':
+        return create_dashboard_content()
+    else:  # Default to landing page
+        return create_landing_page()
+
+
+# Callback for navigation buttons on landing page
+@app.callback(
+    Output('url', 'pathname', allow_duplicate=True),
+    [Input('btn-explore-dashboard', 'n_clicks'),
+     Input('btn-start-analyzing', 'n_clicks')],
+    prevent_initial_call=True
+)
+def navigate_to_dashboard(btn1, btn2):
+    """Navigate to dashboard when buttons are clicked"""
+    return '/dashboard'
 
 
 # ============================================================================
