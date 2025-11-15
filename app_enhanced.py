@@ -30,7 +30,7 @@ app = dash.Dash(
     ],
     suppress_callback_exceptions=True
 )
-app.title = "SABER Educational Analytics Platform"
+app.title = "Plataforma de Analítica Educativa SABER"
 
 # Import landing page
 from landing_page import create_landing_page
@@ -255,13 +255,16 @@ def calculate_kpis(df):
     # Target: >0.85 (i.e., <15% of score variance due to SES)
     # NOTE: Requires SES data, parental education, urban/rural - using simulated value
     kpis['EALG'] = {
-        'name': 'Equity-Adjusted Learning Gap',
+        'name': 'Brecha de Aprendizaje Ajustada por Equidad',
+        'name_en': 'Equity-Adjusted Learning Gap',
         'abbr': 'EALG',
         'current': 0.78,  # Simulated - would need R² from SES regression
         'target': 0.85,
         'target_comparison': '>',
-        'description': 'Proportion of score variance unexplained by SES (higher is better)',
-        'formula': '1 - R²(Global Score ~ SES quintile + parental education + urban/rural)',
+        'description': 'Proporción de varianza del puntaje no explicada por NSE (mayor es mejor)',
+        'explanation': 'Mide qué tanto del desempeño académico se debe al mérito y esfuerzo individual versus factores socioeconómicos. Un valor alto indica que el sistema educativo está logrando equidad.',
+        'importance': 'Este indicador es crucial para evaluar si Colombia está cumpliendo su compromiso constitucional de igualdad de oportunidades educativas, independientemente del contexto socioeconómico de los estudiantes.',
+        'formula': '1 - R²(Puntaje Global ~ quintil NSE + educación parental + urbano/rural)',
         'status': 'red',
         'unit': ''
     }
@@ -270,13 +273,16 @@ def calculate_kpis(df):
     # Target: <0.3σ (small effect size)
     # NOTE: Requires English scores by rural/urban within SES quintiles - using simulated value
     kpis['RUCDI'] = {
-        'name': 'Rural-Urban Competency Divergence Index',
+        'name': 'Índice de Divergencia de Competencias Rural-Urbana',
+        'name_en': 'Rural-Urban Competency Divergence Index',
         'abbr': 'RUCDI',
         'current': 0.62,  # Simulated - would calculate from English scores
         'target': 0.30,
         'target_comparison': '<',
-        'description': 'Standardized mean difference in English scores (rural vs urban, same SES)',
-        'formula': '(Mean_urban - Mean_rural) / σ_pooled within SES Q3',
+        'description': 'Diferencia estandarizada promedio en puntajes de Inglés (rural vs urbano, mismo NSE)',
+        'explanation': 'Evalúa la brecha de oportunidades educativas entre zonas rurales y urbanas, controlando por nivel socioeconómico. Mide si estudiantes rurales tienen acceso equitativo a educación de calidad en competencias globales como Inglés.',
+        'importance': 'Identificar y cerrar estas brechas es esencial para el desarrollo territorial equilibrado y para asegurar que todos los colombianos, sin importar dónde vivan, tengan las mismas oportunidades de participar en la economía global.',
+        'formula': '(Promedio_urbano - Promedio_rural) / σ_combinada dentro de NSE Q3',
         'status': 'red',
         'unit': 'σ'
     }
@@ -285,13 +291,16 @@ def calculate_kpis(df):
     # Target: >0.95
     # NOTE: Requires ethnicity data and Ciencias Naturales scores - using simulated value
     kpis['ERR'] = {
-        'name': 'Ethnic Resilience Ratio',
+        'name': 'Ratio de Resiliencia Étnica',
+        'name_en': 'Ethnic Resilience Ratio',
         'abbr': 'ERR',
         'current': 0.88,  # Simulated - would use propensity score matching
         'target': 0.95,
         'target_comparison': '>',
-        'description': 'Performance of indigenous/afro-Colombian students vs national average in Science',
-        'formula': 'Mean_indigenous/afro (matched) / Mean_national in Ciencias Naturales',
+        'description': 'Desempeño de estudiantes indígenas/afrocolombianos vs promedio nacional en Ciencias',
+        'explanation': 'Mide si las comunidades étnicas están logrando desempeño académico comparable al promedio nacional, después de controlar por factores socioeconómicos. Refleja la efectividad de políticas de educación intercultural e inclusión.',
+        'importance': 'Colombia es un país pluriétnico y multicultural. Este indicador es fundamental para garantizar que todos los grupos étnicos tengan acceso equitativo a educación de calidad y puedan preservar su identidad cultural mientras desarrollan competencias científicas.',
+        'formula': 'Promedio_indígena/afro (emparejado) / Promedio_nacional en Ciencias Naturales',
         'status': 'yellow',
         'unit': ''
     }
@@ -300,13 +309,16 @@ def calculate_kpis(df):
     # Target: ≈ 0 (no gender gap after controlling for math)
     # NOTE: Requires Lectura Crítica scores - using simulated value
     kpis['GNCTP'] = {
-        'name': 'Gender-Neutral Critical Thinking Premium',
+        'name': 'Prima de Pensamiento Crítico Neutral al Género',
+        'name_en': 'Gender-Neutral Critical Thinking Premium',
         'abbr': 'GNCTP',
         'current': -2.1,  # Simulated β coefficient
         'target': 0.0,
         'target_comparison': '≈',
-        'description': 'Male-female gap in Critical Reading after controlling for Math ability',
-        'formula': 'β_female in Lectura ~ Matemáticas + controls',
+        'description': 'Brecha hombre-mujer en Lectura Crítica después de controlar por habilidad Matemática',
+        'explanation': 'Identifica si existen sesgos de género en competencias de lectura crítica que no se explican por diferencias en habilidad matemática. Un valor cercano a cero indica igualdad de género en pensamiento crítico.',
+        'importance': 'La equidad de género en educación es un objetivo clave del desarrollo sostenible. Este indicador ayuda a identificar si existen barreras culturales o pedagógicas que afectan desproporcionadamente a algún género en habilidades críticas para la ciudadanía democrática.',
+        'formula': 'β_mujer en Lectura Crítica ~ Matemáticas + controles',
         'status': 'yellow',
         'unit': ''
     }
@@ -315,13 +327,16 @@ def calculate_kpis(df):
     # Target: >15%
     # NOTE: Requires per-student spending data - using simulated value
     kpis['MEF'] = {
-        'name': 'Municipal Efficiency Frontier',
+        'name': 'Frontera de Eficiencia Municipal',
+        'name_en': 'Municipal Efficiency Frontier',
         'abbr': 'MEF',
         'current': 11.0,  # Simulated percentage
         'target': 15.0,
         'target_comparison': '>',
-        'description': '% of municipalities in top decile of score per peso spent',
-        'formula': '% municipalities with (Global Score / Spending per student) > P90',
+        'description': '% de municipios en el decil superior de puntaje por peso gastado',
+        'explanation': 'Identifica municipios que logran excelentes resultados educativos con recursos limitados. Estos municipios eficientes pueden servir como modelos de buenas prácticas para replicar en otras regiones.',
+        'importance': 'En un contexto de recursos fiscales limitados, es crucial identificar y aprender de los municipios que maximizan el impacto de cada peso invertido en educación. Este indicador promueve la eficiencia en el gasto público educativo.',
+        'formula': '% municipios con (Puntaje Global / Gasto por estudiante) > P90',
         'status': 'yellow',
         'unit': '%'
     }
@@ -330,13 +345,16 @@ def calculate_kpis(df):
     # Target: >0.80 (low volatility)
     # NOTE: Requires multi-year data - using simulated value
     kpis['SVS'] = {
-        'name': 'School-Level Volatility Stabilizer',
+        'name': 'Estabilizador de Volatilidad a Nivel Escolar',
+        'name_en': 'School-Level Volatility Stabilizer',
         'abbr': 'SVS',
         'current': 0.71,  # Simulated
         'target': 0.80,
         'target_comparison': '>',
-        'description': 'Year-to-year stability in Civics rankings (higher is better)',
-        'formula': '1 - median|Rank_t - Rank_t-1| for Sociales y Ciudadanas',
+        'description': 'Estabilidad año a año en rankings de Sociales y Ciudadanas (mayor es mejor)',
+        'explanation': 'Mide la consistencia en el desempeño escolar a través del tiempo. Alta volatilidad puede indicar problemas de gestión, rotación docente excesiva, o intervenciones no sostenibles. La estabilidad sugiere instituciones sólidas con procesos educativos consistentes.',
+        'importance': 'Las familias y formuladores de política necesitan poder confiar en la calidad consistente de las instituciones educativas. Este indicador identifica colegios con calidad sostenible versus aquellos con resultados erráticos que requieren intervención.',
+        'formula': '1 - mediana|Ranking_t - Ranking_t-1| para Sociales y Ciudadanas',
         'status': 'red',
         'unit': ''
     }
@@ -426,8 +444,8 @@ def create_navbar():
                 ]),
             ], className="g-0 w-100", align="center"),
             dbc.Nav([
-                dbc.NavItem(dbc.NavLink([html.I(className="fas fa-home me-1"), "Home"], href="/", className="text-white")),
-                dbc.NavItem(dbc.NavLink([html.I(className="fas fa-chart-line me-1"), "Dashboard"], href="/dashboard", className="text-white")),
+                dbc.NavItem(dbc.NavLink([html.I(className="fas fa-home me-1"), "Inicio"], href="/", className="text-white")),
+                dbc.NavItem(dbc.NavLink([html.I(className="fas fa-chart-line me-1"), "Panel de Control"], href="/dashboard", className="text-white")),
             ], navbar=True)
         ], fluid=True),
         className="custom-navbar mb-0",
@@ -443,9 +461,9 @@ def create_dashboard_content():
         html.Div([
             html.H2([
                 html.I(className="fas fa-chart-bar me-3"),
-                "Educational Analytics Dashboard"
+                "Panel de Analítica Educativa"
             ], className="text-center mb-3 mt-4 text-primary-custom"),
-            html.P("Comprehensive analysis of SABER examination results across Colombia",
+            html.P("Análisis integral de los resultados de las pruebas SABER en toda Colombia",
                    className="text-center text-muted mb-4"),
         ]),
 
@@ -453,16 +471,16 @@ def create_dashboard_content():
         dbc.Tabs(id="main-tabs", active_tab="tab-overview", className="nav-tabs", children=[
 
         # TAB 1: Overview / Nacional
-        dbc.Tab(label="📊 National Overview", tab_id="tab-overview", children=[
+        dbc.Tab(label="📊 Panorama Nacional", tab_id="tab-overview", children=[
             html.Div([
                 dbc.Row([
                     dbc.Col([
                         dbc.Card([
-                            dbc.CardHeader(html.H5("Filters")),
+                            dbc.CardHeader(html.H5("Filtros")),
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
-                                        html.Label("Subject 1:", className="fw-bold"),
+                                        html.Label("Materia 1:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='overview-subject1',
                                             options=[
@@ -478,7 +496,7 @@ def create_dashboard_content():
                                         )
                                     ], md=3),
                                     dbc.Col([
-                                        html.Label("Subject 2:", className="fw-bold"),
+                                        html.Label("Materia 2:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='overview-subject2',
                                             options=[
@@ -494,20 +512,20 @@ def create_dashboard_content():
                                         )
                                     ], md=3),
                                     dbc.Col([
-                                        html.Label("School Type:", className="fw-bold"),
+                                        html.Label("Tipo de Colegio:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='overview-naturaleza',
-                                            options=[{'label': 'All', 'value': 'ALL'}] +
+                                            options=[{'label': 'Todos', 'value': 'ALL'}] +
                                                     [{'label': n, 'value': n} for n in naturaleza_options],
                                             value='ALL',
                                             clearable=False
                                         )
                                     ], md=3),
                                     dbc.Col([
-                                        html.Label("Area:", className="fw-bold"),
+                                        html.Label("Área:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='overview-area',
-                                            options=[{'label': 'All', 'value': 'ALL'}] +
+                                            options=[{'label': 'Todos', 'value': 'ALL'}] +
                                                     [{'label': a, 'value': a} for a in area_options],
                                             value='ALL',
                                             clearable=False
@@ -574,7 +592,7 @@ def create_dashboard_content():
         ]),
 
         # TAB 2: Department Analysis
-        dbc.Tab(label="🗺️ Department Analysis", tab_id="tab-department", children=[
+        dbc.Tab(label="🗺️ Análisis Departamental", tab_id="tab-department", children=[
             html.Div([
                 dbc.Row([
                     dbc.Col([
@@ -583,7 +601,7 @@ def create_dashboard_content():
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
-                                        html.Label("Department:", className="fw-bold"),
+                                        html.Label("Departamento:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='dept-selector',
                                             options=[{'label': d, 'value': d} for d in departments],
@@ -592,7 +610,7 @@ def create_dashboard_content():
                                         )
                                     ], md=3),
                                     dbc.Col([
-                                        html.Label("Subject 1:", className="fw-bold"),
+                                        html.Label("Materia 1:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='dept-subject1',
                                             options=[
@@ -608,7 +626,7 @@ def create_dashboard_content():
                                         )
                                     ], md=3),
                                     dbc.Col([
-                                        html.Label("Subject 2:", className="fw-bold"),
+                                        html.Label("Materia 2:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='dept-subject2',
                                             options=[
@@ -624,10 +642,10 @@ def create_dashboard_content():
                                         )
                                     ], md=3),
                                     dbc.Col([
-                                        html.Label("School Type:", className="fw-bold"),
+                                        html.Label("Tipo de Colegio:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='dept-naturaleza',
-                                            options=[{'label': 'All', 'value': 'ALL'}] +
+                                            options=[{'label': 'Todos', 'value': 'ALL'}] +
                                                     [{'label': n, 'value': n} for n in naturaleza_options],
                                             value='ALL',
                                             clearable=False
@@ -694,7 +712,7 @@ def create_dashboard_content():
         ]),
 
         # TAB 3: Municipality Analysis
-        dbc.Tab(label="🏘️ Municipality Analysis", tab_id="tab-municipality", children=[
+        dbc.Tab(label="🏘️ Análisis Municipal", tab_id="tab-municipality", children=[
             html.Div([
                 dbc.Row([
                     dbc.Col([
@@ -703,7 +721,7 @@ def create_dashboard_content():
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
-                                        html.Label("Department:", className="fw-bold"),
+                                        html.Label("Departamento:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='munic-dept-selector',
                                             options=[{'label': d, 'value': d} for d in departments],
@@ -712,7 +730,7 @@ def create_dashboard_content():
                                         )
                                     ], md=4),
                                     dbc.Col([
-                                        html.Label("Municipality:", className="fw-bold"),
+                                        html.Label("Municipio:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='munic-selector',
                                             options=[],
@@ -720,7 +738,7 @@ def create_dashboard_content():
                                         )
                                     ], md=4),
                                     dbc.Col([
-                                        html.Label("Grade:", className="fw-bold"),
+                                        html.Label("Grado:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='munic-grade',
                                             options=[{'label': f'Grado {g}', 'value': g} for g in grades],
@@ -800,14 +818,14 @@ def create_dashboard_content():
         ]),
 
         # TAB 4: School-Focused Analysis
-        dbc.Tab(label="🏫 School Analysis", tab_id="tab-school", children=[
+        dbc.Tab(label="🏫 Análisis de Colegios", tab_id="tab-school", children=[
             html.Div([
                 dbc.Row([
                     dbc.Col([
                         dbc.Card([
                             dbc.CardHeader(html.H5("School Search and Analysis")),
                             dbc.CardBody([
-                                html.Label("Search School by Name:", className="fw-bold"),
+                                html.Label("Buscar Colegio por Nombre:", className="fw-bold"),
                                 dcc.Input(
                                     id='school-search-input',
                                     type='text',
@@ -835,7 +853,7 @@ def create_dashboard_content():
         ]),
 
         # TAB 5: Socioeconomic Impact Analysis
-        dbc.Tab(label="💰 Socioeconomic Analysis", tab_id="tab-socioeconomic", children=[
+        dbc.Tab(label="💰 Análisis Socioeconómico", tab_id="tab-socioeconomic", children=[
             html.Div([
                 dbc.Row([
                     dbc.Col([
@@ -884,7 +902,7 @@ def create_dashboard_content():
         ]),
 
         # TAB 6: Enhanced Prediction Model
-        dbc.Tab(label="🤖 Advanced Analytics", tab_id="tab-prediction", children=[
+        dbc.Tab(label="🤖 Analítica Avanzada", tab_id="tab-prediction", children=[
             html.Div([
                 dbc.Row([
                     dbc.Col([
@@ -901,7 +919,7 @@ def create_dashboard_content():
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
-                                        html.Label("Analysis Level:", className="fw-bold"),
+                                        html.Label("Nivel de Análisis:", className="fw-bold"),
                                         dcc.RadioItems(
                                             id='pred-level',
                                             options=[
@@ -913,7 +931,7 @@ def create_dashboard_content():
                                         )
                                     ], md=6),
                                     dbc.Col([
-                                        html.Label("Target Score:", className="fw-bold"),
+                                        html.Label("Puntaje Objetivo:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='pred-target',
                                             options=[
@@ -974,20 +992,20 @@ def create_dashboard_content():
         ]),
 
         # TAB 7: KPIs - Educational Equity & Efficiency
-        dbc.Tab(label="📊 KPIs - Equity & Efficiency", tab_id="tab-kpis", children=[
+        dbc.Tab(label="📊 Indicadores - Equidad y Eficiencia", tab_id="tab-kpis", children=[
             html.Div([
                 # Filters Row
                 dbc.Row([
                     dbc.Col([
                         dbc.Card([
-                            dbc.CardHeader(html.H5("Geographic Filters")),
+                            dbc.CardHeader(html.H5("Filtros Geográficos")),
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
-                                        html.Label("Departments:", className="fw-bold"),
+                                        html.Label("Departamentos:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='kpi-dept-filter',
-                                            options=[{'label': 'All Departments', 'value': 'ALL'}] +
+                                            options=[{'label': 'Todos los Departamentos', 'value': 'ALL'}] +
                                                     [{'label': d, 'value': d} for d in departments],
                                             value=['ALL'],
                                             multi=True,
@@ -995,10 +1013,10 @@ def create_dashboard_content():
                                         )
                                     ], md=6),
                                     dbc.Col([
-                                        html.Label("Municipalities:", className="fw-bold"),
+                                        html.Label("Municipios:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='kpi-munic-filter',
-                                            options=[{'label': 'All Municipalities', 'value': 'ALL'}],
+                                            options=[{'label': 'Todos los Municipios', 'value': 'ALL'}],
                                             value=['ALL'],
                                             multi=True,
                                             placeholder="Select municipalities..."
@@ -1008,20 +1026,20 @@ def create_dashboard_content():
                                 html.Hr(),
                                 dbc.Row([
                                     dbc.Col([
-                                        html.Label("School Type:", className="fw-bold"),
+                                        html.Label("Tipo de Colegio:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='kpi-naturaleza-filter',
-                                            options=[{'label': 'All Types', 'value': 'ALL'}] +
+                                            options=[{'label': 'Todos los Tipos', 'value': 'ALL'}] +
                                                     [{'label': n, 'value': n} for n in naturaleza_options],
                                             value='ALL',
                                             clearable=False
                                         )
                                     ], md=4),
                                     dbc.Col([
-                                        html.Label("Area:", className="fw-bold"),
+                                        html.Label("Área:", className="fw-bold"),
                                         dcc.Dropdown(
                                             id='kpi-area-filter',
-                                            options=[{'label': 'All Areas', 'value': 'ALL'}] +
+                                            options=[{'label': 'Todas las Áreas', 'value': 'ALL'}] +
                                                     [{'label': a, 'value': a} for a in area_options],
                                             value='ALL',
                                             clearable=False
@@ -1029,7 +1047,7 @@ def create_dashboard_content():
                                     ], md=4),
                                     dbc.Col([
                                         html.Div([
-                                            html.Label("Filtered Schools:", className="fw-bold"),
+                                            html.Label("Colegios Filtrados:", className="fw-bold"),
                                             html.H4(id='kpi-filtered-count', className="text-primary mt-2")
                                         ])
                                     ], md=4),
@@ -1042,28 +1060,28 @@ def create_dashboard_content():
                 dbc.Row([
                     dbc.Col([
                         dbc.Card([
-                            dbc.CardHeader(html.H4("Key Performance Indicators (KPIs) - Educational Equity & Efficiency")),
+                            dbc.CardHeader(html.H4("Indicadores Clave de Desempeño (KPIs) - Equidad y Eficiencia Educativa")),
                             dbc.CardBody([
                                 html.P([
-                                    "These 6 metrics are ",
-                                    html.Strong("statistically orthogonal"),
-                                    " (pairwise |r| < 0.4), ",
-                                    html.Strong("policy-actionable"),
-                                    ", and focus on ",
-                                    html.Strong("systemic failures"),
-                                    " rather than simple averages."
+                                    "Estas 6 métricas son ",
+                                    html.Strong("estadísticamente ortogonales"),
+                                    " (|r| pares < 0.4), ",
+                                    html.Strong("accionables para política"),
+                                    ", y se enfocan en ",
+                                    html.Strong("fallas sistémicas"),
+                                    " en lugar de simples promedios."
                                 ], className="text-muted mb-4"),
                                 html.P([
-                                    html.Strong("Note: "),
-                                    "Current values are simulated placeholders. Real calculations require additional data ",
-                                    "(SES quintiles, ethnicity, subject-specific scores, spending data, multi-year records)."
+                                    html.Strong("Nota: "),
+                                    "Los valores actuales son marcadores de posición simulados. Los cálculos reales requieren datos adicionales ",
+                                    "(quintiles socioeconómicos, etnicidad, puntajes por materia, datos de gasto, registros multianuales)."
                                 ], className="alert alert-info"),
                                 html.Div(id='kpi-summary-cards'),
                                 html.Hr(),
-                                html.H5("KPI Dashboard", className="mt-4 mb-3"),
+                                html.H5("Panel de Indicadores", className="mt-4 mb-3"),
                                 html.Div(id='kpi-summary-table'),
                                 html.Hr(),
-                                html.H5("Visual Analysis", className="mt-4 mb-3"),
+                                html.H5("Análisis Visual", className="mt-4 mb-3"),
                                 dcc.Graph(id='kpi-gauge-chart', style={'height': '800px'}),
                             ])
                         ])
@@ -1073,12 +1091,54 @@ def create_dashboard_content():
         ]),
     ])], fluid=True)
 
+# KPI Information Modals
+def create_kpi_modals():
+    """Create modal dialogs for each KPI with detailed explanations"""
+    kpis = calculate_kpis(df_schools)
+    modals = []
+
+    for kpi_key in ['EALG', 'RUCDI', 'ERR', 'GNCTP', 'MEF', 'SVS']:
+        kpi = kpis[kpi_key]
+        modal = dbc.Modal([
+            dbc.ModalHeader(dbc.ModalTitle([
+                html.I(className="fas fa-info-circle me-2"),
+                f"{kpi['abbr']} - {kpi['name']}"
+            ])),
+            dbc.ModalBody([
+                html.H5("📋 Descripción", className="mb-3"),
+                html.P(kpi['description'], className="mb-4"),
+
+                html.H5("🔍 Explicación Detallada", className="mb-3"),
+                html.P(kpi['explanation'], className="mb-4"),
+
+                html.H5("⭐ Importancia", className="mb-3"),
+                html.P(kpi['importance'], className="mb-4"),
+
+                html.H5("📐 Fórmula", className="mb-3"),
+                html.Code(kpi['formula'], className="d-block p-3 mb-3",
+                         style={'backgroundColor': '#f5f5f5', 'borderRadius': '5px'}),
+
+                html.Hr(),
+                dbc.Alert([
+                    html.Strong("Meta: "),
+                    f"{kpi['target_comparison']} {kpi['target']}{kpi['unit']}"
+                ], color="info", className="mb-0")
+            ]),
+            dbc.ModalFooter(
+                dbc.Button("Cerrar", id=f"close-{kpi_key.lower()}-modal", className="ms-auto")
+            ),
+        ], id=f"modal-{kpi_key.lower()}", size="lg", is_open=False)
+        modals.append(modal)
+
+    return html.Div(modals)
+
 
 # Multi-page app layout
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     create_navbar(),
-    html.Div(id='page-content')
+    html.Div(id='page-content'),
+    create_kpi_modals()  # Add KPI modals
 ])
 
 
@@ -1996,14 +2056,24 @@ def update_kpi_dashboard(selected_depts, selected_munics, naturaleza, area):
             dbc.Col([
                 dbc.Card([
                     dbc.CardHeader([
-                        html.H6(f"{icon} {kpi['abbr']}", className="mb-0")
+                        html.Div([
+                            html.H6(f"{icon} {kpi['abbr']}", className="mb-0 d-inline"),
+                            dbc.Button(
+                                html.I(className="fas fa-info-circle"),
+                                id=f"info-btn-{kpi_key.lower()}",
+                                color="link",
+                                size="sm",
+                                className="float-end p-0",
+                                style={'fontSize': '1.2rem'}
+                            )
+                        ])
                     ]),
                     dbc.CardBody([
                         html.H4(current_str, className="text-center mb-2"),
-                        html.P(f"Target: {kpi['target_comparison']} {target_str}",
+                        html.P(f"Meta: {kpi['target_comparison']} {target_str}",
                                className="text-center text-muted small mb-2"),
                         html.Hr(className="my-2"),
-                        html.P(kpi['name'], className="small mb-1", style={'fontSize': '0.85rem'}),
+                        html.P(kpi['name'], className="small mb-1 fw-bold", style={'fontSize': '0.85rem'}),
                         html.P(kpi['description'], className="text-muted small mb-0", style={'fontSize': '0.75rem'}),
                     ])
                 ], color=card_color, outline=True)
@@ -2140,6 +2210,24 @@ def update_kpi_dashboard(selected_depts, selected_munics, naturaleza, area):
     )
 
     return summary_cards, summary_table, fig, filtered_count
+
+
+# ============================================================================
+# KPI MODAL CALLBACKS
+# ============================================================================
+
+# Callbacks for opening and closing KPI modals
+for kpi_key in ['ealg', 'rucdi', 'err', 'gnctp', 'mef', 'svs']:
+    @app.callback(
+        Output(f'modal-{kpi_key}', 'is_open'),
+        [Input(f'info-btn-{kpi_key}', 'n_clicks'),
+         Input(f'close-{kpi_key}-modal', 'n_clicks')],
+        [State(f'modal-{kpi_key}', 'is_open')],
+    )
+    def toggle_modal(n1, n2, is_open):
+        if n1 or n2:
+            return not is_open
+        return is_open
 
 
 # ============================================================================
