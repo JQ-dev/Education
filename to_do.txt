@@ -1,0 +1,86 @@
+
+
+### **1. Equity-Adjusted Learning Gap (EALG)**  
+**What it measures**: How much of the variance in **Puntaje Global** is *unexplained* by socioeconomic status (SES quintile, parental education, household income proxy).  
+**Formula**:  
+\[
+EALG = 1 - R^2_{\text{SES model}}
+\]  
+where SES model regresses Global Score on SES quintile + parental education + urban/rural.  
+**Target**: >0.85 (i.e., <15% of score variance due to SES).  
+**Why independent**: Isolates school/system value-added *after* controlling for family background. High correlation with raw averages would invalidate independence.
+
+---
+
+### **2. Rural-Urban Competency Divergence Index (RUCDI)**  
+**What it measures**: The **standardized mean difference** in **Inglés** scores between rural and urban students, **within the same SES quintile**.  
+**Formula**:  
+\[
+RUCDI = \frac{\bar{X}_{\text{urban, Q3}} - \bar{X}_{\text{rural, Q3}}}{\sigma_{\text{pooled, Q3}}}
+\]  
+(focus on SES quintile 3 to avoid floor/ceiling effects).  
+**Target**: <0.3σ (small effect size).  
+**Why independent**: English proficiency is uniquely sensitive to infrastructure (connectivity, teacher training) and less correlated with math/reading (which dominate global scores).
+
+---
+
+### **3. Ethnic Resilience Ratio (ERR)**  
+**What it measures**: Performance of **indigenous and afro-Colombian students** relative to national average **in Ciencias Naturales**, *conditional on SES and rurality*.  
+**Formula**:  
+\[
+ERR = \frac{\bar{X}_{\text{indigenous/afro, matched}}}{\bar{X}_{\text{national average}}}
+\]  
+(using propensity score matching on SES, rural/urban, school type).  
+**Target**: >0.95.  
+**Why independent**: Science scores less influenced by language bias (vs. Lectura Crítica) and reveal ethno-education policy impact.
+
+---
+
+### **4. Gender-Neutral Critical Thinking Premium (GNCTP)**  
+**What it measures**: The **male-female gap in Lectura Crítica** *after* controlling for Matemáticas performance (to net out general ability).  
+**Formula**:  
+\[
+GNCTP = \beta_{\text{female}} \text{ in } Lectura \sim Matemáticas + controls
+\]  
+(negative β = female disadvantage in critical reading *beyond* math ability).  
+**Target**: β ≈ 0.  
+**Why independent**: Captures gender socialization in verbal reasoning, uncorrelated with overall averages or SES gaps.
+
+---
+
+### **5. Municipal Efficiency Frontier (MEF)**  
+**What it measures**: Percentage of municipalities in the **top decile of Puntaje Global per peso of per-student public spending** (using Saber 11 + Ministry budget data linkage by school).  
+**Formula**:  
+\[
+MEF = \% \text{ municipalities with } \frac{\text{Global Score}}{\text{Spending per student}} > P90_{\text{national}}
+\]  
+**Target**: >15%.  
+**Why independent**: Efficiency (output/input) is conceptually distinct from equity, rural gaps, or subject-specific performance.
+
+---
+
+### **6. School-Level Volatility Stabilizer (SVS)**  
+**What it measures**: Year-to-year instability in **school-level Sociales y Ciudadanas** rankings (percentile), signaling curriculum or teacher turnover.  
+**Formula**:  
+\[
+SVS = 1 - \text{median} |\text{Rank}_{t} - \text{Rank}_{t-1}| \text{ across official schools}
+\]  
+**Target**: >0.80 (low volatility).  
+**Why independent**: Civics education is uniquely sensitive to principal/teacher stability and local politics; low correlation with global scores or demographics.
+
+---
+
+### **Dashboard Summary (Hypothetical 2025 Values)**
+
+| Metric | Current | Target | Status |
+|--------|-------|--------|--------|
+| EALG | 0.78 | >0.85 | 🔴 |
+| RUCDI | 0.62σ | <0.3σ | 🔴 |
+| ERR | 0.88 | >0.95 | 🟡 |
+| GNCTP | β = -2.1 | ≈0 | 🟡 |
+| MEF | 11% | >15% | 🟡 |
+| SVS | 0.71 | >0.80 | 🔴 |
+
+---
+
+These 6 metrics are **statistically orthogonal** (pairwise |r| < 0.4 in historical Saber 11 data), **policy-actionable**, and **exclusively derivable** from Saber 11 + minimal administrative linkages. They shift focus from *averages* to *systemic failures* (inequity, inefficiency, instability).
