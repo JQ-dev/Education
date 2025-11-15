@@ -54,6 +54,109 @@ def load_data():
 # Load data
 df_schools = load_data()
 
+# KPI Calculation Functions
+def calculate_kpis(df):
+    """
+    Calculate the 6 independent KPIs for educational equity and efficiency.
+
+    NOTE: Some KPIs use simulated data as placeholders where actual data
+    (SES quintiles, ethnicity, spending, etc.) is not available in current dataset.
+    These should be replaced with real calculations when data becomes available.
+    """
+    kpis = {}
+
+    # 1. Equity-Adjusted Learning Gap (EALG)
+    # Target: >0.85 (i.e., <15% of score variance due to SES)
+    # NOTE: Requires SES data, parental education, urban/rural - using simulated value
+    kpis['EALG'] = {
+        'name': 'Equity-Adjusted Learning Gap',
+        'abbr': 'EALG',
+        'current': 0.78,  # Simulated - would need R² from SES regression
+        'target': 0.85,
+        'target_comparison': '>',
+        'description': 'Proportion of score variance unexplained by SES (higher is better)',
+        'formula': '1 - R²(Global Score ~ SES quintile + parental education + urban/rural)',
+        'status': 'red',
+        'unit': ''
+    }
+
+    # 2. Rural-Urban Competency Divergence Index (RUCDI)
+    # Target: <0.3σ (small effect size)
+    # NOTE: Requires English scores by rural/urban within SES quintiles - using simulated value
+    kpis['RUCDI'] = {
+        'name': 'Rural-Urban Competency Divergence Index',
+        'abbr': 'RUCDI',
+        'current': 0.62,  # Simulated - would calculate from English scores
+        'target': 0.30,
+        'target_comparison': '<',
+        'description': 'Standardized mean difference in English scores (rural vs urban, same SES)',
+        'formula': '(Mean_urban - Mean_rural) / σ_pooled within SES Q3',
+        'status': 'red',
+        'unit': 'σ'
+    }
+
+    # 3. Ethnic Resilience Ratio (ERR)
+    # Target: >0.95
+    # NOTE: Requires ethnicity data and Ciencias Naturales scores - using simulated value
+    kpis['ERR'] = {
+        'name': 'Ethnic Resilience Ratio',
+        'abbr': 'ERR',
+        'current': 0.88,  # Simulated - would use propensity score matching
+        'target': 0.95,
+        'target_comparison': '>',
+        'description': 'Performance of indigenous/afro-Colombian students vs national average in Science',
+        'formula': 'Mean_indigenous/afro (matched) / Mean_national in Ciencias Naturales',
+        'status': 'yellow',
+        'unit': ''
+    }
+
+    # 4. Gender-Neutral Critical Thinking Premium (GNCTP)
+    # Target: ≈ 0 (no gender gap after controlling for math)
+    # NOTE: Requires Lectura Crítica scores - using simulated value
+    kpis['GNCTP'] = {
+        'name': 'Gender-Neutral Critical Thinking Premium',
+        'abbr': 'GNCTP',
+        'current': -2.1,  # Simulated β coefficient
+        'target': 0.0,
+        'target_comparison': '≈',
+        'description': 'Male-female gap in Critical Reading after controlling for Math ability',
+        'formula': 'β_female in Lectura ~ Matemáticas + controls',
+        'status': 'yellow',
+        'unit': ''
+    }
+
+    # 5. Municipal Efficiency Frontier (MEF)
+    # Target: >15%
+    # NOTE: Requires per-student spending data - using simulated value
+    kpis['MEF'] = {
+        'name': 'Municipal Efficiency Frontier',
+        'abbr': 'MEF',
+        'current': 11.0,  # Simulated percentage
+        'target': 15.0,
+        'target_comparison': '>',
+        'description': '% of municipalities in top decile of score per peso spent',
+        'formula': '% municipalities with (Global Score / Spending per student) > P90',
+        'status': 'yellow',
+        'unit': '%'
+    }
+
+    # 6. School-Level Volatility Stabilizer (SVS)
+    # Target: >0.80 (low volatility)
+    # NOTE: Requires multi-year data - using simulated value
+    kpis['SVS'] = {
+        'name': 'School-Level Volatility Stabilizer',
+        'abbr': 'SVS',
+        'current': 0.71,  # Simulated
+        'target': 0.80,
+        'target_comparison': '>',
+        'description': 'Year-to-year stability in Civics rankings (higher is better)',
+        'formula': '1 - median|Rank_t - Rank_t-1| for Sociales y Ciudadanas',
+        'status': 'red',
+        'unit': ''
+    }
+
+    return kpis
+
 # Get available grades and subjects
 grades = ['3', '5', '9', '11']
 subjects = ['Lenguaje', 'Matemáticas']
@@ -266,7 +369,40 @@ app.layout = dbc.Container([
                     ])
                 ], md=12)
             ], className="mt-3")
-        ], label="🔍 Buscar Colegio")
+        ], label="🔍 Buscar Colegio"),
+
+        dbc.Tab([
+            dbc.Row([
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader(html.H4("Key Performance Indicators (KPIs) - Educational Equity & Efficiency")),
+                        dbc.CardBody([
+                            html.P([
+                                "These 6 metrics are ",
+                                html.Strong("statistically orthogonal"),
+                                " (pairwise |r| < 0.4), ",
+                                html.Strong("policy-actionable"),
+                                ", and focus on ",
+                                html.Strong("systemic failures"),
+                                " rather than simple averages."
+                            ], className="text-muted mb-4"),
+                            html.P([
+                                html.Strong("Note: "),
+                                "Current values are simulated placeholders. Real calculations require additional data ",
+                                "(SES quintiles, ethnicity, subject-specific scores, spending data, multi-year records)."
+                            ], className="alert alert-info"),
+                            html.Div(id='kpi-summary-cards'),
+                            html.Hr(),
+                            html.H5("KPI Dashboard", className="mt-4 mb-3"),
+                            html.Div(id='kpi-summary-table'),
+                            html.Hr(),
+                            html.H5("Visual Analysis", className="mt-4 mb-3"),
+                            dcc.Graph(id='kpi-gauge-chart', style={'height': '800px'}),
+                        ])
+                    ])
+                ], md=12)
+            ], className="mt-3")
+        ], label="📊 KPIs - Equity & Efficiency")
     ])
 
 ], fluid=True)
@@ -575,6 +711,198 @@ def search_schools(search_term):
             page_size=10
         )
     ])
+
+
+# Callback for KPI Dashboard
+@app.callback(
+    [Output('kpi-summary-cards', 'children'),
+     Output('kpi-summary-table', 'children'),
+     Output('kpi-gauge-chart', 'figure')],
+    [Input('filter-genero', 'value')]  # Dummy input to trigger on load
+)
+def update_kpi_dashboard(dummy_input):
+    """Update KPI dashboard with metrics, table, and visualizations"""
+
+    # Calculate KPIs
+    kpis = calculate_kpis(df_schools)
+
+    # Create summary cards
+    kpi_cards = []
+    kpi_order = ['EALG', 'RUCDI', 'ERR', 'GNCTP', 'MEF', 'SVS']
+
+    for kpi_key in kpi_order:
+        kpi = kpis[kpi_key]
+
+        # Determine status icon and color
+        if kpi['status'] == 'red':
+            icon = '🔴'
+            card_color = 'danger'
+        elif kpi['status'] == 'yellow':
+            icon = '🟡'
+            card_color = 'warning'
+        else:
+            icon = '🟢'
+            card_color = 'success'
+
+        # Format current value
+        if kpi['unit'] == '%':
+            current_str = f"{kpi['current']:.1f}%"
+            target_str = f"{kpi['target']:.1f}%"
+        elif kpi['unit'] == 'σ':
+            current_str = f"{kpi['current']:.2f}σ"
+            target_str = f"{kpi['target']:.2f}σ"
+        else:
+            current_str = f"{kpi['current']:.2f}"
+            target_str = f"{kpi['target']:.2f}"
+
+        kpi_cards.append(
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardHeader([
+                        html.H6(f"{icon} {kpi['abbr']}", className="mb-0")
+                    ]),
+                    dbc.CardBody([
+                        html.H4(current_str, className="text-center mb-2"),
+                        html.P(f"Target: {kpi['target_comparison']} {target_str}",
+                               className="text-center text-muted small mb-2"),
+                        html.Hr(className="my-2"),
+                        html.P(kpi['name'], className="small mb-1", style={'fontSize': '0.85rem'}),
+                        html.P(kpi['description'], className="text-muted small mb-0", style={'fontSize': '0.75rem'}),
+                    ])
+                ], color=card_color, outline=True)
+            ], md=4, className="mb-3")
+        )
+
+    summary_cards = dbc.Row(kpi_cards)
+
+    # Create summary table
+    table_data = []
+    for kpi_key in kpi_order:
+        kpi = kpis[kpi_key]
+
+        # Format values
+        if kpi['unit'] == '%':
+            current_str = f"{kpi['current']:.1f}%"
+            target_str = f"{kpi['target']:.1f}%"
+        elif kpi['unit'] == 'σ':
+            current_str = f"{kpi['current']:.2f}σ"
+            target_str = f"{kpi['target']:.2f}σ"
+        else:
+            current_str = f"{kpi['current']:.2f}"
+            target_str = f"{kpi['target']:.2f}"
+
+        # Status icon
+        status_icon = '🔴' if kpi['status'] == 'red' else ('🟡' if kpi['status'] == 'yellow' else '🟢')
+
+        table_data.append({
+            'Metric': kpi['abbr'],
+            'Current': current_str,
+            'Target': f"{kpi['target_comparison']} {target_str}",
+            'Status': status_icon
+        })
+
+    table_df = pd.DataFrame(table_data)
+
+    summary_table = dash_table.DataTable(
+        data=table_df.to_dict('records'),
+        columns=[{'name': i, 'id': i} for i in table_df.columns],
+        style_table={'overflowX': 'auto'},
+        style_cell={
+            'textAlign': 'center',
+            'padding': '12px',
+            'fontSize': '14px'
+        },
+        style_header={
+            'backgroundColor': 'rgb(230, 230, 230)',
+            'fontWeight': 'bold',
+            'fontSize': '16px'
+        },
+        style_data_conditional=[
+            {
+                'if': {'row_index': 'odd'},
+                'backgroundColor': 'rgb(248, 248, 248)'
+            }
+        ]
+    )
+
+    # Create gauge chart visualization
+    fig = make_subplots(
+        rows=2, cols=3,
+        specs=[[{'type': 'indicator'}, {'type': 'indicator'}, {'type': 'indicator'}],
+               [{'type': 'indicator'}, {'type': 'indicator'}, {'type': 'indicator'}]],
+        subplot_titles=[kpis[k]['abbr'] + ' - ' + kpis[k]['name'] for k in kpi_order]
+    )
+
+    positions = [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)]
+
+    for idx, kpi_key in enumerate(kpi_order):
+        kpi = kpis[kpi_key]
+        row, col = positions[idx]
+
+        # Determine gauge range and color
+        if kpi['target_comparison'] == '>':
+            # Higher is better
+            gauge_min = 0
+            gauge_max = max(kpi['target'] * 1.2, kpi['current'] * 1.2)
+            threshold_value = kpi['target']
+        elif kpi['target_comparison'] == '<':
+            # Lower is better
+            gauge_min = 0
+            gauge_max = max(kpi['target'] * 2, kpi['current'] * 1.2)
+            threshold_value = kpi['target']
+        else:  # '≈'
+            # Close to target is better
+            gauge_min = min(kpi['current'] - abs(kpi['current']), kpi['target'] - abs(kpi['target']))
+            gauge_max = max(kpi['current'] + abs(kpi['current']), kpi['target'] + abs(kpi['target']))
+            threshold_value = kpi['target']
+
+        # Set color based on status
+        if kpi['status'] == 'red':
+            bar_color = 'crimson'
+        elif kpi['status'] == 'yellow':
+            bar_color = 'gold'
+        else:
+            bar_color = 'lightgreen'
+
+        # Format number
+        if kpi['unit'] == '%':
+            number_suffix = '%'
+        elif kpi['unit'] == 'σ':
+            number_suffix = 'σ'
+        else:
+            number_suffix = ''
+
+        fig.add_trace(
+            go.Indicator(
+                mode="gauge+number+delta",
+                value=kpi['current'],
+                title={'text': f"{kpi['abbr']}<br><span style='font-size:0.7em'>{kpi['name']}</span>"},
+                delta={'reference': kpi['target'], 'relative': False},
+                gauge={
+                    'axis': {'range': [gauge_min, gauge_max]},
+                    'bar': {'color': bar_color},
+                    'threshold': {
+                        'line': {'color': "black", 'width': 3},
+                        'thickness': 0.75,
+                        'value': threshold_value
+                    },
+                    'steps': [
+                        {'range': [gauge_min, threshold_value], 'color': "lightgray"},
+                        {'range': [threshold_value, gauge_max], 'color': "white"}
+                    ]
+                },
+                number={'suffix': number_suffix}
+            ),
+            row=row, col=col
+        )
+
+    fig.update_layout(
+        height=800,
+        showlegend=False,
+        margin=dict(l=20, r=20, t=80, b=20)
+    )
+
+    return summary_cards, summary_table, fig
 
 
 if __name__ == '__main__':
