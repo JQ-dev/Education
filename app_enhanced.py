@@ -935,6 +935,69 @@ app.layout = dbc.Container([
         # TAB 7: KPIs - Educational Equity & Efficiency
         dbc.Tab(label="📊 KPIs - Equity & Efficiency", tab_id="tab-kpis", children=[
             html.Div([
+                # Filters Row
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("Geographic Filters")),
+                            dbc.CardBody([
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Label("Departments:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-dept-filter',
+                                            options=[{'label': 'All Departments', 'value': 'ALL'}] +
+                                                    [{'label': d, 'value': d} for d in departments],
+                                            value=['ALL'],
+                                            multi=True,
+                                            placeholder="Select departments..."
+                                        )
+                                    ], md=6),
+                                    dbc.Col([
+                                        html.Label("Municipalities:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-munic-filter',
+                                            options=[{'label': 'All Municipalities', 'value': 'ALL'}],
+                                            value=['ALL'],
+                                            multi=True,
+                                            placeholder="Select municipalities..."
+                                        )
+                                    ], md=6),
+                                ]),
+                                html.Hr(),
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Label("School Type:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-naturaleza-filter',
+                                            options=[{'label': 'All Types', 'value': 'ALL'}] +
+                                                    [{'label': n, 'value': n} for n in naturaleza_options],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=4),
+                                    dbc.Col([
+                                        html.Label("Area:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-area-filter',
+                                            options=[{'label': 'All Areas', 'value': 'ALL'}] +
+                                                    [{'label': a, 'value': a} for a in area_options],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=4),
+                                    dbc.Col([
+                                        html.Div([
+                                            html.Label("Filtered Schools:", className="fw-bold"),
+                                            html.H4(id='kpi-filtered-count', className="text-primary mt-2")
+                                        ])
+                                    ], md=4),
+                                ])
+                            ])
+                        ], className="mb-4")
+                    ])
+                ]),
+
                 dbc.Row([
                     dbc.Col([
                         dbc.Card([
@@ -1769,18 +1832,64 @@ def update_prediction_model(level, target):
     return stats_content, imp_fig, va_fig, top_table, bottom_table
 
 
-# TAB 7: KPI Dashboard callbacks
+# TAB 7: KPI Dashboard callbacks - Municipality dropdown update
+@app.callback(
+    Output('kpi-munic-filter', 'options'),
+    [Input('kpi-dept-filter', 'value')]
+)
+def update_kpi_municipality_options(selected_depts):
+    """Update municipality options based on selected departments"""
+    if not selected_depts or 'ALL' in selected_depts:
+        # Return all municipalities
+        all_munics = sorted(df_schools['COLE_MCPIO_UBICACION'].dropna().unique()) if 'COLE_MCPIO_UBICACION' in df_schools.columns else []
+        return [{'label': 'All Municipalities', 'value': 'ALL'}] + [{'label': m, 'value': m} for m in all_munics]
+
+    # Filter municipalities by selected departments
+    filtered_munics = []
+    if 'COLE_DEPTO_UBICACION' in df_schools.columns and 'COLE_MCPIO_UBICACION' in df_schools.columns:
+        dept_munics = df_schools[df_schools['COLE_DEPTO_UBICACION'].isin(selected_depts)]['COLE_MCPIO_UBICACION'].dropna().unique()
+        filtered_munics = sorted(dept_munics)
+
+    return [{'label': 'All Municipalities', 'value': 'ALL'}] + [{'label': m, 'value': m} for m in filtered_munics]
+
+
 @app.callback(
     [Output('kpi-summary-cards', 'children'),
      Output('kpi-summary-table', 'children'),
-     Output('kpi-gauge-chart', 'figure')],
-    [Input('overview-subject1', 'value')]  # Dummy input to trigger on load
+     Output('kpi-gauge-chart', 'figure'),
+     Output('kpi-filtered-count', 'children')],
+    [Input('kpi-dept-filter', 'value'),
+     Input('kpi-munic-filter', 'value'),
+     Input('kpi-naturaleza-filter', 'value'),
+     Input('kpi-area-filter', 'value')]
 )
-def update_kpi_dashboard(dummy_input):
-    """Update KPI dashboard with metrics, table, and visualizations"""
+def update_kpi_dashboard(selected_depts, selected_munics, naturaleza, area):
+    """Update KPI dashboard with metrics, table, and visualizations based on filters"""
 
-    # Calculate KPIs
-    kpis = calculate_kpis(df_schools)
+    # Filter schools based on selections
+    filtered_df = df_schools.copy()
+
+    # Apply department filter
+    if selected_depts and 'ALL' not in selected_depts and 'COLE_DEPTO_UBICACION' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_DEPTO_UBICACION'].isin(selected_depts)]
+
+    # Apply municipality filter
+    if selected_munics and 'ALL' not in selected_munics and 'COLE_MCPIO_UBICACION' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_MCPIO_UBICACION'].isin(selected_munics)]
+
+    # Apply school type filter
+    if naturaleza != 'ALL' and 'COLE_NATURALEZA' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_NATURALEZA'] == naturaleza]
+
+    # Apply area filter
+    if area != 'ALL' and 'COLE_AREA_UBICACION' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_AREA_UBICACION'] == area]
+
+    # Count filtered schools
+    filtered_count = f"{len(filtered_df):,}"
+
+    # Calculate KPIs with filtered data
+    kpis = calculate_kpis(filtered_df)
 
     # Create summary cards
     kpi_cards = []
@@ -1958,7 +2067,7 @@ def update_kpi_dashboard(dummy_input):
         margin=dict(l=20, r=20, t=80, b=20)
     )
 
-    return summary_cards, summary_table, fig
+    return summary_cards, summary_table, fig, filtered_count
 
 
 # ============================================================================

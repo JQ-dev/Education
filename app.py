@@ -372,35 +372,120 @@ app.layout = dbc.Container([
         ], label="🔍 Buscar Colegio"),
 
         dbc.Tab([
-            dbc.Row([
-                dbc.Col([
-                    dbc.Card([
-                        dbc.CardHeader(html.H4("Key Performance Indicators (KPIs) - Educational Equity & Efficiency")),
-                        dbc.CardBody([
-                            html.P([
-                                "These 6 metrics are ",
-                                html.Strong("statistically orthogonal"),
-                                " (pairwise |r| < 0.4), ",
-                                html.Strong("policy-actionable"),
-                                ", and focus on ",
-                                html.Strong("systemic failures"),
-                                " rather than simple averages."
-                            ], className="text-muted mb-4"),
-                            html.P([
-                                html.Strong("Note: "),
-                                "Current values are simulated placeholders. Real calculations require additional data ",
-                                "(SES quintiles, ethnicity, subject-specific scores, spending data, multi-year records)."
-                            ], className="alert alert-info"),
-                            html.Div(id='kpi-summary-cards'),
-                            html.Hr(),
-                            html.H5("KPI Dashboard", className="mt-4 mb-3"),
-                            html.Div(id='kpi-summary-table'),
-                            html.Hr(),
-                            html.H5("Visual Analysis", className="mt-4 mb-3"),
-                            dcc.Graph(id='kpi-gauge-chart', style={'height': '800px'}),
-                        ])
+            html.Div([
+                # Filters Row
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("School Filters")),
+                            dbc.CardBody([
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Label("School Gender:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-genero-filter',
+                                            options=[{'label': 'All', 'value': 'ALL'}] +
+                                                    [{'label': g, 'value': g} for g in genero_options],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("School Type:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-naturaleza-filter',
+                                            options=[{'label': 'All', 'value': 'ALL'}] +
+                                                    [{'label': n, 'value': n} for n in naturaleza_options],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("Character:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-caracter-filter',
+                                            options=[{'label': 'All', 'value': 'ALL'}] +
+                                                    [{'label': c, 'value': c} for c in caracter_options],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("Area:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-area-filter',
+                                            options=[{'label': 'All', 'value': 'ALL'}] +
+                                                    [{'label': a, 'value': a} for a in area_options],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                ]),
+                                html.Hr(),
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Label("Grade:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-grade-filter',
+                                            options=[{'label': f'Grado {g}', 'value': g} for g in grades],
+                                            value='11',
+                                            clearable=False
+                                        )
+                                    ], md=4),
+                                    dbc.Col([
+                                        html.Label("Minimum Sample Size:", className="fw-bold"),
+                                        dcc.Slider(
+                                            id='kpi-min-sample',
+                                            min=0,
+                                            max=100,
+                                            step=10,
+                                            value=20,
+                                            marks={i: str(i) for i in range(0, 101, 20)},
+                                            tooltip={"placement": "bottom", "always_visible": True}
+                                        )
+                                    ], md=4),
+                                    dbc.Col([
+                                        html.Div([
+                                            html.Label("Filtered Schools:", className="fw-bold"),
+                                            html.H4(id='kpi-filtered-count', className="text-primary mt-2")
+                                        ])
+                                    ], md=4),
+                                ])
+                            ])
+                        ], className="mb-4")
                     ])
-                ], md=12)
+                ]),
+
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H4("Key Performance Indicators (KPIs) - Educational Equity & Efficiency")),
+                            dbc.CardBody([
+                                html.P([
+                                    "These 6 metrics are ",
+                                    html.Strong("statistically orthogonal"),
+                                    " (pairwise |r| < 0.4), ",
+                                    html.Strong("policy-actionable"),
+                                    ", and focus on ",
+                                    html.Strong("systemic failures"),
+                                    " rather than simple averages."
+                                ], className="text-muted mb-4"),
+                                html.P([
+                                    html.Strong("Note: "),
+                                    "Current values are simulated placeholders. Real calculations require additional data ",
+                                    "(SES quintiles, ethnicity, subject-specific scores, spending data, multi-year records)."
+                                ], className="alert alert-info"),
+                                html.Div(id='kpi-summary-cards'),
+                                html.Hr(),
+                                html.H5("KPI Dashboard", className="mt-4 mb-3"),
+                                html.Div(id='kpi-summary-table'),
+                                html.Hr(),
+                                html.H5("Visual Analysis", className="mt-4 mb-3"),
+                                dcc.Graph(id='kpi-gauge-chart', style={'height': '800px'}),
+                            ])
+                        ])
+                    ], md=12)
+                ])
             ], className="mt-3")
         ], label="📊 KPIs - Equity & Efficiency")
     ])
@@ -717,14 +802,54 @@ def search_schools(search_term):
 @app.callback(
     [Output('kpi-summary-cards', 'children'),
      Output('kpi-summary-table', 'children'),
-     Output('kpi-gauge-chart', 'figure')],
-    [Input('filter-genero', 'value')]  # Dummy input to trigger on load
+     Output('kpi-gauge-chart', 'figure'),
+     Output('kpi-filtered-count', 'children')],
+    [Input('kpi-genero-filter', 'value'),
+     Input('kpi-naturaleza-filter', 'value'),
+     Input('kpi-caracter-filter', 'value'),
+     Input('kpi-area-filter', 'value'),
+     Input('kpi-grade-filter', 'value'),
+     Input('kpi-min-sample', 'value')]
 )
-def update_kpi_dashboard(dummy_input):
-    """Update KPI dashboard with metrics, table, and visualizations"""
+def update_kpi_dashboard(genero, naturaleza, caracter, area, grade, min_sample):
+    """Update KPI dashboard with metrics, table, and visualizations based on filters"""
 
-    # Calculate KPIs
-    kpis = calculate_kpis(df_schools)
+    # Filter schools based on selections
+    filtered_df = df_schools.copy()
+
+    # Apply school gender filter
+    if genero != 'ALL' and 'COLE_GENERO' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_GENERO'] == genero]
+
+    # Apply school type filter
+    if naturaleza != 'ALL' and 'COLE_NATURALEZA' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_NATURALEZA'] == naturaleza]
+
+    # Apply character filter
+    if caracter != 'ALL' and 'COLE_CARACTER' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_CARACTER'] == caracter]
+
+    # Apply area filter
+    if area != 'ALL' and 'COLE_AREA_UBICACION' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_AREA_UBICACION'] == area]
+
+    # Filter by sample size for the selected grade
+    n_col = grade_cols[grade]['N']
+    if n_col in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df[n_col] >= min_sample]
+
+    # Get columns for selected grade
+    lenguaje_col = grade_cols[grade]['Lenguaje']
+    matematicas_col = grade_cols[grade]['Matemáticas']
+
+    # Remove rows with missing values for the selected grade
+    plot_df = filtered_df[[lenguaje_col, matematicas_col, n_col]].dropna()
+
+    # Count filtered schools
+    filtered_count = f"{len(plot_df):,}"
+
+    # Calculate KPIs with filtered data
+    kpis = calculate_kpis(plot_df)
 
     # Create summary cards
     kpi_cards = []
@@ -902,7 +1027,7 @@ def update_kpi_dashboard(dummy_input):
         margin=dict(l=20, r=20, t=80, b=20)
     )
 
-    return summary_cards, summary_table, fig
+    return summary_cards, summary_table, fig, filtered_count
 
 
 if __name__ == '__main__':
