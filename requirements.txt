@@ -8,3 +8,6 @@ numpy>=1.26.0
 
 # For Parquet files (optional but recommended)
 pyarrow>=10.0.0
+
+# For deployment
+gunicorn>=21.2.0
