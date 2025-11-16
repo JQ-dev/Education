@@ -40,13 +40,13 @@ Antes de desplegar, verifica:
 - [ ] ✅ `requirements.txt` existe y tiene todas las dependencias
 - [ ] ✅ `render.yaml` o `Procfile` existe
 - [ ] ✅ Archivos `.parquet` o `.csv` están en el repo (o se cargarán después)
-- [ ] ✅ `app_enhanced.py` tiene `server = app.server`
+- [ ] ✅ `app.py` tiene `server = app.server`
 - [ ] ✅ `runtime.txt` especifica Python 3.11
 - [ ] ✅ Todo está commiteado y pusheado a GitHub
 
 ```bash
 # Verificar rápidamente:
-ls -la | grep -E "requirements.txt|render.yaml|Procfile|runtime.txt|app_enhanced.py"
+ls -la | grep -E "requirements.txt|render.yaml|Procfile|runtime.txt|app.py"
 ```
 
 ---
@@ -58,7 +58,7 @@ ls -la | grep -E "requirements.txt|render.yaml|Procfile|runtime.txt|app_enhanced
 pip install -r requirements.txt
 
 # Probar con gunicorn (igual que en producción)
-gunicorn app_enhanced:server --bind 0.0.0.0:8052
+gunicorn app:server --bind 0.0.0.0:8052
 
 # Abrir: http://localhost:8052
 ```
@@ -82,7 +82,7 @@ git push
 
 **Opción B:** Usar datos de muestra
 1. Crea un archivo `sample_data_generator.py` (ver DEPLOYMENT_GUIDE.md)
-2. Modifica `app_enhanced.py` para cargar datos de muestra si no encuentra archivos reales
+2. Modifica `app.py` para cargar datos de muestra si no encuentra archivos reales
 
 ### Error: "Out of memory" en despliegue gratuito
 - ✅ Reduce el tamaño de los datos (máx 100,000 registros)

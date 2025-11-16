@@ -37,7 +37,7 @@ Antes de comenzar, asegúrate de tener:
    ```
 
 2. **Verifica que tienes estos archivos:**
-   - ✅ `app_enhanced.py`
+   - ✅ `app.py` (aplicación principal con todas las funcionalidades)
    - ✅ `landing_page.py`
    - ✅ `requirements.txt`
    - ✅ `render.yaml`
@@ -67,7 +67,7 @@ Antes de comenzar, asegúrate de tener:
    - **Name:** `saber-analytics`
    - **Environment:** `Python 3`
    - **Build Command:** `pip install -r requirements.txt`
-   - **Start Command:** `gunicorn app_enhanced:server --bind 0.0.0.0:$PORT`
+   - **Start Command:** `gunicorn app:server --bind 0.0.0.0:$PORT`
    - **Plan:** `Free`
 4. Click **"Create Web Service"**
 5. Espera a que termine el despliegue
@@ -258,7 +258,7 @@ sample_data.to_parquet('sample_data.parquet')
 3. Limita a datos de un solo año
 
 ```python
-# En app_enhanced.py, agrega al inicio:
+# En app.py, agrega al inicio:
 import os
 
 # Detectar si estamos en producción
@@ -273,7 +273,8 @@ if IS_PRODUCTION:
 
 **Solución:**
 1. Verifica que `requirements.txt` tenga todas las dependencias
-2. Asegúrate de que la versión de Python sea compatible (3.9-3.11)
+2. Verifica que `app.py` tenga `server = app.server`
+3. Asegúrate de que la versión de Python sea compatible (3.9-3.11)
 
 ### La App es Muy Lenta
 
@@ -285,7 +286,7 @@ if IS_PRODUCTION:
 **Solución - Agregar caché simple:**
 
 ```python
-# En app_enhanced.py
+# En app.py
 from functools import lru_cache
 
 @lru_cache(maxsize=32)

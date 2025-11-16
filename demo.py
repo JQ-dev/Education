@@ -113,7 +113,7 @@ def main():
 
     # Import and run the app
     try:
-        from app_enhanced import app
+        from app import app
         app.run(debug=True, host='0.0.0.0', port=8052)
     except KeyboardInterrupt:
         print("\n\n✅ Demo stopped successfully!")
