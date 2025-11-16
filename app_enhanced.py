@@ -31,6 +31,7 @@ app = dash.Dash(
     suppress_callback_exceptions=True
 )
 app.title = "Plataforma de Analítica Educativa SABER"
+server = app.server  # Expose the Flask server for deployment
 
 # Import landing page
 from landing_page import create_landing_page

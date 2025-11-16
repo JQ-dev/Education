@@ -1,0 +1,15 @@
+# Files to ignore during deployment (if using Heroku-like platforms)
+*.md
+!DEPLOYMENT_GUIDE.md
+.git
+.gitignore
+*.pyc
+__pycache__/
+.DS_Store
+demo.py
+DEMO_GUIDE.md
+QUICK_START.md
+FEATURES.md
+AUTH_README.md
+INTEGRATION_GUIDE.md
+.env.example
