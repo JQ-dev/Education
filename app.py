@@ -36,6 +36,24 @@ server = app.server  # Expose the Flask server for deployment
 # Import landing page
 from landing_page import create_landing_page
 
+# Import authentication integration (optional - controlled by ENABLE_AUTH env var)
+try:
+    from auth_integration import (
+        setup_authentication,
+        add_auth_callbacks,
+        get_auth_layout,
+        AUTH_ENABLED
+    )
+    print(f"✅ Auth module loaded. AUTH_ENABLED={AUTH_ENABLED}")
+except ImportError as e:
+    AUTH_ENABLED = False
+    print(f"⚠️  Auth module not available: {e}")
+    get_auth_layout = lambda x: None
+
+# Setup authentication if enabled
+if AUTH_ENABLED:
+    login_manager = setup_authentication(app)
+
 # ============================================================================
 # DATA LOADING FUNCTIONS
 # ============================================================================
@@ -1090,6 +1108,107 @@ def create_dashboard_content():
                 ])
             ], className="p-3")
         ]),
+
+        # TAB 8: Schools Ranking Table
+        dbc.Tab(label="📋 Ranking de Colegios", tab_id="tab-ranking", children=[
+            html.Div([
+                dbc.Row([
+                    dbc.Col([
+                        html.H4("Listado de Colegios por Desempeño", className="mb-4"),
+                        html.P("Tabla completa de colegios con puntajes promedio en todas las áreas, ordenados por puntaje global.",
+                               className="text-muted mb-4"),
+                    ])
+                ]),
+
+                # Filters for the ranking table
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("Filtros")),
+                            dbc.CardBody([
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Label("Departamento:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='ranking-dept-filter',
+                                            options=[{'label': 'Todos los Departamentos', 'value': 'ALL'}] +
+                                                    [{'label': d, 'value': d} for d in departments],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("Municipio:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='ranking-munic-filter',
+                                            options=[{'label': 'Todos los Municipios', 'value': 'ALL'}],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("Tipo de Colegio:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='ranking-naturaleza-filter',
+                                            options=[{'label': 'Todos los Tipos', 'value': 'ALL'}] +
+                                                    [{'label': n, 'value': n} for n in naturaleza_options],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Label("Área:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='ranking-area-filter',
+                                            options=[{'label': 'Todas las Áreas', 'value': 'ALL'}] +
+                                                    [{'label': a, 'value': a} for a in area_options],
+                                            value='ALL',
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                ]),
+                                html.Hr(),
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Label("Número de colegios a mostrar:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='ranking-limit',
+                                            options=[
+                                                {'label': 'Top 50', 'value': 50},
+                                                {'label': 'Top 100', 'value': 100},
+                                                {'label': 'Top 200', 'value': 200},
+                                                {'label': 'Top 500', 'value': 500},
+                                                {'label': 'Todos', 'value': 999999},
+                                            ],
+                                            value=100,
+                                            clearable=False
+                                        )
+                                    ], md=3),
+                                    dbc.Col([
+                                        html.Div([
+                                            html.Label("Colegios Filtrados:", className="fw-bold"),
+                                            html.H4(id='ranking-filtered-count', className="text-primary mt-2")
+                                        ])
+                                    ], md=3),
+                                ])
+                            ])
+                        ], className="mb-4")
+                    ])
+                ]),
+
+                # Ranking Table
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("Tabla de Rankings")),
+                            dbc.CardBody([
+                                html.Div(id='ranking-table')
+                            ])
+                        ])
+                    ], md=12)
+                ])
+            ], className="p-3")
+        ]),
     ])], fluid=True)
 
 # KPI Information Modals
@@ -1149,7 +1268,13 @@ app.layout = html.Div([
     [Input('url', 'pathname')]
 )
 def display_page(pathname):
-    """Route between landing page and dashboard"""
+    """Route between landing page, dashboard, and auth pages"""
+    # Check if it's an authentication page (login/register)
+    auth_layout = get_auth_layout(pathname)
+    if auth_layout:
+        return auth_layout
+
+    # Regular routing
     if pathname == '/dashboard':
         return create_dashboard_content()
     else:  # Default to landing page
@@ -2214,6 +2339,199 @@ def update_kpi_dashboard(selected_depts, selected_munics, naturaleza, area):
 
 
 # ============================================================================
+# TAB 8: RANKING TABLE CALLBACKS
+# ============================================================================
+
+# Update municipality dropdown based on department selection
+@app.callback(
+    Output('ranking-munic-filter', 'options'),
+    [Input('ranking-dept-filter', 'value')]
+)
+def update_ranking_municipality_options(selected_dept):
+    """Update municipality options based on selected department"""
+    if selected_dept == 'ALL' or not selected_dept:
+        # Show all municipalities
+        if 'COLE_MCPIO_UBICACION' in df_schools.columns:
+            all_munics = sorted(df_schools['COLE_MCPIO_UBICACION'].dropna().unique())
+            return [{'label': 'Todos los Municipios', 'value': 'ALL'}] + \
+                   [{'label': m, 'value': m} for m in all_munics]
+    else:
+        # Filter municipalities by department
+        if 'COLE_DEPTO_UBICACION' in df_schools.columns and 'COLE_MCPIO_UBICACION' in df_schools.columns:
+            filtered_df = df_schools[df_schools['COLE_DEPTO_UBICACION'] == selected_dept]
+            filtered_munics = sorted(filtered_df['COLE_MCPIO_UBICACION'].dropna().unique())
+            return [{'label': 'Todos los Municipios', 'value': 'ALL'}] + \
+                   [{'label': m, 'value': m} for m in filtered_munics]
+
+    return [{'label': 'Todos los Municipios', 'value': 'ALL'}]
+
+
+# Update ranking table
+@app.callback(
+    [Output('ranking-table', 'children'),
+     Output('ranking-filtered-count', 'children')],
+    [Input('ranking-dept-filter', 'value'),
+     Input('ranking-munic-filter', 'value'),
+     Input('ranking-naturaleza-filter', 'value'),
+     Input('ranking-area-filter', 'value'),
+     Input('ranking-limit', 'value')]
+)
+def update_ranking_table(dept, munic, naturaleza, area, limit):
+    """Update ranking table based on filters"""
+
+    # Filter data
+    filtered_df = df_schools.copy()
+
+    if dept != 'ALL' and 'COLE_DEPTO_UBICACION' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_DEPTO_UBICACION'] == dept]
+
+    if munic != 'ALL' and 'COLE_MCPIO_UBICACION' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_MCPIO_UBICACION'] == munic]
+
+    if naturaleza != 'ALL' and 'COLE_NATURALEZA' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_NATURALEZA'] == naturaleza]
+
+    if area != 'ALL' and 'COLE_AREA_UBICACION' in filtered_df.columns:
+        filtered_df = filtered_df[filtered_df['COLE_AREA_UBICACION'] == area]
+
+    # Get score columns
+    score_cols_map = {
+        'Lectura Crítica': 'PUNT_LECTURA_CRITICA_mean',
+        'Matemáticas': 'PUNT_MATEMATICAS_mean',
+        'Ciencias Naturales': 'PUNT_C_NATURALES_mean',
+        'Sociales y Ciudadanas': 'PUNT_SOCIALES_CIUDADANAS_mean',
+        'Inglés': 'PUNT_INGLES_mean',
+        'Global': 'PUNT_GLOBAL_mean'
+    }
+
+    # Prepare table data
+    table_data = []
+
+    # Get columns we need
+    required_cols = ['COLE_NOMBRE_ESTABLECIMIENTO', 'COLE_DEPTO_UBICACION', 'COLE_MCPIO_UBICACION']
+    available_cols = [col for col in required_cols if col in filtered_df.columns]
+
+    # Add score columns that exist
+    available_score_cols = {}
+    for subj_name, col_name in score_cols_map.items():
+        if col_name in filtered_df.columns:
+            available_score_cols[subj_name] = col_name
+
+    if not available_score_cols:
+        return html.Div("No hay datos de puntajes disponibles.", className="alert alert-warning"), "0"
+
+    # Get global score column for sorting (or first available)
+    sort_col = score_cols_map['Global'] if 'Global' in available_score_cols else list(available_score_cols.values())[0]
+
+    # Select relevant columns and drop NaN in sort column
+    cols_to_select = available_cols + list(available_score_cols.values())
+    df_table = filtered_df[cols_to_select].dropna(subset=[sort_col])
+
+    # Sort by global score (descending)
+    df_table = df_table.sort_values(by=sort_col, ascending=False)
+
+    # Apply limit
+    if limit and limit < len(df_table):
+        df_table = df_table.head(limit)
+
+    # Prepare data for display
+    for idx, row in df_table.iterrows():
+        row_data = {
+            'Ranking': len(table_data) + 1,
+            'Colegio': row.get('COLE_NOMBRE_ESTABLECIMIENTO', 'N/A'),
+            'Departamento': row.get('COLE_DEPTO_UBICACION', 'N/A'),
+            'Municipio': row.get('COLE_MCPIO_UBICACION', 'N/A')
+        }
+
+        # Add scores
+        for subj_name, col_name in available_score_cols.items():
+            if col_name in row.index:
+                score = row[col_name]
+                row_data[subj_name] = f"{score:.1f}" if pd.notna(score) else "N/A"
+
+        table_data.append(row_data)
+
+    # Create DataFrame for table
+    if not table_data:
+        return html.Div("No se encontraron colegios con los filtros aplicados.", className="alert alert-info"), "0"
+
+    df_display = pd.DataFrame(table_data)
+
+    # Create DataTable
+    table = dash_table.DataTable(
+        data=df_display.to_dict('records'),
+        columns=[{'name': col, 'id': col} for col in df_display.columns],
+        style_table={
+            'overflowX': 'auto',
+            'overflowY': 'auto',
+            'maxHeight': '600px'
+        },
+        style_cell={
+            'textAlign': 'left',
+            'padding': '10px',
+            'fontSize': '13px',
+            'fontFamily': 'Arial, sans-serif'
+        },
+        style_header={
+            'backgroundColor': 'rgb(230, 230, 230)',
+            'fontWeight': 'bold',
+            'fontSize': '14px',
+            'textAlign': 'center',
+            'border': '1px solid rgb(200, 200, 200)'
+        },
+        style_data={
+            'border': '1px solid rgb(220, 220, 220)'
+        },
+        style_data_conditional=[
+            {
+                'if': {'row_index': 'odd'},
+                'backgroundColor': 'rgb(248, 248, 248)'
+            },
+            {
+                'if': {'column_id': 'Ranking'},
+                'fontWeight': 'bold',
+                'textAlign': 'center',
+                'width': '80px'
+            },
+            {
+                'if': {'column_id': 'Colegio'},
+                'fontWeight': '500',
+                'maxWidth': '300px',
+                'whiteSpace': 'normal',
+                'height': 'auto'
+            },
+            # Highlight Global score
+            {
+                'if': {'column_id': 'Global'},
+                'backgroundColor': 'rgb(255, 250, 205)',
+                'fontWeight': 'bold',
+                'textAlign': 'center'
+            },
+            # Style other score columns
+            {
+                'if': {'column_id': ['Lectura Crítica', 'Matemáticas', 'Ciencias Naturales',
+                                     'Sociales y Ciudadanas', 'Inglés']},
+                'textAlign': 'center'
+            }
+        ],
+        sort_action='native',
+        filter_action='native',
+        page_action='native',
+        page_current=0,
+        page_size=20,
+        style_cell_conditional=[
+            {'if': {'column_id': 'Colegio'}, 'minWidth': '250px', 'maxWidth': '400px'},
+            {'if': {'column_id': 'Departamento'}, 'minWidth': '120px'},
+            {'if': {'column_id': 'Municipio'}, 'minWidth': '120px'},
+        ]
+    )
+
+    filtered_count = f"{len(df_display):,}"
+
+    return table, filtered_count
+
+
+# ============================================================================
 # KPI MODAL CALLBACKS
 # ============================================================================
 
@@ -2229,6 +2547,15 @@ for kpi_key in ['ealg', 'rucdi', 'err', 'gnctp', 'mef', 'svs']:
         if n1 or n2:
             return not is_open
         return is_open
+
+
+# ============================================================================
+# AUTHENTICATION CALLBACKS (if enabled)
+# ============================================================================
+
+if AUTH_ENABLED:
+    add_auth_callbacks(app)
+    print("✅ Authentication callbacks added")
 
 
 # ============================================================================
