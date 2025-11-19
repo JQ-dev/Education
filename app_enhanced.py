@@ -828,6 +828,160 @@ app.layout = dbc.Container([
                 ]),
             ], className="p-3")
         ]),
+
+        # TAB 7: Policy KPIs Dashboard
+        dbc.Tab(label="📋 Policy KPIs", tab_id="tab-policy-kpis", children=[
+            html.Div([
+                dbc.Row([
+                    dbc.Col([
+                        html.H4("Policy Dashboard - Key Performance Indicators"),
+                        html.P("Data-driven metrics for resource allocation and policy decisions", className="text-muted"),
+                    ])
+                ], className="mb-4"),
+
+                # Level Selection
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("Analysis Level")),
+                            dbc.CardBody([
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Label("Select Level:", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-level',
+                                            options=[
+                                                {'label': '🇨🇴 National', 'value': 'national'},
+                                                {'label': '🗺️ Department', 'value': 'department'},
+                                                {'label': '🏘️ Municipality', 'value': 'municipality'}
+                                            ],
+                                            value='national',
+                                            clearable=False
+                                        )
+                                    ], md=4),
+                                    dbc.Col([
+                                        html.Label("Department (if applicable):", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-department',
+                                            options=[{'label': d, 'value': d} for d in departments],
+                                            value=departments[0] if departments else None,
+                                            clearable=False
+                                        )
+                                    ], md=4),
+                                    dbc.Col([
+                                        html.Label("Municipality (if applicable):", className="fw-bold"),
+                                        dcc.Dropdown(
+                                            id='kpi-municipality',
+                                            options=[],
+                                            value=None,
+                                            clearable=False
+                                        )
+                                    ], md=4),
+                                ])
+                            ])
+                        ], className="mb-4")
+                    ])
+                ]),
+
+                # KPI Summary Cards
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader("🎯 Equity Gap Index"),
+                            dbc.CardBody([
+                                html.H3(id='kpi-equity-gap', className="text-center"),
+                                html.P(id='kpi-equity-gap-desc', className="text-center text-muted small"),
+                                html.Div(id='kpi-equity-gap-indicator', className="text-center")
+                            ])
+                        ])
+                    ], md=4),
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader("📈 Average Global Score"),
+                            dbc.CardBody([
+                                html.H3(id='kpi-avg-global', className="text-center"),
+                                html.P(id='kpi-avg-global-desc', className="text-center text-muted small"),
+                                html.Div(id='kpi-avg-global-indicator', className="text-center")
+                            ])
+                        ])
+                    ], md=4),
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader("⭐ Value-Added Schools %"),
+                            dbc.CardBody([
+                                html.H3(id='kpi-value-added-pct', className="text-center"),
+                                html.P(id='kpi-value-added-pct-desc', className="text-center text-muted small"),
+                                html.Div(id='kpi-value-added-indicator', className="text-center")
+                            ])
+                        ])
+                    ], md=4),
+                ], className="mb-4"),
+
+                # Context-Specific KPIs
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("Context-Specific KPIs")),
+                            dbc.CardBody([
+                                html.Div(id='kpi-context-cards')
+                            ])
+                        ])
+                    ])
+                ], className="mb-4"),
+
+                # Detailed Analysis
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("Equity Analysis")),
+                            dbc.CardBody([
+                                dcc.Graph(id='kpi-equity-chart', style={'height': '400px'})
+                            ])
+                        ])
+                    ], md=6),
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("Performance Gaps")),
+                            dbc.CardBody([
+                                dcc.Graph(id='kpi-gaps-chart', style={'height': '400px'})
+                            ])
+                        ])
+                    ], md=6),
+                ], className="mb-4"),
+
+                # Priority Areas for Intervention
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("🔴 Priority Areas for Intervention")),
+                            dbc.CardBody([
+                                html.Div(id='kpi-priority-table')
+                            ])
+                        ])
+                    ], md=6),
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("⭐ Best Practices to Replicate")),
+                            dbc.CardBody([
+                                html.Div(id='kpi-best-practices-table')
+                            ])
+                        ])
+                    ], md=6),
+                ], className="mb-4"),
+
+                # Recommendations
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Card([
+                            dbc.CardHeader(html.H5("💡 Policy Recommendations")),
+                            dbc.CardBody([
+                                html.Div(id='kpi-recommendations')
+                            ])
+                        ])
+                    ])
+                ]),
+            ], className="p-3")
+        ]),
     ]),
 
 ], fluid=True)
@@ -1628,6 +1782,561 @@ def update_prediction_model(level, target):
     )
 
     return stats_content, imp_fig, va_fig, top_table, bottom_table
+
+
+# ============================================================================
+# TAB 7: POLICY KPIs CALLBACKS
+# ============================================================================
+
+# Update municipality dropdown based on department selection
+@app.callback(
+    Output('kpi-municipality', 'options'),
+    [Input('kpi-department', 'value')]
+)
+def update_kpi_municipality_dropdown(department):
+    """Update municipality dropdown for KPI tab"""
+    if not department:
+        return []
+
+    munics = df_municipalities[df_municipalities['COLE_DEPTO_UBICACION'] == department]['COLE_MCPIO_UBICACION'].dropna().unique()
+    return [{'label': m, 'value': m} for m in sorted(munics)]
+
+
+# Main KPI calculation callback
+@app.callback(
+    [Output('kpi-equity-gap', 'children'),
+     Output('kpi-equity-gap-desc', 'children'),
+     Output('kpi-equity-gap-indicator', 'children'),
+     Output('kpi-avg-global', 'children'),
+     Output('kpi-avg-global-desc', 'children'),
+     Output('kpi-avg-global-indicator', 'children'),
+     Output('kpi-value-added-pct', 'children'),
+     Output('kpi-value-added-pct-desc', 'children'),
+     Output('kpi-value-added-indicator', 'children'),
+     Output('kpi-context-cards', 'children'),
+     Output('kpi-equity-chart', 'figure'),
+     Output('kpi-gaps-chart', 'figure'),
+     Output('kpi-priority-table', 'children'),
+     Output('kpi-best-practices-table', 'children'),
+     Output('kpi-recommendations', 'children')],
+    [Input('kpi-level', 'value'),
+     Input('kpi-department', 'value'),
+     Input('kpi-municipality', 'value')]
+)
+def update_policy_kpis(level, department, municipality):
+    """Calculate and display policy KPIs based on selected level"""
+
+    # Filter data based on level
+    if level == 'national':
+        df_filtered_students = df_students.copy()
+        df_filtered_schools = df_schools.copy()
+        level_name = "Colombia (National)"
+    elif level == 'department':
+        if not department:
+            return generate_empty_kpis()
+        df_filtered_students = df_students[df_students['COLE_DEPTO_UBICACION'] == department] if 'COLE_DEPTO_UBICACION' in df_students.columns else df_students
+        df_filtered_schools = df_schools[df_schools['COLE_DEPTO_UBICACION'] == department] if 'COLE_DEPTO_UBICACION' in df_schools.columns else df_schools
+        level_name = department
+    elif level == 'municipality':
+        if not municipality:
+            return generate_empty_kpis()
+        df_filtered_students = df_students[df_students['COLE_MCPIO_UBICACION'] == municipality] if 'COLE_MCPIO_UBICACION' in df_students.columns else df_students
+        df_filtered_schools = df_schools[df_schools['COLE_MCPIO_UBICACION'] == municipality] if 'COLE_MCPIO_UBICACION' in df_schools.columns else df_schools
+        level_name = municipality
+    else:
+        return generate_empty_kpis()
+
+    if len(df_filtered_students) == 0 or len(df_filtered_schools) == 0:
+        return generate_empty_kpis()
+
+    # ===== KPI 1: EQUITY GAP INDEX =====
+    equity_gap, equity_desc, equity_indicator = calculate_equity_gap(df_filtered_students)
+
+    # ===== KPI 2: AVERAGE GLOBAL SCORE =====
+    avg_global, global_desc, global_indicator = calculate_avg_global_score(df_filtered_students, df_filtered_schools)
+
+    # ===== KPI 3: VALUE-ADDED SCHOOLS % =====
+    value_added_pct, va_desc, va_indicator = calculate_value_added_percentage(df_filtered_students, df_filtered_schools)
+
+    # ===== CONTEXT-SPECIFIC KPIs =====
+    context_cards = generate_context_kpis(level, df_filtered_students, df_filtered_schools)
+
+    # ===== EQUITY CHART =====
+    equity_chart = create_equity_chart(df_filtered_students, level_name)
+
+    # ===== GAPS CHART =====
+    gaps_chart = create_gaps_chart(df_filtered_students, df_filtered_schools, level)
+
+    # ===== PRIORITY AREAS =====
+    priority_table = create_priority_table(df_filtered_schools, level)
+
+    # ===== BEST PRACTICES =====
+    best_practices_table = create_best_practices_table(df_filtered_schools, level)
+
+    # ===== RECOMMENDATIONS =====
+    recommendations = generate_recommendations(equity_gap, avg_global, value_added_pct, level, level_name)
+
+    return (equity_gap, equity_desc, equity_indicator,
+            avg_global, global_desc, global_indicator,
+            value_added_pct, va_desc, va_indicator,
+            context_cards,
+            equity_chart, gaps_chart,
+            priority_table, best_practices_table,
+            recommendations)
+
+
+def generate_empty_kpis():
+    """Return empty values for all KPI outputs"""
+    empty_fig = go.Figure()
+    empty_fig.add_annotation(text="No data available", xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False)
+    return ("N/A", "Select a valid location", html.Span(),
+            "N/A", "Select a valid location", html.Span(),
+            "N/A", "Select a valid location", html.Span(),
+            html.P("No data available"),
+            empty_fig, empty_fig,
+            html.P("No data available"),
+            html.P("No data available"),
+            html.P("Select a valid location to see recommendations"))
+
+
+def calculate_equity_gap(df_students):
+    """Calculate equity gap index based on socioeconomic strata"""
+    estrato_col = 'FAMI_ESTRATOVIVIENDA' if 'FAMI_ESTRATOVIVIENDA' in df_students.columns else None
+    global_col = 'PUNT_GLOBAL' if 'PUNT_GLOBAL' in df_students.columns else None
+
+    if not estrato_col or not global_col:
+        return "N/A", "Data not available", html.Span()
+
+    df_valid = df_students[[estrato_col, global_col]].dropna()
+
+    if len(df_valid) < 100:
+        return "N/A", "Insufficient data", html.Span()
+
+    # Group by estrato and get mean scores
+    estrato_scores = df_valid.groupby(estrato_col)[global_col].mean()
+
+    if len(estrato_scores) < 2:
+        return "N/A", "Insufficient strata", html.Span()
+
+    # Calculate gap between highest and lowest quintile
+    top_quintile = estrato_scores.nlargest(int(len(estrato_scores) * 0.2) + 1).mean()
+    bottom_quintile = estrato_scores.nsmallest(int(len(estrato_scores) * 0.2) + 1).mean()
+
+    gap = top_quintile - bottom_quintile
+
+    # Determine indicator
+    if gap < 30:
+        indicator = html.Span("🟢 Low Gap", className="badge bg-success")
+        desc = "Good equity - small gap between strata"
+    elif gap < 50:
+        indicator = html.Span("🟡 Moderate Gap", className="badge bg-warning")
+        desc = "Moderate equity concerns"
+    else:
+        indicator = html.Span("🔴 High Gap", className="badge bg-danger")
+        desc = "Urgent: Large inequality between strata"
+
+    return f"{gap:.1f} pts", desc, indicator
+
+
+def calculate_avg_global_score(df_students, df_schools):
+    """Calculate average global score"""
+    global_col = 'PUNT_GLOBAL' if 'PUNT_GLOBAL' in df_students.columns else None
+    global_mean_col = 'PUNT_GLOBAL_mean' if 'PUNT_GLOBAL_mean' in df_schools.columns else None
+
+    if global_mean_col and len(df_schools) > 0:
+        avg = df_schools[global_mean_col].mean()
+    elif global_col and len(df_students) > 0:
+        avg = df_students[global_col].mean()
+    else:
+        return "N/A", "Data not available", html.Span()
+
+    # National average is around 250-270 for SABER 11
+    if avg >= 270:
+        indicator = html.Span("🟢 Above National", className="badge bg-success")
+        desc = "Above national average"
+    elif avg >= 250:
+        indicator = html.Span("🟡 National Average", className="badge bg-warning")
+        desc = "At national average level"
+    else:
+        indicator = html.Span("🔴 Below National", className="badge bg-danger")
+        desc = "Below national average - needs improvement"
+
+    return f"{avg:.1f}", desc, indicator
+
+
+def calculate_value_added_percentage(df_students, df_schools):
+    """Calculate percentage of schools with positive value-added"""
+    # This requires running the value-added model
+    # For now, use a simplified version based on school performance vs estrato
+
+    if len(df_schools) < 10:
+        return "N/A", "Insufficient schools", html.Span()
+
+    # Use global score mean as proxy
+    global_mean_col = 'PUNT_GLOBAL_mean' if 'PUNT_GLOBAL_mean' in df_schools.columns else None
+
+    if not global_mean_col:
+        return "N/A", "Data not available", html.Span()
+
+    # Simple heuristic: schools above median are "value-added"
+    median_score = df_schools[global_mean_col].median()
+    above_median = (df_schools[global_mean_col] > median_score).sum()
+    pct = (above_median / len(df_schools)) * 100
+
+    if pct >= 55:
+        indicator = html.Span("🟢 High", className="badge bg-success")
+        desc = "Many schools exceeding expectations"
+    elif pct >= 45:
+        indicator = html.Span("🟡 Balanced", className="badge bg-warning")
+        desc = "Balanced performance distribution"
+    else:
+        indicator = html.Span("🔴 Low", className="badge bg-danger")
+        desc = "Few schools exceeding expectations"
+
+    return f"{pct:.1f}%", desc, indicator
+
+
+def generate_context_kpis(level, df_students, df_schools):
+    """Generate context-specific KPIs based on level"""
+    cards = []
+
+    if level == 'national' or level == 'department':
+        # Urban-Rural Gap
+        area_col = 'COLE_AREA_UBICACION' if 'COLE_AREA_UBICACION' in df_students.columns else None
+        global_col = 'PUNT_GLOBAL' if 'PUNT_GLOBAL' in df_students.columns else None
+
+        if area_col and global_col:
+            df_valid = df_students[[area_col, global_col]].dropna()
+            if len(df_valid) > 100:
+                area_scores = df_valid.groupby(area_col)[global_col].mean()
+                if 'URBANO' in area_scores.index and 'RURAL' in area_scores.index:
+                    gap = area_scores['URBANO'] - area_scores['RURAL']
+                    color = "success" if gap < 20 else ("warning" if gap < 35 else "danger")
+                    cards.append(
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardBody([
+                                    html.H5("🌆 Urban-Rural Gap", className="card-title"),
+                                    html.H3(f"{gap:.1f} pts", className=f"text-{color}"),
+                                    html.P("Difference between urban and rural schools", className="small text-muted")
+                                ])
+                            ], color=color, outline=True)
+                        ], md=4)
+                    )
+
+    if level == 'department' or level == 'municipality':
+        # School Type Gap
+        naturaleza_col = 'COLE_NATURALEZA' if 'COLE_NATURALEZA' in df_schools.columns else None
+        global_mean_col = 'PUNT_GLOBAL_mean' if 'PUNT_GLOBAL_mean' in df_schools.columns else None
+
+        if naturaleza_col and global_mean_col:
+            df_valid = df_schools[[naturaleza_col, global_mean_col]].dropna()
+            if len(df_valid) > 10:
+                type_scores = df_valid.groupby(naturaleza_col)[global_mean_col].mean()
+                if 'OFICIAL' in type_scores.index and 'NO OFICIAL' in type_scores.index:
+                    gap = abs(type_scores['NO OFICIAL'] - type_scores['OFICIAL'])
+                    color = "success" if gap < 15 else ("warning" if gap < 30 else "danger")
+                    cards.append(
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardBody([
+                                    html.H5("🏫 Public-Private Gap", className="card-title"),
+                                    html.H3(f"{gap:.1f} pts", className=f"text-{color}"),
+                                    html.P("Difference between public and private schools", className="small text-muted")
+                                ])
+                            ], color=color, outline=True)
+                        ], md=4)
+                    )
+
+    # Subject-Specific Weaknesses
+    subjects = ['PUNT_MATEMATICAS', 'PUNT_LECTURA_CRITICA', 'PUNT_C_NATURALES',
+                'PUNT_SOCIALES_CIUDADANAS', 'PUNT_INGLES']
+    subject_scores = {}
+
+    for subj in subjects:
+        if subj in df_students.columns:
+            subject_scores[subj] = df_students[subj].mean()
+
+    if len(subject_scores) >= 3:
+        weakest = min(subject_scores, key=subject_scores.get)
+        weakest_name = weakest.replace('PUNT_', '').replace('_', ' ').title()
+        weakest_score = subject_scores[weakest]
+
+        cards.append(
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardBody([
+                        html.H5("📊 Weakest Subject", className="card-title"),
+                        html.H3(weakest_name, className="text-danger"),
+                        html.P(f"Avg: {weakest_score:.1f}", className="small text-muted")
+                    ])
+                ], color="danger", outline=True)
+            ], md=4)
+        )
+
+    return dbc.Row(cards) if cards else html.P("No context-specific KPIs available")
+
+
+def create_equity_chart(df_students, level_name):
+    """Create equity analysis chart by socioeconomic strata"""
+    estrato_col = 'FAMI_ESTRATOVIVIENDA' if 'FAMI_ESTRATOVIVIENDA' in df_students.columns else None
+    global_col = 'PUNT_GLOBAL' if 'PUNT_GLOBAL' in df_students.columns else None
+
+    if not estrato_col or not global_col:
+        fig = go.Figure()
+        fig.add_annotation(text="Socioeconomic data not available", xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False)
+        return fig
+
+    df_valid = df_students[[estrato_col, global_col]].dropna()
+
+    if len(df_valid) < 50:
+        fig = go.Figure()
+        fig.add_annotation(text="Insufficient data", xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False)
+        return fig
+
+    # Group by estrato
+    estrato_stats = df_valid.groupby(estrato_col)[global_col].agg(['mean', 'count']).reset_index()
+    estrato_stats = estrato_stats.sort_values(estrato_col)
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=estrato_stats[estrato_col],
+        y=estrato_stats['mean'],
+        text=estrato_stats['mean'].round(1),
+        textposition='auto',
+        marker_color=['#d32f2f' if x <= 2 else ('#ff9800' if x <= 4 else '#4caf50') for x in estrato_stats[estrato_col]],
+        name='Average Score'
+    ))
+
+    fig.update_layout(
+        title=f'Performance by Socioeconomic Stratum - {level_name}',
+        xaxis_title='Estrato (1=Low, 6=High)',
+        yaxis_title='Average Global Score',
+        showlegend=False
+    )
+
+    return fig
+
+
+def create_gaps_chart(df_students, df_schools, level):
+    """Create performance gaps chart"""
+    # Show gaps across different dimensions
+    subjects = {
+        'PUNT_MATEMATICAS': 'Math',
+        'PUNT_LECTURA_CRITICA': 'Reading',
+        'PUNT_C_NATURALES': 'Science',
+        'PUNT_SOCIALES_CIUDADANAS': 'Social Studies',
+        'PUNT_INGLES': 'English'
+    }
+
+    subject_avgs = {}
+    national_benchmark = 250  # Approximate national average
+
+    for col, name in subjects.items():
+        if col in df_students.columns:
+            avg = df_students[col].mean()
+            gap = avg - national_benchmark
+            subject_avgs[name] = gap
+
+    if not subject_avgs:
+        fig = go.Figure()
+        fig.add_annotation(text="Subject data not available", xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False)
+        return fig
+
+    names = list(subject_avgs.keys())
+    gaps = list(subject_avgs.values())
+    colors = ['#4caf50' if g >= 0 else '#d32f2f' for g in gaps]
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=names,
+        y=gaps,
+        marker_color=colors,
+        text=[f"{g:+.1f}" for g in gaps],
+        textposition='auto'
+    ))
+
+    fig.add_hline(y=0, line_dash="dash", line_color="gray", annotation_text="National Average")
+
+    fig.update_layout(
+        title='Subject Gaps vs National Average',
+        xaxis_title='Subject',
+        yaxis_title='Gap (points)',
+        showlegend=False
+    )
+
+    return fig
+
+
+def create_priority_table(df_schools, level):
+    """Create table of priority areas for intervention"""
+    global_mean_col = 'PUNT_GLOBAL_mean' if 'PUNT_GLOBAL_mean' in df_schools.columns else None
+    name_col = 'COLE_NOMBRE_ESTABLECIMIENTO' if 'COLE_NOMBRE_ESTABLECIMIENTO' in df_schools.columns else None
+
+    if not global_mean_col or not name_col:
+        return html.P("School data not available")
+
+    # Get bottom 10 schools
+    df_sorted = df_schools.sort_values(global_mean_col).head(10)
+
+    if len(df_sorted) == 0:
+        return html.P("No schools found")
+
+    table_data = []
+    for idx, row in df_sorted.iterrows():
+        table_data.append({
+            'School': row[name_col][:50] if len(str(row[name_col])) > 50 else row[name_col],
+            'Global Score': f"{row[global_mean_col]:.1f}",
+            'Priority': '🔴 High' if row[global_mean_col] < 200 else '🟡 Medium'
+        })
+
+    return dash_table.DataTable(
+        data=table_data,
+        columns=[{'name': i, 'id': i} for i in ['School', 'Global Score', 'Priority']],
+        style_cell={'textAlign': 'left', 'padding': '10px'},
+        style_header={'backgroundColor': '#f44336', 'color': 'white', 'fontWeight': 'bold'},
+        style_data_conditional=[
+            {'if': {'column_id': 'Priority', 'filter_query': '{Priority} contains High'},
+             'backgroundColor': '#ffebee', 'color': '#c62828'}
+        ]
+    )
+
+
+def create_best_practices_table(df_schools, level):
+    """Create table of best practice schools to replicate"""
+    global_mean_col = 'PUNT_GLOBAL_mean' if 'PUNT_GLOBAL_mean' in df_schools.columns else None
+    name_col = 'COLE_NOMBRE_ESTABLECIMIENTO' if 'COLE_NOMBRE_ESTABLECIMIENTO' in df_schools.columns else None
+
+    if not global_mean_col or not name_col:
+        return html.P("School data not available")
+
+    # Get top 10 schools
+    df_sorted = df_schools.sort_values(global_mean_col, ascending=False).head(10)
+
+    if len(df_sorted) == 0:
+        return html.P("No schools found")
+
+    table_data = []
+    for idx, row in df_sorted.iterrows():
+        table_data.append({
+            'School': row[name_col][:50] if len(str(row[name_col])) > 50 else row[name_col],
+            'Global Score': f"{row[global_mean_col]:.1f}",
+            'Status': '⭐ Excellent'
+        })
+
+    return dash_table.DataTable(
+        data=table_data,
+        columns=[{'name': i, 'id': i} for i in ['School', 'Global Score', 'Status']],
+        style_cell={'textAlign': 'left', 'padding': '10px'},
+        style_header={'backgroundColor': '#4caf50', 'color': 'white', 'fontWeight': 'bold'},
+        style_data_conditional=[
+            {'if': {'column_id': 'Status'},
+             'backgroundColor': '#e8f5e9', 'color': '#2e7d32'}
+        ]
+    )
+
+
+def generate_recommendations(equity_gap, avg_global, value_added_pct, level, level_name):
+    """Generate policy recommendations based on KPIs"""
+    recommendations = []
+
+    # Parse numeric values
+    try:
+        gap_value = float(equity_gap.replace(' pts', '').replace('N/A', '0'))
+    except:
+        gap_value = 0
+
+    try:
+        global_value = float(avg_global.replace('N/A', '0'))
+    except:
+        global_value = 0
+
+    try:
+        va_value = float(value_added_pct.replace('%', '').replace('N/A', '0'))
+    except:
+        va_value = 0
+
+    # Equity-based recommendations
+    if gap_value > 50:
+        recommendations.append(html.Li([
+            html.Strong("🔴 URGENT - Equity Crisis: "),
+            f"Large gap ({gap_value:.1f} pts) between socioeconomic strata. ",
+            html.Strong("Actions: "),
+            "1) Targeted support for Estrato 1-2 schools, 2) Additional teacher training in low-performing areas, 3) Infrastructure investment in disadvantaged neighborhoods"
+        ]))
+    elif gap_value > 30:
+        recommendations.append(html.Li([
+            html.Strong("🟡 Equity Concern: "),
+            f"Moderate gap ({gap_value:.1f} pts) exists. ",
+            html.Strong("Actions: "),
+            "1) Scholarship programs for low-estrato students, 2) Peer mentoring between high and low performing schools"
+        ]))
+    else:
+        recommendations.append(html.Li([
+            html.Strong("🟢 Good Equity: "),
+            f"Low gap ({gap_value:.1f} pts) maintained. ",
+            html.Strong("Actions: "),
+            "Continue current equity programs and monitor quarterly"
+        ]))
+
+    # Performance-based recommendations
+    if global_value < 250:
+        recommendations.append(html.Li([
+            html.Strong("🔴 Below National Average: "),
+            f"Score ({global_value:.1f}) below national benchmark. ",
+            html.Strong("Actions: "),
+            "1) Comprehensive curriculum review, 2) Teacher professional development programs, 3) Student tutoring initiatives"
+        ]))
+    elif global_value < 270:
+        recommendations.append(html.Li([
+            html.Strong("🟡 At National Average: "),
+            f"Score ({global_value:.1f}) at national level. ",
+            html.Strong("Actions: "),
+            "1) Identify and replicate best practices from high-performing schools, 2) Focus on weakest subjects"
+        ]))
+    else:
+        recommendations.append(html.Li([
+            html.Strong("🟢 Above National Average: "),
+            f"Score ({global_value:.1f}) exceeds national benchmark. ",
+            html.Strong("Actions: "),
+            "Share successful strategies with other regions, continue innovation"
+        ]))
+
+    # Value-added recommendations
+    if va_value < 45:
+        recommendations.append(html.Li([
+            html.Strong("⭐ Value-Added Focus Needed: "),
+            f"Only {va_value:.1f}% of schools exceeding expectations. ",
+            html.Strong("Actions: "),
+            "1) Principal leadership training, 2) School transformation programs for underperformers, 3) Study high value-added schools"
+        ]))
+
+    # Level-specific recommendations
+    if level == 'national':
+        recommendations.append(html.Li([
+            html.Strong("🇨🇴 National Policy: "),
+            "1) Create national teacher training program focused on weakest subjects, ",
+            "2) Establish rural school support network, ",
+            "3) Implement value-added metrics in school evaluation"
+        ]))
+    elif level == 'department':
+        recommendations.append(html.Li([
+            html.Strong("🗺️ Department Actions: "),
+            f"For {level_name}: ",
+            "1) Deploy mobile teacher teams to struggling municipalities, ",
+            "2) Create department-wide best practice sharing network, ",
+            "3) Target infrastructure investments to lowest-performing municipalities"
+        ]))
+    elif level == 'municipality':
+        recommendations.append(html.Li([
+            html.Strong("🏘️ Municipality Actions: "),
+            f"For {level_name}: ",
+            "1) School-by-school improvement plans for bottom 10 performers, ",
+            "2) Parent engagement programs, ",
+            "3) After-school tutoring in weakest subjects"
+        ]))
+
+    return html.Ul(recommendations, className="list-group list-group-flush")
 
 
 # ============================================================================
