@@ -1,9 +1,11 @@
 /* SABER Education Dashboard - Professional Styling */
+/* Enhanced UI v2.0 - Modern Government Analytics Platform */
 
 /* Color Palette - Colombian Government Inspired */
 :root {
     --primary-blue: #003D82;
     --secondary-blue: #0066CC;
+    --primary-gradient: linear-gradient(135deg, #003D82 0%, #0066CC 100%);
     --accent-yellow: #FFD100;
     --accent-red: #CE1126;
     --dark-gray: #2C3E50;
@@ -12,6 +14,16 @@
     --success-green: #27AE60;
     --warning-orange: #F39C12;
     --danger-red: #E74C3C;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
+    --shadow-xl: 0 12px 48px rgba(0,0,0,0.2);
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
 }
 
 /* Global Styles */
@@ -450,4 +462,355 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+/* Enhanced KPI Cards */
+.kpi-metric-card {
+    background: white;
+    border-radius: var(--border-radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border-left: 4px solid var(--primary-blue);
+    position: relative;
+    overflow: hidden;
+}
+
+.kpi-metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: var(--primary-gradient);
+    opacity: 0.05;
+    border-radius: 50%;
+    transform: translate(30%, -30%);
+}
+
+.kpi-metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.kpi-metric-card.status-green {
+    border-left-color: var(--success-green);
+}
+
+.kpi-metric-card.status-yellow {
+    border-left-color: var(--warning-orange);
+}
+
+.kpi-metric-card.status-red {
+    border-left-color: var(--danger-red);
+}
+
+.kpi-metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+}
+
+.kpi-metric-label {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kpi-metric-description {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-top: 12px;
+    line-height: 1.4;
+}
+
+/* Modern Summary Cards */
+.summary-stat-card {
+    background: white;
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    border-top: 3px solid var(--primary-blue);
+}
+
+.summary-stat-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+
+.summary-stat-card .stat-icon {
+    font-size: 2rem;
+    color: var(--primary-blue);
+    margin-bottom: 12px;
+}
+
+.summary-stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+}
+
+.summary-stat-card .stat-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Modern Filter Section */
+.filter-card {
+    background: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.filter-card .card-header {
+    background: var(--primary-gradient);
+    color: white;
+    font-weight: 600;
+    padding: 16px 20px;
+}
+
+.filter-card .card-body {
+    padding: 20px;
+}
+
+/* Enhanced Dropdown Styling */
+.Select-control,
+.dash-dropdown .Select-control {
+    border-radius: var(--border-radius-sm) !important;
+    border: 2px solid #e0e0e0 !important;
+    min-height: 42px !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.Select-control:hover,
+.dash-dropdown .Select-control:hover {
+    border-color: var(--secondary-blue) !important;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1) !important;
+}
+
+.Select-control:focus-within,
+.dash-dropdown .Select-control:focus-within {
+    border-color: var(--primary-blue) !important;
+    box-shadow: 0 0 0 3px rgba(0, 61, 130, 0.2) !important;
+}
+
+/* Analytics Section Headers */
+.analytics-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.analytics-header h4 {
+    color: var(--primary-blue);
+    font-weight: 600;
+    margin: 0;
+}
+
+.analytics-header .header-icon {
+    font-size: 1.5rem;
+    margin-right: 12px;
+    color: var(--accent-yellow);
+}
+
+/* Modern Chart Container */
+.chart-container {
+    background: white;
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-normal);
+}
+
+.chart-container:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.chart-container .chart-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-badge.status-success {
+    background: rgba(39, 174, 96, 0.1);
+    color: var(--success-green);
+}
+
+.status-badge.status-warning {
+    background: rgba(243, 156, 18, 0.1);
+    color: var(--warning-orange);
+}
+
+.status-badge.status-danger {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--danger-red);
+}
+
+/* Animated Progress Indicator */
+.progress-indicator {
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.progress-indicator .progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease-out;
+}
+
+.progress-indicator .progress-bar.success {
+    background: var(--success-green);
+}
+
+.progress-indicator .progress-bar.warning {
+    background: var(--warning-orange);
+}
+
+.progress-indicator .progress-bar.danger {
+    background: var(--danger-red);
+}
+
+/* Tooltip Styles */
+.custom-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.custom-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background: var(--dark-gray);
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-fast);
+}
+
+.custom-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 8px);
+}
+
+/* Data Table Enhancements */
+.dash-table-container {
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.dash-table-container .dash-spreadsheet-container {
+    border-radius: var(--border-radius-md);
+}
+
+.dash-table-container th {
+    background: var(--primary-gradient) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 14px 12px !important;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.dash-table-container td {
+    padding: 12px !important;
+    border-bottom: 1px solid var(--light-gray) !important;
+}
+
+.dash-table-container tr:hover td {
+    background: rgba(0, 102, 204, 0.05) !important;
+}
+
+/* Pulse Animation for Live Indicators */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.live-indicator {
+    animation: pulse 2s infinite;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Responsive Improvements */
+@media (max-width: 992px) {
+    .kpi-metric-card {
+        margin-bottom: 16px;
+    }
+
+    .summary-stat-card .stat-value {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .kpi-metric-value {
+        font-size: 2rem;
+    }
+
+    .nav-tabs .nav-link {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    .card {
+        break-inside: avoid;
+    }
+
+    body {
+        font-size: 12pt;
+    }
 }
