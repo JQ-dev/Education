@@ -12,7 +12,6 @@ pyarrow>=10.0.0
 # For deployment
 gunicorn>=21.2.0
 
-# For authentication (optional - enable with ENABLE_AUTH=true)
-# Uncomment these lines to enable authentication:
-# flask-login>=0.6.3
-# flask-sqlalchemy>=3.1.1
+# For authentication (enable with ENABLE_AUTH=true)
+flask-login>=0.6.3
+flask-sqlalchemy>=3.1.1

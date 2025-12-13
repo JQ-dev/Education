@@ -1,6 +1,10 @@
 """
 Enhanced Dash App for Colombian SABER School Results Analysis
 Designed for governmental agencies to analyze educational performance at multiple levels
+
+Authentication:
+- Public pages: National, Department, Municipality overviews (aggregate data)
+- Protected pages: School details, Socioeconomic, Advanced Analytics, Policy KPIs (corporate login required)
 """
 
 import dash
@@ -21,9 +25,27 @@ import glob
 import os
 warnings.filterwarnings('ignore')
 
+# Import enhanced authentication
+from auth_integration_enhanced import (
+    setup_authentication,
+    add_auth_callbacks,
+    get_auth_layout,
+    create_auth_header,
+    is_tab_accessible,
+    create_login_required_message,
+    AUTH_ENABLED
+)
+
 # Initialize the Dash app with Bootstrap theme
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "SABER Results - Government Dashboard"
+server = app.server
+
+# Setup authentication (if enabled via ENABLE_AUTH environment variable)
+login_manager = setup_authentication(app)
+
+# Allow callback exceptions for dynamic routing
+app.config.suppress_callback_exceptions = True
 
 # ============================================================================
 # DATA LOADING FUNCTIONS
@@ -296,17 +318,30 @@ else:
 # ============================================================================
 
 app.layout = dbc.Container([
-    # Header
-    dbc.Row([
-        dbc.Col([
-            html.H1("SABER Educational Results Dashboard", className="text-center mb-3 mt-4"),
-            html.H5("Government Analytics Platform - Comprehensive Educational Performance Analysis",
-                   className="text-center text-muted mb-4"),
-        ])
-    ]),
+    dcc.Location(id='url', refresh=False),
+    html.Div(id='page-content')
+], fluid=True)
 
-    # Main tabs
-    dbc.Tabs(id="main-tabs", active_tab="tab-overview", children=[
+
+def create_main_dashboard():
+    """Create the main dashboard layout"""
+    auth_header = create_auth_header()
+
+    return dbc.Container([
+        # Auth header (login/logout buttons)
+        auth_header if auth_header else html.Div(),
+
+        # Header
+        dbc.Row([
+            dbc.Col([
+                html.H1("SABER Educational Results Dashboard", className="text-center mb-3 mt-4"),
+                html.H5("Government Analytics Platform - Comprehensive Educational Performance Analysis",
+                       className="text-center text-muted mb-4"),
+            ])
+        ]),
+
+        # Main tabs
+        dbc.Tabs(id="main-tabs", active_tab="tab-overview", children=[
 
         # TAB 1: Overview / Nacional
         dbc.Tab(label="📊 National Overview", tab_id="tab-overview", children=[
@@ -984,7 +1019,50 @@ app.layout = dbc.Container([
         ]),
     ]),
 
-], fluid=True)
+    ], fluid=True)
+
+
+# ============================================================================
+# URL ROUTING & AUTHENTICATION
+# ============================================================================
+
+@app.callback(
+    Output('page-content', 'children'),
+    Input('url', 'pathname')
+)
+def display_page(pathname):
+    """Route pages and handle authentication"""
+    # Check if it's an auth page (login, register)
+    auth_layout = get_auth_layout(pathname)
+    if auth_layout:
+        return auth_layout
+
+    # Default to main dashboard
+    return create_main_dashboard()
+
+
+# Add authentication callbacks (login, logout, registration)
+add_auth_callbacks(app)
+
+
+# Tab access control
+@app.callback(
+    Output('main-tabs', 'active_tab'),
+    [Input('main-tabs', 'active_tab')],
+    prevent_initial_call=True
+)
+def check_tab_access(active_tab):
+    """Check if user has access to the selected tab"""
+    if not active_tab:
+        return 'tab-overview'
+
+    accessible, message = is_tab_accessible(active_tab)
+
+    if not accessible and message == 'login_required':
+        # Redirect to overview and let the user know (through tab content)
+        return active_tab  # Keep the tab selection to show login message
+
+    return active_tab
 
 
 # ============================================================================
@@ -1333,6 +1411,10 @@ def update_municipality_analysis(municipality, grade):
 )
 def search_schools(search_term):
     """Search for schools"""
+    # Check access for protected tab
+    accessible, message = is_tab_accessible('tab-school')
+    if not accessible:
+        return create_login_required_message("School Analysis")
 
     if not search_term or len(search_term) < 3:
         return html.P("Type at least 3 characters to search...", className="text-muted")
@@ -1379,6 +1461,13 @@ def search_schools(search_term):
 )
 def update_socioeconomic_analysis(analysis_type):
     """Update socioeconomic impact analysis"""
+    # Check access for protected tab
+    accessible, message = is_tab_accessible('tab-socioeconomic')
+    if not accessible:
+        empty_fig = go.Figure()
+        empty_fig.add_annotation(text="🔒 Login required for Socioeconomic Analysis",
+                                xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False)
+        return empty_fig, empty_fig, empty_fig
 
     if len(df_students) == 0:
         empty_fig = go.Figure()
@@ -1504,6 +1593,14 @@ def update_socioeconomic_analysis(analysis_type):
 )
 def update_prediction_model(level, target):
     """Build and evaluate value-added prediction model"""
+    # Check access for protected tab
+    accessible, message = is_tab_accessible('tab-prediction')
+    if not accessible:
+        login_msg = create_login_required_message("Advanced Analytics")
+        empty_fig = go.Figure()
+        empty_fig.add_annotation(text="🔒 Login required for Advanced Analytics",
+                                xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False)
+        return login_msg, empty_fig, empty_fig, html.P("N/A"), html.P("N/A")
 
     if level == 'student':
         # Student-level prediction
@@ -1825,6 +1922,16 @@ def update_kpi_municipality_dropdown(department):
 )
 def update_policy_kpis(level, department, municipality):
     """Calculate and display policy KPIs based on selected level"""
+    # Check access for protected tab
+    accessible, message = is_tab_accessible('tab-policy-kpis')
+    if not accessible:
+        login_msg = create_login_required_message("Policy KPIs Dashboard")
+        empty_fig = go.Figure()
+        empty_fig.add_annotation(text="🔒 Login required for Policy KPIs",
+                                xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False)
+        return ("N/A", "Login required", "", "N/A", "Login required", "", "N/A", "Login required", "",
+                login_msg, empty_fig, empty_fig, html.P("Login required"), html.P("Login required"),
+                html.P("Login required to view recommendations"))
 
     # Filter data based on level
     if level == 'national':
